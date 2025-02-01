@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.webDataPOJO;
@@ -19,17 +20,19 @@ import model.webDataPOJO;
 public class uniGridView extends javax.swing.JPanel {
 
     private final String[] columnNames={"University Name", "Country", "Alpha-two-code", "State-Province","Web Pages","Domains"}; //grid header names
-    Object[][] data=new Object[0][columnNames.length]; // Empty data with the same number of columns;
+
+    public JTable getGrid() {
+        return grid;
+    }
 
     public JButton getSearchBtn() {
         return searchBtn;
     }
 
-    public JButton getView_editBtn() {
-        return view_editBtn;
+    public JButton getViewEditBtn() {
+        return viewEditBtn;
     }
     
-
     /**
      * Creates new form uniView
      */
@@ -47,9 +50,10 @@ public class uniGridView extends javax.swing.JPanel {
     }
     
     public void populateGrid(List<webDataPOJO> universityList){
-        if (universityList!=null){
-            this.data = new Object[universityList.size()][6];
-            for (int i = 0; i < universityList.size(); i++) {
+        int size=universityList!=null ? universityList.size():0;
+        Object[][] data = new Object[size][6];
+        if (size!=0){
+            for (int i = 0; i < size; i++) {
                 data[i][0] = universityList.get(i).getName();
                 data[i][1] = universityList.get(i).getCountry();
                 data[i][2] = universityList.get(i).getAlpha_two_code();
@@ -58,13 +62,13 @@ public class uniGridView extends javax.swing.JPanel {
                 data[i][5] = universityList.get(i).getDomains();
             }        
         }
-        setGridModel();
+        setGridModel(data);
         grid.revalidate();
         grid.repaint();
     }
     
-    private void setGridModel(){
-        DefaultTableModel model = new DefaultTableModel(this.data, this.columnNames){
+    private void setGridModel(Object[][] data){
+        DefaultTableModel model = new DefaultTableModel(data, this.columnNames){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Disable editing
@@ -87,14 +91,6 @@ public class uniGridView extends javax.swing.JPanel {
         grid.getColumnModel().getColumn(columnIndex).setCellRenderer(renderer);  // Apply the renderer to the column
     }    
     
-//    private static uniGridView single_instance = null;
-//    public static synchronized uniGridView getInstance()
-//    {
-//        if (single_instance == null)
-//            single_instance = new uniGridView();
-// 
-//        return single_instance;
-//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,27 +102,27 @@ public class uniGridView extends javax.swing.JPanel {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        view_editBtn = new javax.swing.JButton();
+        viewEditBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         grid = new javax.swing.JTable();
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
-        view_editBtn.setBackground(new java.awt.Color(45, 45, 48));
-        view_editBtn.setForeground(new java.awt.Color(255, 255, 255));
-        view_editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit.png"))); // NOI18N
-        view_editBtn.setText("View/Edit");
-        view_editBtn.setAlignmentY(0.0F);
-        view_editBtn.setFocusPainted(false);
-        view_editBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        view_editBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        view_editBtn.setIconTextGap(32);
-        view_editBtn.setInheritsPopupMenu(true);
-        view_editBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
-        view_editBtn.setMaximumSize(new java.awt.Dimension(200, 50));
-        view_editBtn.setMinimumSize(new java.awt.Dimension(200, 50));
-        view_editBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+        viewEditBtn.setBackground(new java.awt.Color(45, 45, 48));
+        viewEditBtn.setForeground(new java.awt.Color(255, 255, 255));
+        viewEditBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit.png"))); // NOI18N
+        viewEditBtn.setText("View/Edit");
+        viewEditBtn.setAlignmentY(0.0F);
+        viewEditBtn.setFocusPainted(false);
+        viewEditBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        viewEditBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        viewEditBtn.setIconTextGap(32);
+        viewEditBtn.setInheritsPopupMenu(true);
+        viewEditBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
+        viewEditBtn.setMaximumSize(new java.awt.Dimension(200, 50));
+        viewEditBtn.setMinimumSize(new java.awt.Dimension(200, 50));
+        viewEditBtn.setPreferredSize(new java.awt.Dimension(200, 50));
 
         searchBtn.setBackground(new java.awt.Color(45, 45, 48));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,7 +189,7 @@ public class uniGridView extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(view_editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -201,7 +197,7 @@ public class uniGridView extends javax.swing.JPanel {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(view_editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(299, Short.MAX_VALUE))
@@ -217,6 +213,6 @@ public class uniGridView extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JButton view_editBtn;
+    private javax.swing.JButton viewEditBtn;
     // End of variables declaration//GEN-END:variables
 }

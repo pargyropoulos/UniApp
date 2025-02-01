@@ -35,18 +35,25 @@ public class searchController implements ActionListener, FocusListener{
         view.getInfoLabel().setText("Please wait while fetching data...");
         view.getInfoLabel().setVisible(true);
         webDataDAO dao = new webDataDAO();
-        List<webDataPOJO> universityList = dao.getAllWebUnis();
+        System.out.println(model.getSearchString());
+        List<webDataPOJO> universityList = dao.fetchUniversities(model.getSearchString());
         
-        customEventSource.notifyEventListeners(universityList);
+        customEventSource.notifyEventListeners(universityList,"Data_Fetched");
         view.getInfoLabel().setVisible(false);
         System.out.println(model.getUniversityName());
         System.out.println(model.getCountry());
-        if (universityList!=null) view.dispose();
+        System.out.println(universityList);
+        if (!universityList.isEmpty()) {
+            view.dispose();
+        }else {
+            view.getInfoLabel().setText("info message: No entry found!");
+            view.getInfoLabel().setVisible(true);
+        }
     }
 
     private void populateModel(){
         model.setUniversityName(view.getUniversityName().getText());
-        model.setCountry(view.getCountry().getText());
+        model.setCountry(view.getCountry().getSelectedItem().toString());
         System.out.println(model.getUniversityName());
         System.out.println(model.getCountry());
     }
@@ -62,14 +69,14 @@ public class searchController implements ActionListener, FocusListener{
             view.getUniversityName().setToolTipText(null);
         }
         
-        if (!model.isAlphanumeric(view.getCountry().getText())) {
-            view.getCountryErrorLabel().setVisible(true);
-            view.getCountry().setToolTipText("Only alphanumeric characters are valid!");
-            validated= false;
-        } else {
-            view.getCountryErrorLabel().setVisible(false);
-            view.getCountry().setToolTipText(null);
-        }
+//        if (!model.isAlphanumeric(view.getCountry().getSelectedItem().toString())) {
+//            view.getCountryErrorLabel().setVisible(true);
+//            view.getCountry().setToolTipText("Only alphanumeric characters are valid!");
+//            validated= false;
+//        } else {
+//            view.getCountryErrorLabel().setVisible(false);
+//            view.getCountry().setToolTipText(null);
+//        }
         
         return validated;
     }

@@ -4,12 +4,13 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import model.searchModel;
-import model.webDataDAO;
+import model.uniGridModel;
 import model.webDataPOJO;
 import utils.CustomEvent;
 import utils.ICustomEventListener;
 import view.searchDialogView;
 import view.uniGridView;
+import view.utils;
 
 /**
  *
@@ -17,55 +18,57 @@ import view.uniGridView;
  */
 public class uniGridController implements ICustomEventListener {
     private final uniGridView view;
-    private final webDataPOJO model;
+    private final uniGridModel model;
     
     public uniGridView getView() {
         return view;
     }
 
-    public webDataPOJO getModel() {
+    public uniGridModel getModel() {
         return model;
     }
 
-    public uniGridController(uniGridView view, webDataPOJO model) {
+    public uniGridController(uniGridView view, uniGridModel model) {
         this.view = view;
         this.model = model;
         view.getSearchBtn().addActionListener(e->loadSearchForm());
-//        webDataDAO dao = new webDataDAO();
-//        List<webDataPOJO> universityList = dao.getAllWebUnis();
-//        view.populateGrid(universityList);
+        view.getViewEditBtn().addActionListener(e->loadViewEditForm());
         view.populateGrid(null);
-//        model.setName("No Entries");
+    }
+    
+    private void loadViewEditForm(){
+        int index=this.view.getGrid().getSelectedRow();
+        System.out.println("view edit btn pressed...");
+        if (index==-1) return;
+        webDataPOJO selectedUniModel = new webDataPOJO();
+        selectedUniModel=this.model.getData().get(index);
+        System.out.println(selectedUniModel);
     }
     
     private void loadSearchForm(){
         JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(view);
         searchDialogView sView= new searchDialogView(  parentFrame,true);
+        sView.setLocation(utils.getParentCenterLocation(parentFrame, sView));        
         
-//        System.out.println(parentFrame.toString());
-//        System.out.println(parentFrame.getClass().toString());
-        //center search window on the center of the parent
-        int parentX =parentFrame.getX();
-        int parentY = parentFrame.getY();
-        int parentWidth = parentFrame.getWidth();
-        int parentHeight = parentFrame.getHeight();
-        int childWidth = sView.getWidth();
-        int childHeight = sView.getHeight();
-        int centerX = parentX + (parentWidth - childWidth) / 2;
-        int centerY = parentY + (parentHeight - childHeight) / 2;
-        sView.setLocation(centerX, centerY);        
         searchController ctrl=new searchController(sView, new searchModel());
-        //        view.setAlwaysOnTop(true);
         ctrl.customEventSource.addEventListener(this);
         sView.setVisible(true);
         
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onCustomEvent(CustomEvent e) {
-        System.out.println("got the event!" + " " + e.getMessage());       
-        this.view.populateGrid((List<webDataPOJO>) e.getMessage());        
-//        this.view.revalidate();
-//        this.view.repaint();
+        Object eventMessage = e.getEventMessage();
+        String eventName=e.getEventName();
+        
+        switch (eventName){
+            case "Data_Fetched":    
+                this.model.setData((List<webDataPOJO>) eventMessage);
+                this.view.populateGrid(model.getData());       
+        }
+//        for (var item:this.model.getData()){
+//            System.out.println(item.getCountry());
+//        }
     }
 }

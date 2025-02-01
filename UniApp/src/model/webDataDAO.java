@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package model;
 
 import com.google.gson.Gson;
@@ -22,52 +17,34 @@ import okhttp3.Response;
  */
 
 public class webDataDAO implements Serializable  {
-    private webDataPOJO webData;
-    
-    public webDataDAO(){
-        this.webData=new webDataPOJO();        
+    private static final String URL = "http://universities.hipolabs.com/search";
+    private List<webDataPOJO> list=new ArrayList<>();
+
+    public List<webDataPOJO> getList() {
+        return list;
     }
     
-    public List<webDataPOJO> getAllWebUnis(){
-       String urlToCall = "http://universities.hipolabs.com/search";
-        
+    public List<webDataPOJO> fetchUniversities(String searchString){
+        String url=this.URL;
+        url+=searchString;
         OkHttpClient client=new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
         
-        Request request = new Request.Builder().url(urlToCall).build();
-        
-        List<webDataPOJO> universitiesList = new ArrayList<>();
-        List<webDataPOJO> lst = new ArrayList<>();
+
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
                 String jsonResponseString=response.body().string();
-//                System.out.println(jsonResponseString);
                 
                 Gson gson = new Gson();
-                webDataPOJO[] universityArray = gson.fromJson(jsonResponseString, webDataPOJO[].class);
-                                
                 Type listType = new TypeToken<List<webDataPOJO>>() {}.getType();
-                universitiesList = gson.fromJson(jsonResponseString, listType);
-                lst = gson.fromJson(jsonResponseString, listType);
-                
-//                System.out.println( universityArray.toString());
-            
-// Convert array to list
-                if (universityArray != null) {
-                    universitiesList = List.of(universityArray);
-                }                
-//                System.out.println( universitiesList.toString());
-                
-//                for (webDataPOJO item:universitiesList){
-//                    System.out.println( item.toString());
-//                }
-                
+                this.list = gson.fromJson(jsonResponseString, listType);                
+                return this.list;
             }
         }
         catch (IOException e){
             e.printStackTrace();
+            return null;
         } 
-        
-        return lst;
-    }
-    
+        return null;
+    }   
 }
