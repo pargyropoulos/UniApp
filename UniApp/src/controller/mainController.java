@@ -14,7 +14,12 @@ import view.*;
 public final class mainController {
     private final mainView view;
     private final List<String> openPanelsList=new ArrayList<>();
+    
+    public mainView getView() {
+        return view;
+    }
 
+    
     /**
      * 
      * @param view 
@@ -23,20 +28,20 @@ public final class mainController {
         this.view = view;
         view.getUniBtn().addActionListener(e->loadUniGridForm());
         view.getExitBtn().addActionListener(e->System.exit(0));
-        this.showView();
     }
-    
-    public void showView() {
-        view.setVisible(true);
-    }    
     
     /**
      * Creates as new UniGridController
      */
-    public void loadUniGridForm(){
+    private void loadUniGridForm(){
+        uniGridController ctrl=new uniGridController(new uniGridView(), new  uniGridModel());
+        this.showPanel(ctrl.getView());
+    }
+    
+    public void showPanel(JPanel panel) {
         if (isPanelAlreadyAdded("uniGridView")) return;
-        uniGridController ctrl=new uniGridController(new uniGridView(), new webDataPOJO());
-        this.view.getMainPanel().add(ctrl.getView());
+
+        this.view.getMainPanel().add(panel);
         this.view.getMainPanel().revalidate();
         this.view.getMainPanel().repaint();
         openPanelsList.add("uniGridView");
@@ -47,5 +52,6 @@ public final class mainController {
             if (item==viewName) return true;
         }
         return false;
-    }    
+    } 
+    
 }

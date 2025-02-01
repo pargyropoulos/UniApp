@@ -10,7 +10,7 @@ public class main {
 
     public static void main(String[] args) {
         mainController mainCtrl=new mainController(new mainView());
-        mainCtrl.showView();    
+        mainCtrl.getView().setVisible(true);
     }
     
 }

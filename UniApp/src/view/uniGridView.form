@@ -26,7 +26,7 @@
                   <Component id="jScrollPane1" pref="455" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="view_editBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="viewEditBtn" min="-2" max="-2" attributes="0"/>
                       <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -37,7 +37,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="view_editBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="viewEditBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="299" max="32767" attributes="0"/>
@@ -47,7 +47,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="view_editBtn">
+        <Component class="javax.swing.JButton" name="viewEditBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="30" green="2d" red="2d" type="rgb"/>

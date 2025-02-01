@@ -20,6 +20,13 @@ public class CustomEventSource {
         listeners.remove(listener);
     }
 
+    public void notifyEventListeners(Object message, String eventName) {
+        CustomEvent event = new CustomEvent(this, message,eventName); 
+        for (ICustomEventListener listener : listeners) {
+            listener.onCustomEvent(event);
+        }
+    }
+    
     public void notifyEventListeners(Object message) {
         CustomEvent event = new CustomEvent(this, message); // Pass `this` as source
         for (ICustomEventListener listener : listeners) {
