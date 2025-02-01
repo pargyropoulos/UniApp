@@ -19,7 +19,6 @@ public final class mainController {
         return view;
     }
 
-    
     /**
      * 
      * @param view 
@@ -34,24 +33,22 @@ public final class mainController {
      * Creates as new UniGridController
      */
     private void loadUniGridForm(){
+        if (isPanelAlreadyAdded("uniGridView")) return;
         uniGridController ctrl=new uniGridController(new uniGridView(), new  uniGridModel());
         this.showPanel(ctrl.getView());
+        openPanelsList.add("uniGridView");
     }
     
     public void showPanel(JPanel panel) {
-        if (isPanelAlreadyAdded("uniGridView")) return;
-
         this.view.getMainPanel().add(panel);
         this.view.getMainPanel().revalidate();
         this.view.getMainPanel().repaint();
-        openPanelsList.add("uniGridView");
     }
     
     private boolean isPanelAlreadyAdded(String viewName) {
         for (var item: this.openPanelsList){
-            if (item==viewName) return true;
+            if (item == null ? viewName == null : item.equals(viewName)) return true;
         }
         return false;
     } 
-    
 }
