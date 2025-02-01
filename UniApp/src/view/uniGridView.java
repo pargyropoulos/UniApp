@@ -18,7 +18,7 @@ import model.webDataPOJO;
  * std154845@ac.eap.gr
  */
 public class uniGridView extends javax.swing.JPanel {
-
+   
     private final String[] columnNames={"University Name", "Country", "Alpha-two-code", "State-Province","Web Pages","Domains"}; //grid header names
 
     public JTable getGrid() {
