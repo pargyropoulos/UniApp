@@ -72,8 +72,9 @@ public class mainView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
         setLocation(new java.awt.Point(0, 0));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(1024, 768));
         setName("mainFrame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         sidePanel.setBackground(new java.awt.Color(0, 122, 204));
         sidePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));

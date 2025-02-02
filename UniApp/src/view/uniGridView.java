@@ -3,36 +3,50 @@ package view;
 import constants.colorConstants;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.webDataPOJO;
+import utils.CustomEvent;
+import utils.ICustomEventListener;
         
 /**
  *
  * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
  * std154845@ac.eap.gr
  */
-public class uniGridView extends javax.swing.JPanel {
+public class uniGridView extends javax.swing.JPanel implements ICustomEventListener{
    
     private final String[] columnNames={"University Name", "Country", "Alpha-two-code", "State-Province","Web Pages","Domains"}; //grid header names
 
-    public JTable getGrid() {
-        return grid;
+    /**
+     * Public method for adding action listeners to the Search Button
+     * @param listener 
+     */
+    public void addSearchButtonListener(ActionListener listener) {
+        searchBtn.addActionListener(listener);
     }
 
-    public JButton getSearchBtn() {
-        return searchBtn;
+    /**
+     * Public method for adding action listeners to the Search Button
+     * @param listener 
+     */    
+    public void addViewEditButtonListener(ActionListener listener) {
+        viewEditBtn.addActionListener(listener);
     }
 
-    public JButton getViewEditBtn() {
-        return viewEditBtn;
+    /**
+     * Returns the grid's selected row's index
+     * @return grid.getSelectedRow();
+     */
+    public int getSelecedRowIndex() {
+        return grid.getSelectedRow();
     }
-    
+
     /**
      * Creates new form uniView
      */
@@ -47,6 +61,7 @@ public class uniGridView extends javax.swing.JPanel {
                 button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
             }
         }
+        populateGrid(null);
     }
     
     public void populateGrid(List<webDataPOJO> universityList){
@@ -215,4 +230,11 @@ public class uniGridView extends javax.swing.JPanel {
     private javax.swing.JButton searchBtn;
     private javax.swing.JButton viewEditBtn;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onCustomEvent(CustomEvent e) {
+        @SuppressWarnings("unchecked")
+        List<webDataPOJO> data= (List<webDataPOJO>) e.getEventMessage();
+        populateGrid(data);
+    }
 }
