@@ -3,7 +3,9 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import model.*;
 import view.*;
 
@@ -27,6 +29,14 @@ public final class mainController {
         this.view = view;
         view.getUniBtn().addActionListener(e->loadUniGridForm());
         view.getExitBtn().addActionListener(e->System.exit(0));
+        
+        //test Tasos
+//        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(view);
+        UniRecDialogView uniRecView=new UniRecDialogView(this.view,true);
+//        uniRecView.setLocation(utils.getParentCenterLocation(this.view, uniRecView));        
+//        searchController ctrl=new searchController(uniRecView, new searchModel());
+        uniRecView.setVisible(true);        
+        
     }
     
     /**

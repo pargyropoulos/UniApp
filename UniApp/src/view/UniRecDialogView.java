@@ -4,7 +4,7 @@
  */
 package view;
 
-import constants.ColorConstants;
+import constants.colorConstants;
 import java.awt.Color;
 import javax.swing.JButton;
 
@@ -23,7 +23,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         for (var component : mainPanel.getComponents()) {
             if (component instanceof JButton) {
                 JButton button = (JButton) component;
-                view.utils.customizeButton(button, ColorConstants.buttonBackgroundColor,ColorConstants.buttonHoverColor);
+                view.utils.customizeButton(button, colorConstants.buttonBackgroundColor,colorConstants.buttonHoverColor);
                 button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
             }
         }        
