@@ -5,7 +5,6 @@
 package view;
 
 import constants.colorConstants;
-import java.awt.Color;
 import javax.swing.JButton;
 
 /**
@@ -16,6 +15,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
     /**
      * Creates new form uniRec
+     * @param parent
+     * @param modal
      */
     public UniRecDialogView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,6 +28,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
                 button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
             }
         }        
+        
     }
 
     /**

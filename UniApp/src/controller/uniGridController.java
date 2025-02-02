@@ -4,10 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import model.UniRecDialogModel;
 import model.searchModel;
 import model.uniGridModel;
 import model.webDataPOJO;
 import utils.CustomEventSource;
+import view.UniRecDialogView;
 
 import view.searchDialogView;
 import view.uniGridView;
@@ -49,6 +51,12 @@ public class uniGridController{
         webDataPOJO selectedUniModel = new webDataPOJO();
         selectedUniModel=this.model.getData().get(index);
         System.out.println(selectedUniModel);
+        
+        
+        UniRecDialogController ctrl=new UniRecDialogController(new UniRecDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new UniRecDialogModel());
+        ctrl.run();
+        
+        
     }
     
     private void loadSearchForm(ActionEvent e){
