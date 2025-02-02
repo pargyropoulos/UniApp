@@ -6,6 +6,7 @@ package utils;
  * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
  * std154845@ac.eap.gr
  */
-public interface ICustomEventListener {
+@FunctionalInterface
+public interface CustomEventListener {
     public void onCustomEvent(CustomEvent e);
 }

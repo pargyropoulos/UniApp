@@ -4,36 +4,58 @@ package view;
 import constants.colorConstants;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.webDataPOJO;
+import utils.CustomEvent;
+import utils.CustomEventListener;
         
 /**
  *
  * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
  * std154845@ac.eap.gr
  */
-public class uniGridView extends javax.swing.JPanel {
+public class uniGridView extends javax.swing.JPanel implements CustomEventListener{
    
     private final String[] columnNames={"University Name", "Country", "Alpha-two-code", "State-Province","Web Pages","Domains"}; //grid header names
 
-    public JTable getGrid() {
-        return grid;
+    /**
+     * Public method for adding action listeners to the Search Button
+     * @param listener 
+     */
+    public void addSearchButtonListener(ActionListener listener) {
+        searchBtn.addActionListener(listener);
     }
 
-    public JButton getSearchBtn() {
-        return searchBtn;
+    /**
+     * Public method for adding action listeners to the Search Button
+     * @param listener 
+     */    
+    public void addViewEditButtonListener(ActionListener listener) {
+        viewEditBtn.addActionListener(listener);
     }
 
-    public JButton getViewEditBtn() {
-        return viewEditBtn;
+    /**
+     * Public method for adding action listeners to the Search Button
+     * @param listener 
+     */    
+    public void addCloseButtonListener(ActionListener listener) {
+        closeBtn.addActionListener(listener);
     }
-    
+
+    /**
+     * Returns the grid's selected row's index
+     * @return grid.getSelectedRow();
+     */
+    public int getSelecedRowIndex() {
+        return grid.getSelectedRow();
+    }
+
     /**
      * Creates new form uniView
      */
@@ -48,9 +70,10 @@ public class uniGridView extends javax.swing.JPanel {
                 button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
             }
         }
+        populateGrid(null);
     }
     
-    public void populateGrid(List<webDataPOJO> universityList){
+    private void populateGrid(List<webDataPOJO> universityList){
         int size=universityList!=null ? universityList.size():0;
         Object[][] data = new Object[size][6];
         if (size!=0){
@@ -105,6 +128,7 @@ public class uniGridView extends javax.swing.JPanel {
         mainPanel = new javax.swing.JPanel();
         viewEditBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         grid = new javax.swing.JTable();
 
@@ -139,6 +163,21 @@ public class uniGridView extends javax.swing.JPanel {
         searchBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         searchBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         searchBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+
+        closeBtn.setBackground(new java.awt.Color(45, 45, 48));
+        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
+        closeBtn.setText("Close");
+        closeBtn.setAlignmentY(0.0F);
+        closeBtn.setFocusPainted(false);
+        closeBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        closeBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        closeBtn.setIconTextGap(32);
+        closeBtn.setInheritsPopupMenu(true);
+        closeBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
+        closeBtn.setMaximumSize(new java.awt.Dimension(200, 50));
+        closeBtn.setMinimumSize(new java.awt.Dimension(200, 50));
+        closeBtn.setPreferredSize(new java.awt.Dimension(200, 50));
 
         grid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         grid.setModel(new javax.swing.table.DefaultTableModel(
@@ -191,7 +230,8 @@ public class uniGridView extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -201,7 +241,9 @@ public class uniGridView extends javax.swing.JPanel {
                 .addComponent(viewEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
         );
 
@@ -210,10 +252,18 @@ public class uniGridView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeBtn;
     private javax.swing.JTable grid;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton searchBtn;
     private javax.swing.JButton viewEditBtn;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onCustomEvent(CustomEvent e) {
+        @SuppressWarnings("unchecked")
+        List<webDataPOJO> data= (List<webDataPOJO>) e.getEventMessage();
+        populateGrid(data);
+    }
 }

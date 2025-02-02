@@ -5,10 +5,14 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -18,56 +22,45 @@ import javax.swing.JTextField;
 public class searchDialogView extends javax.swing.JDialog {
     private String[] countriesArray={"","Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia, Plurinational State of","Bosnia and Herzegovina","Botswana","Brazil","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Colombia","Congo","Congo, the Democratic Republic of the","Costa Rica","Côte d'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Faroe Islands","Fiji","Finland","France","French Guiana","French Polynesia","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guinea","Guyana","Haiti","Holy See (Vatican City State)","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Korea, Democratic People's Republic of","Korea, Republic of","Kosovo","Kuwait","Kyrgyzstan","Lao People's Democratic Republic","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macao","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova, Republic of","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","North Macedonia","Norway","Oman","Pakistan","Palestine, State of","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Réunion","Romania","Russian Federation","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syrian Arab Republic","Taiwan, Province of China","Tajikistan","Tanzania, United Republic of","Thailand","Togo","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Venezuela, Bolivarian Republic of","Viet Nam","Vietnam","Virgin Islands, British","Yemen","Zambia","Zimbabwe"};
 
-    public JLabel getInfoLabel() {
-        return infoLabel;
+    public void addSearchBtnActionListener(ActionListener listener){
+        searchBtn.addActionListener(listener);
+    }
+    public void addCancelBtnActionListener(ActionListener listener){
+        cancelBtn.addActionListener(listener);
+    }
+    
+    public void addUniversityNameTextBoxActionListener(ActionListener listener){
+        universityName.addActionListener(listener);
+    }    
+    
+    public void addUniversityNameTextBoxFocusListener(FocusListener listener){
+        universityName.addFocusListener(listener);
+    }
+    
+    public void addCountryComboBoxFocusListener(FocusListener listener){
+        countryComboBox.addFocusListener(listener);
+    }
+    
+    public String getUniversityName(){
+        return this.universityName.getText();
+    }
+    
+    public String getCountry(){
+        return this.countryComboBox.getSelectedItem().toString();
     }
 
-    public void setInfoLabel(JLabel infoLabel) {
-        this.infoLabel = infoLabel;
+    public void setErrorLabelVisible(Boolean visibility){
+        universityNameErrorLabel.setVisible(visibility);
     }
 
-    public JComboBox getCountry() {
-        return countryComboBox;
-    }
-
-
-    public JButton getUniBtn() {
-        return cancelBtn;
-    }
-
-    public JButton getCancelBtn() {
-        return cancelBtn;
-    }
-
-    public void setCancelBtn(JButton cancelBtn) {
-        this.cancelBtn = cancelBtn;
-    }
-
-    public JButton getSearchBtn() {
-        return searchBtn;
-    }
-
-    public void setSearchBtn(JButton searchBtn) {
-        this.searchBtn = searchBtn;
-    }
-
-
-    public JLabel getUniversityNameErrorLabel() {
-        return universityNameErrorLabel;
-    }
-
-    public void setUniversityNameErrorLabel(JLabel universityNameErrorLabel) {
-        this.universityNameErrorLabel = universityNameErrorLabel;
-    }
-
-    public JTextField getUniversityName() {
-        return universityName;
-    }
-
-    public void setUniversityName(JTextField universityName) {
-        this.universityName = universityName;
-    }
-
+    public void setInfoLabelVisible(Boolean visibility){
+        infoLabel.setVisible(visibility);
+    }    
+   
+    public void setInfoLabelText(String text){
+        infoLabel.setText(text);
+    }     
+    
     /**
      * Creates new form searchDialogVidew
      * @param parent
@@ -94,6 +87,7 @@ public class searchDialogView extends javax.swing.JDialog {
         
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,7 +144,7 @@ public class searchDialogView extends javax.swing.JDialog {
         cancelBtn.setBackground(new java.awt.Color(45, 45, 48));
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
-        cancelBtn.setText("Cancel");
+        cancelBtn.setText("Close");
         cancelBtn.setAlignmentY(0.0F);
         cancelBtn.setFocusPainted(false);
         cancelBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
@@ -198,16 +192,16 @@ public class searchDialogView extends javax.swing.JDialog {
                                 .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(universityNameErrorLabel)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(universityName, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                     .addComponent(jLabel1)
-                    .addComponent(universityNameErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(universityNameErrorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)

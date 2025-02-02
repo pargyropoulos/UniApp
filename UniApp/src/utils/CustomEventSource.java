@@ -10,26 +10,26 @@ import java.util.List;
 
 
 public class CustomEventSource {
-    private final List<ICustomEventListener> listeners = new ArrayList<>();
+    private final List<CustomEventListener> listeners = new ArrayList<>();
 
-    public void addEventListener(ICustomEventListener listener) {
+    public void addEventListener(CustomEventListener listener) {
         listeners.add(listener);
     }
 
-    public void removeEventListener(ICustomEventListener listener) {
+    public void removeEventListener(CustomEventListener listener) {
         listeners.remove(listener);
     }
 
     public void notifyEventListeners(Object message, String eventName) {
         CustomEvent event = new CustomEvent(this, message,eventName); 
-        for (ICustomEventListener listener : listeners) {
+        for (CustomEventListener listener : listeners) {
             listener.onCustomEvent(event);
         }
     }
     
     public void notifyEventListeners(Object message) {
-        CustomEvent event = new CustomEvent(this, message); // Pass `this` as source
-        for (ICustomEventListener listener : listeners) {
+        CustomEvent event = new CustomEvent(this, message); 
+        for (CustomEventListener listener : listeners) {
             listener.onCustomEvent(event);
         }
     }
