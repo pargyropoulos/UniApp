@@ -8,9 +8,9 @@ package model;
 import java.util.List;
 import utils.CustomEvent;
 import utils.CustomEventSource;
-import utils.ICustomEventListener;
+import utils.CustomEventListener;
 
-public class uniGridModel implements ICustomEventListener {
+public class uniGridModel implements CustomEventListener {
     private List<webDataPOJO> data;
     public final CustomEventSource dataUpdatedEventSource = new CustomEventSource();
 

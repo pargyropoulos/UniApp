@@ -1,6 +1,7 @@
 package view;
 
 import constants.colorConstants;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import static view.utils.customizeButton;
@@ -25,30 +26,26 @@ public class mainView extends javax.swing.JFrame {
             }
         }
     }
-
-    public JPanel getMainPanel() {
-        return mainPanel;
+    public void addPanel(JPanel panel){
+        this.mainPanel.add(panel);
+        this.revalidate();
+        this.repaint();
     }
 
-    public JButton getUniBtn() {
-        return uniBtn;
+    public void removePanel(JPanel panel){
+        this.mainPanel.remove(panel);
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void addUniBtnListener(ActionListener listener){
+        uniBtn.addActionListener(listener);
     }
 
-    public JButton getSettingsBtn() {
-        return settingsBtn;
+    public void addExitBtnListener(ActionListener listener){
+        exitBtn.addActionListener(listener);
     }
-
-    public JButton getStatsBtn() {
-        return statsBtn;
-    }
-
-    public JButton getAboutBtn() {
-        return aboutBtn;
-    }
-
-    public JButton getExitBtn() {
-        return exitBtn;
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +71,6 @@ public class mainView extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setName("mainFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         sidePanel.setBackground(new java.awt.Color(0, 122, 204));
         sidePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));

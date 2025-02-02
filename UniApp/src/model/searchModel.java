@@ -1,17 +1,22 @@
 package model;
 
+
+
 /**
  *
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
  */
+
+
 public class searchModel {
-    private String universityName;
-    private String country;
+    private String universityName="";
+    private String country="";
 
     public String getUniversityName() {
         return universityName;
     }
-
+    
+//    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Username must be alphanumeric")
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
     }

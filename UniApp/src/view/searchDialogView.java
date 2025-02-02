@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -26,6 +28,10 @@ public class searchDialogView extends javax.swing.JDialog {
     public void addCancelBtnActionListener(ActionListener listener){
         cancelBtn.addActionListener(listener);
     }
+    
+    public void addUniversityNameTextBoxActionListener(ActionListener listener){
+        universityName.addActionListener(listener);
+    }    
     
     public void addUniversityNameTextBoxFocusListener(FocusListener listener){
         universityName.addFocusListener(listener);
@@ -81,6 +87,7 @@ public class searchDialogView extends javax.swing.JDialog {
         
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,7 +144,7 @@ public class searchDialogView extends javax.swing.JDialog {
         cancelBtn.setBackground(new java.awt.Color(45, 45, 48));
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
-        cancelBtn.setText("Cancel");
+        cancelBtn.setText("Close");
         cancelBtn.setAlignmentY(0.0F);
         cancelBtn.setFocusPainted(false);
         cancelBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);

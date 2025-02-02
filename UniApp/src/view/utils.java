@@ -41,7 +41,12 @@ public class utils {
             }
         });
     }
-    
+    /**
+     * Centers
+     * @param parent: Parent component
+     * @param child : Child component
+     * @return Point
+     */
     public static Point getParentCenterLocation(Component  parent,Component  child){
         int parentX =parent.getX();
         int parentY = parent.getY();

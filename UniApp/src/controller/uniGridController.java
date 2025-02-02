@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 import model.searchModel;
 import model.uniGridModel;
 import model.webDataPOJO;
+import utils.CustomEventSource;
 
 import view.searchDialogView;
 import view.uniGridView;
@@ -19,24 +20,26 @@ import view.utils;
 public class uniGridController{
     private final uniGridView view;
     private final uniGridModel model;
+    public final CustomEventSource closeFormEventSource;
     
-    public uniGridView getView() {
-        return view;
+    public void run(){
+        this.view.setVisible(true);
     }
-
-    public uniGridModel getModel() {
-        return model;
-    }
-
+    
     public uniGridController(uniGridView view, uniGridModel model) {
         this.view = view;
         this.model = model;
-        view.addSearchButtonListener(this::loadSearchForm);
-//        view.addViewEditButtonListener(e-> loadViewEditForm());
-        view.addViewEditButtonListener((ActionEvent e) -> {
-            loadViewEditForm();
-        });
+        this.closeFormEventSource = new CustomEventSource();
+        
+//        view.addSearchButtonListener(this::loadSearchForm);
+        view.addSearchButtonListener(e -> loadSearchForm(e));
+        view.addViewEditButtonListener(e-> loadViewEditForm());
+        view.addCloseButtonListener(e-> closeForm());
         model.dataUpdatedEventSource.addEventListener(this.view);
+//        view.addViewEditButtonListener((ActionEvent e) -> {
+//            loadViewEditForm();
+//        });
+
     }
     
     private void loadViewEditForm(){
@@ -49,13 +52,15 @@ public class uniGridController{
     }
     
     private void loadSearchForm(ActionEvent e){
-        //center the new for inside main frame
-        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(view);
-        searchDialogView sView= new searchDialogView(  parentFrame,true);
-        sView.setLocation(utils.getParentCenterLocation(parentFrame, sView));        
-        
-        searchController ctrl=new searchController(sView, new searchModel());
+        searchController ctrl=new searchController(new searchDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new searchModel());
         ctrl.dataFetchedEventSource.addEventListener(this.model);
-        sView.setVisible(true);
+        ctrl.run();
+    }
+
+    private void closeForm() {
+        view.setVisible(false);
+        view.revalidate();
+        view.repaint();
+        closeFormEventSource.notifyEventListeners(this);
     }
 }
