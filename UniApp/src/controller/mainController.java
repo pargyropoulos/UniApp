@@ -3,7 +3,9 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import model.*;
 import utils.CustomEvent;
 import utils.CustomEventListener;
@@ -28,8 +30,10 @@ public final class mainController implements CustomEventListener{
      */
     public mainController(mainView view) {
         this.view = view;
+                
         view.addUniBtnListener(e->loadUniGridForm());
         view.addExitBtnListener(e->System.exit(0));
+
     }
     
     /**
