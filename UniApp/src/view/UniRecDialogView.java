@@ -62,16 +62,18 @@ public class UniRecDialogView extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         exitBtn1 = new javax.swing.JButton();
         exitBtn2 = new javax.swing.JButton();
-        universityName5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        exitBtn4 = new javax.swing.JButton();
         universityName6 = new javax.swing.JTextField();
+        exitBtn3 = new javax.swing.JButton();
+        exitBtn8 = new javax.swing.JButton();
+        exitBtn9 = new javax.swing.JButton();
+        universityName8 = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
         grid4 = new javax.swing.JTable();
-        exitBtn3 = new javax.swing.JButton();
-        exitBtn4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("University");
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel1.setText("Name");
 
@@ -110,6 +112,11 @@ public class UniRecDialogView extends javax.swing.JDialog {
         saveBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         saveBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         saveBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         exitBtn.setBackground(new java.awt.Color(45, 45, 48));
         exitBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,6 +146,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         grid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         grid.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null},
                 {null},
                 {null},
                 {null},
@@ -264,7 +272,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
                 {null}
             },
             new String [] {
-                "Web Pages"
+                "Schools"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -299,11 +307,11 @@ public class UniRecDialogView extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setText("Communication info:");
+        jLabel5.setText("Info:");
 
         exitBtn1.setBackground(new java.awt.Color(45, 45, 48));
         exitBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/DeleteIcon.png"))); // NOI18N
+        exitBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit.png"))); // NOI18N
         exitBtn1.setAlignmentY(0.0F);
         exitBtn1.setFocusPainted(false);
         exitBtn1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -327,17 +335,18 @@ public class UniRecDialogView extends javax.swing.JDialog {
         exitBtn2.setMinimumSize(new java.awt.Dimension(50, 50));
         exitBtn2.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        universityName5.setToolTipText(null);
-        universityName5.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                universityName5FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                universityName5FocusLost(evt);
-            }
-        });
-
-        jLabel6.setText("Communication info:");
+        exitBtn4.setBackground(new java.awt.Color(45, 45, 48));
+        exitBtn4.setForeground(new java.awt.Color(255, 255, 255));
+        exitBtn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/delete.png"))); // NOI18N
+        exitBtn4.setAlignmentY(0.0F);
+        exitBtn4.setFocusPainted(false);
+        exitBtn4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        exitBtn4.setIconTextGap(0);
+        exitBtn4.setInheritsPopupMenu(true);
+        exitBtn4.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        exitBtn4.setMaximumSize(new java.awt.Dimension(50, 50));
+        exitBtn4.setMinimumSize(new java.awt.Dimension(50, 50));
+        exitBtn4.setPreferredSize(new java.awt.Dimension(50, 50));
 
         universityName6.setToolTipText(null);
         universityName6.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -346,6 +355,55 @@ public class UniRecDialogView extends javax.swing.JDialog {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 universityName6FocusLost(evt);
+            }
+        });
+
+        exitBtn3.setBackground(new java.awt.Color(45, 45, 48));
+        exitBtn3.setForeground(new java.awt.Color(255, 255, 255));
+        exitBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit.png"))); // NOI18N
+        exitBtn3.setAlignmentY(0.0F);
+        exitBtn3.setFocusPainted(false);
+        exitBtn3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        exitBtn3.setIconTextGap(0);
+        exitBtn3.setInheritsPopupMenu(true);
+        exitBtn3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        exitBtn3.setMaximumSize(new java.awt.Dimension(50, 50));
+        exitBtn3.setMinimumSize(new java.awt.Dimension(50, 50));
+        exitBtn3.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        exitBtn8.setBackground(new java.awt.Color(45, 45, 48));
+        exitBtn8.setForeground(new java.awt.Color(255, 255, 255));
+        exitBtn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/add.png"))); // NOI18N
+        exitBtn8.setAlignmentY(0.0F);
+        exitBtn8.setFocusPainted(false);
+        exitBtn8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        exitBtn8.setIconTextGap(0);
+        exitBtn8.setInheritsPopupMenu(true);
+        exitBtn8.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        exitBtn8.setMaximumSize(new java.awt.Dimension(50, 50));
+        exitBtn8.setMinimumSize(new java.awt.Dimension(50, 50));
+        exitBtn8.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        exitBtn9.setBackground(new java.awt.Color(45, 45, 48));
+        exitBtn9.setForeground(new java.awt.Color(255, 255, 255));
+        exitBtn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/delete.png"))); // NOI18N
+        exitBtn9.setAlignmentY(0.0F);
+        exitBtn9.setFocusPainted(false);
+        exitBtn9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        exitBtn9.setIconTextGap(0);
+        exitBtn9.setInheritsPopupMenu(true);
+        exitBtn9.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        exitBtn9.setMaximumSize(new java.awt.Dimension(50, 50));
+        exitBtn9.setMinimumSize(new java.awt.Dimension(50, 50));
+        exitBtn9.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        universityName8.setToolTipText(null);
+        universityName8.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                universityName8FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                universityName8FocusLost(evt);
             }
         });
 
@@ -365,7 +423,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
                 {null}
             },
             new String [] {
-                "Web Pages"
+                "Departments"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -390,212 +448,174 @@ public class UniRecDialogView extends javax.swing.JDialog {
         grid4.getTableHeader().setReorderingAllowed(false);
         jScrollPane10.setViewportView(grid4);
 
-        exitBtn3.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/DeleteIcon.png"))); // NOI18N
-        exitBtn3.setAlignmentY(0.0F);
-        exitBtn3.setFocusPainted(false);
-        exitBtn3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn3.setIconTextGap(0);
-        exitBtn3.setInheritsPopupMenu(true);
-        exitBtn3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn3.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn3.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn3.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        exitBtn4.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn4.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/add.png"))); // NOI18N
-        exitBtn4.setAlignmentY(0.0F);
-        exitBtn4.setFocusPainted(false);
-        exitBtn4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn4.setIconTextGap(0);
-        exitBtn4.setInheritsPopupMenu(true);
-        exitBtn4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn4.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn4.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn4.setPreferredSize(new java.awt.Dimension(50, 50));
-
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(24, 24, 24)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane9)
-                                    .addComponent(universityName5)
-                                    .addComponent(universityName6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(exitBtn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exitBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exitBtn4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exitBtn3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(universityName3)
-                            .addComponent(universityName4)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(92, 92, 92)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(exitBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(exitBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(exitBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(mainPanelLayout.createSequentialGroup()
+                                        .addComponent(universityName6, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(universityName8))
+                                    .addGroup(mainPanelLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(exitBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(exitBtn8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(exitBtn9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(universityName)
+                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(universityName2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(universityName1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 32, Short.MAX_VALUE))
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(mainPanelLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(universityName)
+                                    .addGroup(mainPanelLayout.createSequentialGroup()
+                                        .addComponent(universityName2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(universityName1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(universityName3)
+                                    .addComponent(universityName4, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(58, 58, 58)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(universityName1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(universityName2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addGap(25, 25, 25)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(universityName3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(universityName4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(32, 32, 32)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(exitBtn9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(exitBtn8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(exitBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(13, 13, 13)
+                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(universityName8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(universityName6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(universityName1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(universityName2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(mainPanelLayout.createSequentialGroup()
-                                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                                .addGap(36, 36, 36)
-                                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(universityName3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel7))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(universityName4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel5))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                                                .addComponent(universityName5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(exitBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(mainPanelLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel6)))
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(exitBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(42, 42, 42)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(universityName6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(exitBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(exitBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(120, 120, 120)
+                                .addComponent(exitBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(exitBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(exitBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(50, 50, 50)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                    .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(mainPanel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void universityNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityNameFocusGained
-
-    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityNameFocusLost
-
-    private void universityName1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName1FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName1FocusGained
-
-    private void universityName1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName1FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName1FocusLost
-
-    private void universityName2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName2FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName2FocusGained
-
-    private void universityName2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName2FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName2FocusLost
-
-    private void universityName3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName3FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName3FocusGained
-
-    private void universityName3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName3FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName3FocusLost
-
-    private void universityName4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName4FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName4FocusGained
 
     private void universityName4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName4FocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_universityName4FocusLost
 
-    private void universityName5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName5FocusGained
+    private void universityName4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName4FocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityName5FocusGained
+    }//GEN-LAST:event_universityName4FocusGained
 
-    private void universityName5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName5FocusLost
+    private void universityName3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName3FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityName5FocusLost
+    }//GEN-LAST:event_universityName3FocusLost
+
+    private void universityName3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName3FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityName3FocusGained
+
+    private void universityName2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName2FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityName2FocusLost
+
+    private void universityName2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName2FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityName2FocusGained
+
+    private void universityName1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityName1FocusLost
+
+    private void universityName1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityName1FocusGained
+
+    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityNameFocusLost
+
+    private void universityNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityNameFocusGained
 
     private void universityName6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName6FocusGained
         // TODO add your handling code here:
@@ -604,6 +624,18 @@ public class UniRecDialogView extends javax.swing.JDialog {
     private void universityName6FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName6FocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_universityName6FocusLost
+
+    private void universityName8FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName8FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityName8FocusGained
+
+    private void universityName8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName8FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityName8FocusLost
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -661,6 +693,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
     private javax.swing.JButton exitBtn2;
     private javax.swing.JButton exitBtn3;
     private javax.swing.JButton exitBtn4;
+    private javax.swing.JButton exitBtn8;
+    private javax.swing.JButton exitBtn9;
     private javax.swing.JTable grid;
     private javax.swing.JTable grid1;
     private javax.swing.JTable grid3;
@@ -669,7 +703,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane6;
@@ -682,7 +715,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
     private javax.swing.JTextField universityName2;
     private javax.swing.JTextField universityName3;
     private javax.swing.JTextField universityName4;
-    private javax.swing.JTextField universityName5;
     private javax.swing.JTextField universityName6;
+    private javax.swing.JTextField universityName8;
     // End of variables declaration//GEN-END:variables
 }
