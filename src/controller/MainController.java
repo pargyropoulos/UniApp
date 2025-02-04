@@ -19,6 +19,7 @@ public final class MainController{
     public MainController(MainView view) {
         this.view = view;
         view.addUniBtnListener(e->loadUniGridForm());
+        view.addAboutBtnListener(e->loadAboutForm());
         view.addExitBtnListener(e->System.exit(0));
     }
     
@@ -31,18 +32,28 @@ public final class MainController{
      */
     private void loadUniGridForm(){
         if (activePanel instanceof UniGridView) return;
+        removePanel(activePanel);
         UniGridController ctrl=new UniGridController(new UniGridView(), new  UniGridModel());
         ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
         addPanel(ctrl.getView());
         ctrl.run();
     }
     
+    private void loadAboutForm(){
+        if (activePanel instanceof AboutView) return;
+        removePanel(activePanel);
+        AboutController ctrl=new AboutController(new AboutView());
+        ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
+        addPanel(ctrl.getView());
+        ctrl.run();
+    }    
     private void addPanel(JPanel view){
         this.view.addPanel(view);
         this.activePanel=view;
     }
 
     private void removePanel(JPanel view){
+        if (this.activePanel==null) return;
         this.view.removePanel(view);
         this.activePanel=null;
 

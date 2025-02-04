@@ -46,6 +46,9 @@ public class MainView extends javax.swing.JFrame {
         exitBtn.addActionListener(listener);
     }
     
+    public void addAboutBtnListener(ActionListener listener){
+        aboutBtn.addActionListener(listener);
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
