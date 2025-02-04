@@ -20,6 +20,7 @@ public final class MainController{
         this.view = view;
         view.addUniBtnListener(e->loadUniGridForm());
         view.addAboutBtnListener(e->loadAboutForm());
+        view.addSettingsBtnListener(e->loadSettingsForm());
         view.addExitBtnListener(e->System.exit(0));
     }
     
@@ -47,6 +48,16 @@ public final class MainController{
         addPanel(ctrl.getView());
         ctrl.run();
     }    
+    
+    private void loadSettingsForm(){
+        if (activePanel instanceof SettingsView) return;
+        removePanel(activePanel);
+        SettingsController ctrl=new SettingsController(new SettingsView(),new SettingsModel());
+        ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
+        addPanel(ctrl.getView());
+        ctrl.run();
+    }    
+        
     private void addPanel(JPanel view){
         this.view.addPanel(view);
         this.activePanel=view;

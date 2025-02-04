@@ -64,9 +64,9 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="settingsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="statisticsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="uniBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="statsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="settingsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="exitBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="aboutBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -81,9 +81,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="uniBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="settingsBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="statisticsBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="statsBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="settingsBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="aboutBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -160,7 +160,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="settingsBtn">
+        <Component class="javax.swing.JButton" name="statisticsBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="7a" red="0" type="rgb"/>
@@ -185,7 +185,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="statsBtn">
+        <Component class="javax.swing.JButton" name="settingsBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="7a" red="0" type="rgb"/>

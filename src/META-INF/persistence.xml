@@ -5,6 +5,7 @@
     <class>DAO.Department</class>
     <class>DAO.University</class>
     <class>DAO.School</class>
+    <class>DAO.Country</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/UniDB"/>
       <property name="javax.persistence.jdbc.user" value="APP"/>

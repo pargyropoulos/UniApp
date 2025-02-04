@@ -5,34 +5,40 @@
 
 package controller;
 
+import model.SettingsModel;
 import utils.CustomEventSource;
-import view.AboutView;
+import view.SettingsView;
 
 /**
  *
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
  */
-public class AboutController {
-    private AboutView view;
+public class SettingsController {
+    private final SettingsModel model;
+    private final SettingsView view;
     public final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
-    
-    public AboutView getView(){
-        return this.view;
-    }
-    
-    public AboutController(AboutView view) {
-        this.view=view;
-        System.out.println("pressed");
-        view.addCloseButtonListener(e-> {
-            view.setVisible(false); 
-            closeFormEventSource.notifyEventListeners();
-        });
+
+    public SettingsView getView() {
+        return view;
     }
 
-    public void run(){
-        view.setVisible(true);
-        view.revalidate();
-        view.repaint();
+    public SettingsController(SettingsView view,SettingsModel model) {
+        this.model = model;
+        this.view = view;
+        view.addCloseButtonListener(e-> {
+            System.out.println("Button Close is pressed");
+            view.setVisible(false); 
+            closeFormEventSource.notifyEventListeners();
+        });        
     }
     
+    public void run(){
+        this.view.setVisible(true);
+        this.view.revalidate();
+        this.view.repaint();
+    }
+
+
 }
+
+
