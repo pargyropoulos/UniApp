@@ -5,6 +5,8 @@
 
 package controller;
 
+import java.util.List;
+import java.util.Map;
 import model.SettingsModel;
 import utils.CustomEventSource;
 import view.SettingsView;
@@ -17,7 +19,9 @@ public class SettingsController {
     private final SettingsModel model;
     private final SettingsView view;
     public final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
-
+    private List<SettingsModel> modelList;
+    
+    
     public SettingsView getView() {
         return view;
     }
@@ -30,6 +34,10 @@ public class SettingsController {
             view.setVisible(false); 
             closeFormEventSource.notifyEventListeners();
         });        
+    }
+    
+    public void populateList(){
+        
     }
     
     public void run(){
