@@ -1,5 +1,7 @@
 package controller;
 
+import view.settingsForm.SettingsView;
+import model.settingsModel.SettingsModel;
 import javax.swing.JPanel;
 import model.*;
 import view.*;
@@ -29,13 +31,14 @@ public final class MainController{
     }
     
     /**
-     * Creates as new UniGridController
+     * Creates a new UniGridController
      */
     private void loadUniGridForm(){
         if (activePanel instanceof UniGridView) return;
         removePanel(activePanel);
         UniGridController ctrl=new UniGridController(new UniGridView(), new  UniGridModel());
-        ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
+        ctrl.addCloseFormEventListener(e->this.removePanel(activePanel));
+//        ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
         addPanel(ctrl.getView());
         ctrl.run();
     }
@@ -44,7 +47,7 @@ public final class MainController{
         if (activePanel instanceof AboutView) return;
         removePanel(activePanel);
         AboutController ctrl=new AboutController(new AboutView());
-        ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
+        ctrl.addCloseFormEventListener(e->this.removePanel(activePanel));
         addPanel(ctrl.getView());
         ctrl.run();
     }    
@@ -53,7 +56,7 @@ public final class MainController{
         if (activePanel instanceof SettingsView) return;
         removePanel(activePanel);
         SettingsController ctrl=new SettingsController(new SettingsView(),new SettingsModel());
-        ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
+        ctrl.addCloseFormEventListener(e->this.removePanel(activePanel));
         addPanel(ctrl.getView());
         ctrl.run();
     }    
@@ -69,5 +72,4 @@ public final class MainController{
         this.activePanel=null;
 
     }
-    
 }

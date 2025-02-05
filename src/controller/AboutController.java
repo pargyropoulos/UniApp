@@ -6,6 +6,7 @@
 package controller;
 
 import utils.CustomEventSource;
+import utils.ICustomEventListener;
 import view.AboutView;
 
 /**
@@ -14,8 +15,12 @@ import view.AboutView;
  */
 public class AboutController {
     private AboutView view;
-    public final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
+    private final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
     
+    public void addCloseFormEventListener(ICustomEventListener listener){
+        closeFormEventSource.addEventListener(listener);
+    }
+            
     public AboutView getView(){
         return this.view;
     }

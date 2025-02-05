@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import utils.CustomEventSource;
 import static view.Utils.customizeButton;
+import static view.Utils.customizeButtonsInsidePanel;
 
 /**
  *
@@ -21,13 +22,7 @@ public class AboutView extends javax.swing.JPanel {
      */
     public AboutView() {
         initComponents();
-        for (var component : mainPanel.getComponents()) {
-            if (component instanceof JButton) {
-                JButton button = (JButton) component;
-                customizeButton(button, ColorConstants.buttonBackgroundColor, ColorConstants.buttonHoverColor);
-                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
-            }
-        }        
+        customizeButtonsInsidePanel(this.mainPanel);     
     }
 
     public void addCloseButtonListener(ActionListener listener) {
@@ -62,7 +57,6 @@ public class AboutView extends javax.swing.JPanel {
         closelBtn.setText("Close");
         closelBtn.setAlignmentY(0.0F);
         closelBtn.setFocusPainted(false);
-        closelBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         closelBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         closelBtn.setIconTextGap(32);
         closelBtn.setInheritsPopupMenu(true);

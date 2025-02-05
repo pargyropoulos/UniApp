@@ -5,11 +5,13 @@
     <class>DAO.Department</class>
     <class>DAO.University</class>
     <class>DAO.School</class>
-    <class>DAO.Country</class>
+    <class>model.settingsModel.Country</class>
+    <class>repository.University</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/UniDB"/>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby:C:\\Users\\Panagiotis\\Documents\\Coding\\Java\\UniApp\\UniDB;create=true"/>-->
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby:UniDB;create=true"/>
       <property name="javax.persistence.jdbc.user" value="APP"/>
-      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
       <property name="javax.persistence.jdbc.password" value="APP"/>
     </properties>
   </persistence-unit>

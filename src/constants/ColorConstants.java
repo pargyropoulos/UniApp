@@ -18,4 +18,5 @@ public class ColorConstants {
     public static Color gridHeaderForegroundColor = new Color(255, 255, 255);
     public static Color gridCellBackgroundColor = new Color(255, 255, 255);
     public static Color gridCellForegroundColor = new Color(0, 0, 0);
+    
 }

@@ -1,10 +1,9 @@
 package view;
 
-import constants.ColorConstants;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import static view.Utils.customizeButton;
+import static view.Utils.customizeButtonsInsidePanel;
 
 /**
  *
@@ -17,15 +16,15 @@ public class MainView extends javax.swing.JFrame {
      */
     public MainView() {
         initComponents();
-        // Loop through each button and set hover event and button padding
-        for (var component : sidePanel.getComponents()) {
+        customizeButtonsInsidePanel(this.sidePanel);
+        for (var component : this.sidePanel.getComponents()) {
             if (component instanceof JButton) {
                 JButton button = (JButton) component;
-                customizeButton(button, ColorConstants.buttonBackgroundColor, ColorConstants.buttonHoverColor);
-                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
+                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 24));   
             }
         }
     }
+    
     public void addPanel(JPanel panel){
         this.mainPanel.add(panel);
         this.revalidate();

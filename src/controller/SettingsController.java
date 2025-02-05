@@ -5,47 +5,79 @@
 
 package controller;
 
-import java.util.List;
-import java.util.Map;
-import model.SettingsModel;
+import javax.swing.JPanel;
+import model.settingsModel.Country;
+import model.settingsModel.ISettingsModel;
 import utils.CustomEventSource;
-import view.SettingsView;
+import utils.ICustomEventListener;
+import view.settingsForm.ISettingsView;
+
 
 /**
  *
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
  */
 public class SettingsController {
-    private final SettingsModel model;
-    private final SettingsView view;
-    public final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
-    private List<SettingsModel> modelList;
+    private final ISettingsModel model;
+    private final ISettingsView view;
+    private final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
+//    public final CustomEventSource<List<Country>> dataUpdatedEventSource =new CustomEventSource<>();
     
-    
-    public SettingsView getView() {
-        return view;
+    public void addCloseFormEventListener(ICustomEventListener listener){
+        closeFormEventSource.addEventListener(listener);
     }
-
-    public SettingsController(SettingsView view,SettingsModel model) {
+    
+    public SettingsController(ISettingsView view,ISettingsModel model) {
         this.model = model;
-        this.view = view;
-        view.addCloseButtonListener(e-> {
-            System.out.println("Button Close is pressed");
-            view.setVisible(false); 
-            closeFormEventSource.notifyEventListeners();
-        });        
-    }
-    
-    public void populateList(){
+        this.view = view;  
+        mapListeners();
+        model.populateCountryList();
         
     }
     
-    public void run(){
-        this.view.setVisible(true);
-        this.view.revalidate();
-        this.view.repaint();
+    private void mapListeners(){
+//        model.dataUpdatedEventSource.addEventListener(e->view.updateGrid(e.getEventMessage()));
+        model.addDataUpdatedEventListener(e->view.updateGrid(e.getEventMessage()));
+        view.addCloseEventListener(e->{System.out.println("form closed!"); closeFormEventSource.notifyEventListeners();});
+        view.addClearDbEventListener(e->System.out.println("clears db!"));
+        view.addSaveEventListener(e->System.out.println("Saves changes"));
+        view.addSaveEventListener(e-> {
+            try {
+                model.saveData();
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        
+        view.addDeleteEntryEventListener(e-> deleteEntry());
+        view.addAddEntryEventListener(e-> addEntry());
+    }
+    
+    public JPanel getView(){
+        return view.getView();
     }
 
+    
+    private void deleteEntry(){
+        int index= this.view.getSelectedRowIndex();
+        if (index==-1) return;
+        this.model.deleteCountry(index);
+    }
+    
+    private void addEntry(){
+        Country country=new Country();
+        country.setName(view.getCountryTextBox());
+        if (country.getName().isEmpty()) return;
+        model.addCountry(country);
+        view.setCountryTextBox(null);
+    }
+    
+    public void populateList(){
+    }
+    
+    public void run(){
+        this.view.show();
+    }
 
 }
 
