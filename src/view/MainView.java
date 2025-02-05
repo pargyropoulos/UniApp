@@ -1,10 +1,9 @@
 package view;
 
-import constants.ColorConstants;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import static view.Utils.customizeButton;
+import static view.Utils.customizeButtonsInsidePanel;
 
 /**
  *
@@ -17,15 +16,15 @@ public class MainView extends javax.swing.JFrame {
      */
     public MainView() {
         initComponents();
-        // Loop through each button and set hover event and button padding
-        for (var component : sidePanel.getComponents()) {
+        customizeButtonsInsidePanel(this.sidePanel);
+        for (var component : this.sidePanel.getComponents()) {
             if (component instanceof JButton) {
                 JButton button = (JButton) component;
-                customizeButton(button, ColorConstants.buttonBackgroundColor, ColorConstants.buttonHoverColor);
-                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
+                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 24));   
             }
         }
     }
+    
     public void addPanel(JPanel panel){
         this.mainPanel.add(panel);
         this.revalidate();
@@ -46,7 +45,13 @@ public class MainView extends javax.swing.JFrame {
         exitBtn.addActionListener(listener);
     }
     
+    public void addAboutBtnListener(ActionListener listener){
+        aboutBtn.addActionListener(listener);
+    }    
 
+    public void addSettingsBtnListener(ActionListener listener){
+        settingsBtn.addActionListener(listener);
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,8 +65,8 @@ public class MainView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         uniBtn = new javax.swing.JButton();
+        statisticsBtn = new javax.swing.JButton();
         settingsBtn = new javax.swing.JButton();
-        statsBtn = new javax.swing.JButton();
         aboutBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
@@ -107,10 +112,22 @@ public class MainView extends javax.swing.JFrame {
         uniBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
         uniBtn.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        statisticsBtn.setBackground(new java.awt.Color(0, 122, 204));
+        statisticsBtn.setForeground(new java.awt.Color(255, 255, 255));
+        statisticsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/stats.png"))); // NOI18N
+        statisticsBtn.setText("Statistics");
+        statisticsBtn.setFocusPainted(false);
+        statisticsBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        statisticsBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        statisticsBtn.setIconTextGap(32);
+        statisticsBtn.setInheritsPopupMenu(true);
+        statisticsBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
+        statisticsBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+
         settingsBtn.setBackground(new java.awt.Color(0, 122, 204));
         settingsBtn.setForeground(new java.awt.Color(255, 255, 255));
-        settingsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/stats.png"))); // NOI18N
-        settingsBtn.setText("Statistics");
+        settingsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/settings.png"))); // NOI18N
+        settingsBtn.setText("Settings");
         settingsBtn.setFocusPainted(false);
         settingsBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         settingsBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -118,18 +135,6 @@ public class MainView extends javax.swing.JFrame {
         settingsBtn.setInheritsPopupMenu(true);
         settingsBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
         settingsBtn.setPreferredSize(new java.awt.Dimension(200, 50));
-
-        statsBtn.setBackground(new java.awt.Color(0, 122, 204));
-        statsBtn.setForeground(new java.awt.Color(255, 255, 255));
-        statsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/settings.png"))); // NOI18N
-        statsBtn.setText("Settings");
-        statsBtn.setFocusPainted(false);
-        statsBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        statsBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        statsBtn.setIconTextGap(32);
-        statsBtn.setInheritsPopupMenu(true);
-        statsBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
-        statsBtn.setPreferredSize(new java.awt.Dimension(200, 50));
 
         aboutBtn.setBackground(new java.awt.Color(0, 122, 204));
         aboutBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,9 +167,9 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(sidePanelLayout.createSequentialGroup()
                 .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(settingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statisticsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(uniBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -176,9 +181,9 @@ public class MainView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(uniBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(settingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(statisticsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(settingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aboutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -215,7 +220,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton settingsBtn;
     private javax.swing.JPanel sidePanel;
-    private javax.swing.JButton statsBtn;
+    private javax.swing.JButton statisticsBtn;
     private javax.swing.JButton uniBtn;
     // End of variables declaration//GEN-END:variables
 }

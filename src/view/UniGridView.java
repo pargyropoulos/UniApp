@@ -2,18 +2,16 @@ package view;
 
 
 import constants.ColorConstants;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import HTTP.WebData;
-import utils.CustomEvent;
-import utils.ICustomEventListener;
+
+import static view.Utils.customizeButtonsInsidePanel;
         
 /**
  *
@@ -24,6 +22,7 @@ public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventL
    
     private final String[] columnNames={"University Name", "Country", "Alpha-two-code", "State-Province","Web Pages","Domains"}; //grid header names
 
+    
     /**
      * Public method for adding action listeners to the Search Button
      * @param listener 
@@ -62,14 +61,7 @@ public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventL
     public UniGridView() {
         initComponents();
 
-        //custimize buttons to change color on hover event
-        for (var component : mainPanel.getComponents()) {
-            if (component instanceof JButton) {
-                JButton button = (JButton) component;
-                view.Utils.customizeButton(button, new Color(0, 122, 204), new Color(45, 45, 48));
-                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
-            }
-        }
+        customizeButtonsInsidePanel(this.mainPanel);
         populateGrid(null);
     }
     
@@ -127,10 +119,10 @@ public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventL
 
         mainPanel = new javax.swing.JPanel();
         viewEditBtn = new javax.swing.JButton();
-        searchBtn = new javax.swing.JButton();
-        closeBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         grid = new javax.swing.JTable();
+        searchBtn = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -140,44 +132,13 @@ public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventL
         viewEditBtn.setText("View/Edit");
         viewEditBtn.setAlignmentY(0.0F);
         viewEditBtn.setFocusPainted(false);
-        viewEditBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         viewEditBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         viewEditBtn.setIconTextGap(32);
         viewEditBtn.setInheritsPopupMenu(true);
-        viewEditBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
+        viewEditBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
         viewEditBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         viewEditBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         viewEditBtn.setPreferredSize(new java.awt.Dimension(200, 50));
-
-        searchBtn.setBackground(new java.awt.Color(45, 45, 48));
-        searchBtn.setForeground(new java.awt.Color(255, 255, 255));
-        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/search.png"))); // NOI18N
-        searchBtn.setText("Search");
-        searchBtn.setAlignmentY(0.0F);
-        searchBtn.setFocusPainted(false);
-        searchBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        searchBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        searchBtn.setIconTextGap(32);
-        searchBtn.setInheritsPopupMenu(true);
-        searchBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
-        searchBtn.setMaximumSize(new java.awt.Dimension(200, 50));
-        searchBtn.setMinimumSize(new java.awt.Dimension(200, 50));
-        searchBtn.setPreferredSize(new java.awt.Dimension(200, 50));
-
-        closeBtn.setBackground(new java.awt.Color(45, 45, 48));
-        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
-        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
-        closeBtn.setText("Close");
-        closeBtn.setAlignmentY(0.0F);
-        closeBtn.setFocusPainted(false);
-        closeBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        closeBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        closeBtn.setIconTextGap(32);
-        closeBtn.setInheritsPopupMenu(true);
-        closeBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
-        closeBtn.setMaximumSize(new java.awt.Dimension(200, 50));
-        closeBtn.setMinimumSize(new java.awt.Dimension(200, 50));
-        closeBtn.setPreferredSize(new java.awt.Dimension(200, 50));
 
         grid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         grid.setModel(new javax.swing.table.DefaultTableModel(
@@ -220,6 +181,34 @@ public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventL
         grid.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(grid);
 
+        searchBtn.setBackground(new java.awt.Color(45, 45, 48));
+        searchBtn.setForeground(new java.awt.Color(255, 255, 255));
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/search.png"))); // NOI18N
+        searchBtn.setText("Search");
+        searchBtn.setAlignmentY(0.0F);
+        searchBtn.setFocusPainted(false);
+        searchBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        searchBtn.setIconTextGap(32);
+        searchBtn.setInheritsPopupMenu(true);
+        searchBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        searchBtn.setMaximumSize(new java.awt.Dimension(200, 50));
+        searchBtn.setMinimumSize(new java.awt.Dimension(200, 50));
+        searchBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+
+        closeBtn.setBackground(new java.awt.Color(45, 45, 48));
+        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        closeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
+        closeBtn.setText("Close");
+        closeBtn.setAlignmentY(0.0F);
+        closeBtn.setFocusPainted(false);
+        closeBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        closeBtn.setIconTextGap(32);
+        closeBtn.setInheritsPopupMenu(true);
+        closeBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        closeBtn.setMaximumSize(new java.awt.Dimension(200, 50));
+        closeBtn.setMinimumSize(new java.awt.Dimension(200, 50));
+        closeBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -229,8 +218,9 @@ public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventL
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(viewEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );

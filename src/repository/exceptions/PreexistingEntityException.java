@@ -1,4 +1,4 @@
-package DAO.exceptions;
+package repository.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {

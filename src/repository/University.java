@@ -3,18 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package DAO;
+package repository;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -42,8 +39,6 @@ public class University implements Serializable {
     private String info;
     @Column(name = "COUNTER")
     private Integer counter;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "universityName")
-    private Collection<School> schoolCollection;
 
     public University() {
     }
@@ -84,14 +79,6 @@ public class University implements Serializable {
         this.counter = counter;
     }
 
-    public Collection<School> getSchoolCollection() {
-        return schoolCollection;
-    }
-
-    public void setSchoolCollection(Collection<School> schoolCollection) {
-        this.schoolCollection = schoolCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,7 +101,7 @@ public class University implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.University[ name=" + name + " ]";
+        return "repository.University[ name=" + name + " ]";
     }
 
 }

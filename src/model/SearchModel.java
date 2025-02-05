@@ -24,13 +24,13 @@ public class SearchModel {
         this.country = country;
     }
     
-    public Boolean validate(){
+    public Boolean validate(String name, String country){
         return isAlphanumeric(universityName) && isAlphanumeric(country);
     }
     
     // Helper method to check if a string is alphanumeric using Regex
-    public boolean isAlphanumeric(String text) {
-        return text.matches("[a-zA-Z0-9]*");
+    private boolean isAlphanumeric(String text) {
+        return text.matches("[a-zA-Z 0-9]*");
     }    
     
     public String getSearchString(){

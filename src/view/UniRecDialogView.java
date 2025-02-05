@@ -89,11 +89,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
         editBtn.setText("Edit");
         editBtn.setAlignmentY(0.0F);
         editBtn.setFocusPainted(false);
-        editBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         editBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         editBtn.setIconTextGap(32);
         editBtn.setInheritsPopupMenu(true);
-        editBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
+        editBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
         editBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         editBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         editBtn.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -104,11 +103,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
         saveBtn.setText("Save");
         saveBtn.setAlignmentY(0.0F);
         saveBtn.setFocusPainted(false);
-        saveBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         saveBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         saveBtn.setIconTextGap(32);
         saveBtn.setInheritsPopupMenu(true);
-        saveBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
+        saveBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
         saveBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         saveBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         saveBtn.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -124,11 +122,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
         exitBtn.setText("Exit");
         exitBtn.setAlignmentY(0.0F);
         exitBtn.setFocusPainted(false);
-        exitBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         exitBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         exitBtn.setIconTextGap(32);
         exitBtn.setInheritsPopupMenu(true);
-        exitBtn.setMargin(new java.awt.Insets(0, 30, 0, 0));
+        exitBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
         exitBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         exitBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         exitBtn.setPreferredSize(new java.awt.Dimension(200, 50));
