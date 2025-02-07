@@ -22,6 +22,8 @@ public class AboutView extends javax.swing.JPanel {
      */
     public AboutView() {
         initComponents();
+        closelBtn.setBackground(ColorConstants.buttonBackgroundColor);
+        closelBtn.setForeground(ColorConstants.buttonForegroundColor);
         customizeButtonsInsidePanel(this.mainPanel);     
     }
 

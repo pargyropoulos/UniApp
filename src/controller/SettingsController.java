@@ -6,8 +6,8 @@
 package controller;
 
 import javax.swing.JPanel;
-import model.settingsModel.Country;
-import model.settingsModel.ISettingsModel;
+import model.SettingsModel.Country;
+import model.SettingsModel.ISettingsModel;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 import view.settingsForm.ISettingsView;

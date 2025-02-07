@@ -30,7 +30,7 @@ public class Utils {
         button.setForeground(Color.WHITE); // Keep text white for visibility
         button.setBorder(null);
 
-        // Add hover effect
+        //Add hover effect
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -73,7 +73,6 @@ public class Utils {
 //                    button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 24));        
 //
 //                }
-                
             }
         }        
     }
@@ -90,9 +89,9 @@ public class Utils {
                 c.setBackground(Color.WHITE);
                 c.setForeground(Color.BLACK);
             }
-
             return c;
         }
+        
         @Override
         public Dimension getPreferredSize() {
             Dimension size = super.getPreferredSize();

@@ -1,4 +1,11 @@
 package model;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import model.SettingsModel.Country;
+import repository.Emf;
+
 /**
  *
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
@@ -8,6 +15,19 @@ public class SearchModel {
     private String universityName="";
     private String country="";
 
+    public List<Country> getListOfCountries(){
+        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
+        try {
+            Query query = em.createNamedQuery("Country.findAllOrdered");
+            return query.getResultList();
+            }
+        finally{
+            if (em != null){
+            em.close();
+            }
+        }
+    }
+        
     public String getUniversityName() {
         return universityName;
     }
