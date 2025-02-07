@@ -31,7 +31,7 @@ public class UniGridController{
         this.model = model;
         
         //map event listeners to Model and View
-        view.addSearchButtonListener(e -> loadSearchForm(e));
+        view.addSearchButtonListener(e -> loadSearchForm());
         view.addViewEditButtonListener(e-> loadViewEditForm());
         view.addCloseButtonListener(e-> closeForm());
         model.addDataUpdatedEventListener(e-> view.populateGrid(e.getEventMessage()));
@@ -61,8 +61,10 @@ public class UniGridController{
         
     }
     
-    private void loadSearchForm(ActionEvent e){
-        SearchController ctrl=new SearchController(new SearchDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new SearchModel());
+    private void loadSearchForm(){
+        SearchDialogView sView =new SearchDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true);
+        SearchModel sModel=new SearchModel();
+        SearchController ctrl=new SearchController(sView, sModel);
 //        ctrl.dataFetchedEventSource.addEventListener(event -> model.setData(event.getEventMessage()));
         ctrl.addDataFetchedEventListener(event -> model.setData(event.getEventMessage())) ;
         ctrl.run();
