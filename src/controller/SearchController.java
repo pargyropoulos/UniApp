@@ -1,7 +1,4 @@
-
 package controller;
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -11,6 +8,7 @@ import model.SearchModel;
 import HTTP.WebDataFetcher;
 import HTTP.WebData;
 import utils.CustomEventSource;
+import utils.ICustomEventListener;
 import view.SearchDialogView;
 import view.Utils;
 
@@ -21,24 +19,23 @@ import view.Utils;
 public class SearchController implements ActionListener, FocusListener{
     private final SearchModel model;
     private final SearchDialogView view;
+    private final CustomEventSource<List<WebData>> dataFetchedEventSource = new CustomEventSource<>();
     
-    /**
-     *
-     */
-    public final CustomEventSource<List<WebData>> dataFetchedEventSource = new CustomEventSource<>();
+    public void addDataFetchedEventListener (ICustomEventListener<List<WebData>> listener){
+        dataFetchedEventSource.addEventListener(listener);
+    }
     
     public SearchController(SearchDialogView view,SearchModel model) {
         this.model = model;
         this.view = view;
-        
+        view.populateComboBox(model.getListOfCountries());
         view.addSearchBtnActionListener(e->actionPerformed(e));
         view.addCancelBtnActionListener(e-> view.dispose());
         view.addUniversityNameTextBoxActionListener(e->actionPerformed(e));
         view.addCountryComboBoxFocusListener(this);
-        
-
+//        public final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
     }
-
+    
     public void run(){
         //center the new for inside main frame
         this.view.setLocation(Utils.getParentCenterLocation(this.view.getParent(), this.view)); 
@@ -78,7 +75,7 @@ public class SearchController implements ActionListener, FocusListener{
     private Boolean isTextValidated(){
 
         Boolean validated=true;
-        if (!model.isAlphanumeric(view.getUniversityName())) {
+        if (!model.validate(view.getUniversityName(),view.getCountry())) {
             view.setErrorLabelVisible(true);
             view.setInfoLabelText("Info Message: Only alphanumeric characters are valid!");
             validated=false;

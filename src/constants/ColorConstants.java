@@ -14,8 +14,10 @@ public class ColorConstants {
     public static Color textboxBackgroundColor = new Color(255, 255, 255);
     public static Color textboxForegroundColor = new Color(255, 255, 255);
     public static Color gridLineSelectionBackgroundColor = new Color(0, 120, 215);
+    public static Color gridLineSelectionForegroundColor = new Color(255, 255, 255);
     public static Color gridHeaderBackgroundColor = new Color(45, 45, 48);
     public static Color gridHeaderForegroundColor = new Color(255, 255, 255);
     public static Color gridCellBackgroundColor = new Color(255, 255, 255);
     public static Color gridCellForegroundColor = new Color(0, 0, 0);
+    
 }

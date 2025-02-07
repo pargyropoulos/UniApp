@@ -1,5 +1,6 @@
 package view;
 
+import constants.ColorConstants;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -9,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JPanel;
 
 
 /**
@@ -28,7 +30,7 @@ public class Utils {
         button.setForeground(Color.WHITE); // Keep text white for visibility
         button.setBorder(null);
 
-        // Add hover effect
+        //Add hover effect
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -58,7 +60,23 @@ public class Utils {
         int centerY = parentY + (parentHeight - childHeight) / 2;
         return new Point(centerX,centerY);
     }
-            
+
+    public static void customizeButtonsInsidePanel(JPanel panel){
+        for (var component : panel.getComponents()) {
+            if (component instanceof JButton) {
+                JButton button = (JButton) component;
+                customizeButton(button, ColorConstants.buttonBackgroundColor, ColorConstants.buttonHoverColor);
+//                    System.out.println(button.getWidth());                
+//                if (button.size().width<50){
+//                    button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));        
+//                }else {
+//                    button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 24));        
+//
+//                }
+            }
+        }        
+    }
+    
     static class CustomComboBoxRenderer extends DefaultListCellRenderer {
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -71,9 +89,9 @@ public class Utils {
                 c.setBackground(Color.WHITE);
                 c.setForeground(Color.BLACK);
             }
-
             return c;
         }
+        
         @Override
         public Dimension getPreferredSize() {
             Dimension size = super.getPreferredSize();

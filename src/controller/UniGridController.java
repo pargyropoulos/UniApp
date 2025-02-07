@@ -8,6 +8,7 @@ import model.SearchModel;
 import model.UniGridModel;
 import HTTP.WebData;
 import utils.CustomEventSource;
+import utils.ICustomEventListener;
 import view.UniRecDialogView;
 import view.SearchDialogView;
 import view.UniGridView;
@@ -20,8 +21,11 @@ import view.UniGridView;
 public class UniGridController{
     private final UniGridView view;
     private final UniGridModel model;
-    public final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
+    private final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
 
+    public void addCloseFormEventListener(ICustomEventListener listener){
+        closeFormEventSource.addEventListener(listener);
+    }
     public UniGridController(UniGridView view, UniGridModel model) {
         this.view = view;
         this.model = model;
@@ -44,7 +48,6 @@ public class UniGridController{
     }
     
 
-    
     private void loadViewEditForm(){
         int index=this.view.getSelecedRowIndex();
         System.out.println("view edit btn pressed...");
@@ -60,7 +63,8 @@ public class UniGridController{
     
     private void loadSearchForm(ActionEvent e){
         SearchController ctrl=new SearchController(new SearchDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new SearchModel());
-        ctrl.dataFetchedEventSource.addEventListener(event -> model.setData(event.getEventMessage()));
+//        ctrl.dataFetchedEventSource.addEventListener(event -> model.setData(event.getEventMessage()));
+        ctrl.addDataFetchedEventListener(event -> model.setData(event.getEventMessage())) ;
         ctrl.run();
     }
 
