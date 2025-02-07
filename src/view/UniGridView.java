@@ -62,6 +62,8 @@ public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventL
         initComponents();
 
         customizeButtonsInsidePanel(this.mainPanel);
+        grid.setSelectionBackground(ColorConstants.gridLineSelectionBackgroundColor);
+        grid.setSelectionForeground(ColorConstants.gridLineSelectionForegroundColor);
         populateGrid(null);
     }
     

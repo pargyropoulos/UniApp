@@ -6,12 +6,15 @@
 package repository;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,9 +26,9 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "University.findAll", query = "SELECT u FROM University u"),
     @NamedQuery(name = "University.findByName", query = "SELECT u FROM University u WHERE u.name = :name"),
+    @NamedQuery(name = "University.findByCounter", query = "SELECT u FROM University u WHERE u.counter = :counter"),
     @NamedQuery(name = "University.findByDescription", query = "SELECT u FROM University u WHERE u.description = :description"),
-    @NamedQuery(name = "University.findByInfo", query = "SELECT u FROM University u WHERE u.info = :info"),
-    @NamedQuery(name = "University.findByCounter", query = "SELECT u FROM University u WHERE u.counter = :counter")})
+    @NamedQuery(name = "University.findByInfo", query = "SELECT u FROM University u WHERE u.info = :info")})
 public class University implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,12 +36,14 @@ public class University implements Serializable {
     @Basic(optional = false)
     @Column(name = "NAME")
     private String name;
+    @Column(name = "COUNTER")
+    private Integer counter;
     @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "INFO")
     private String info;
-    @Column(name = "COUNTER")
-    private Integer counter;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "universityName")
+    private Collection<School> schoolCollection;
 
     public University() {
     }
@@ -53,6 +58,14 @@ public class University implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
     }
 
     public String getDescription() {
@@ -71,12 +84,12 @@ public class University implements Serializable {
         this.info = info;
     }
 
-    public Integer getCounter() {
-        return counter;
+    public Collection<School> getSchoolCollection() {
+        return schoolCollection;
     }
 
-    public void setCounter(Integer counter) {
-        this.counter = counter;
+    public void setSchoolCollection(Collection<School> schoolCollection) {
+        this.schoolCollection = schoolCollection;
     }
 
     @Override

@@ -6,13 +6,16 @@
 package repository;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import repository.exceptions.IllegalOrphanException;
 import repository.exceptions.NonexistentEntityException;
 import repository.exceptions.PreexistingEntityException;
 
@@ -32,11 +35,29 @@ public class UniversityJpaController implements Serializable {
     }
 
     public void create(University university) throws PreexistingEntityException, Exception {
+        if (university.getSchoolCollection() == null) {
+            university.setSchoolCollection(new ArrayList<School>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Collection<School> attachedSchoolCollection = new ArrayList<School>();
+            for (School schoolCollectionSchoolToAttach : university.getSchoolCollection()) {
+                schoolCollectionSchoolToAttach = em.getReference(schoolCollectionSchoolToAttach.getClass(), schoolCollectionSchoolToAttach.getId());
+                attachedSchoolCollection.add(schoolCollectionSchoolToAttach);
+            }
+            university.setSchoolCollection(attachedSchoolCollection);
             em.persist(university);
+            for (School schoolCollectionSchool : university.getSchoolCollection()) {
+                University oldUniversityNameOfSchoolCollectionSchool = schoolCollectionSchool.getUniversityName();
+                schoolCollectionSchool.setUniversityName(university);
+                schoolCollectionSchool = em.merge(schoolCollectionSchool);
+                if (oldUniversityNameOfSchoolCollectionSchool != null) {
+                    oldUniversityNameOfSchoolCollectionSchool.getSchoolCollection().remove(schoolCollectionSchool);
+                    oldUniversityNameOfSchoolCollectionSchool = em.merge(oldUniversityNameOfSchoolCollectionSchool);
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findUniversity(university.getName()) != null) {
@@ -50,12 +71,45 @@ public class UniversityJpaController implements Serializable {
         }
     }
 
-    public void edit(University university) throws NonexistentEntityException, Exception {
+    public void edit(University university) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            University persistentUniversity = em.find(University.class, university.getName());
+            Collection<School> schoolCollectionOld = persistentUniversity.getSchoolCollection();
+            Collection<School> schoolCollectionNew = university.getSchoolCollection();
+            List<String> illegalOrphanMessages = null;
+            for (School schoolCollectionOldSchool : schoolCollectionOld) {
+                if (!schoolCollectionNew.contains(schoolCollectionOldSchool)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain School " + schoolCollectionOldSchool + " since its universityName field is not nullable.");
+                }
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
+            }
+            Collection<School> attachedSchoolCollectionNew = new ArrayList<School>();
+            for (School schoolCollectionNewSchoolToAttach : schoolCollectionNew) {
+                schoolCollectionNewSchoolToAttach = em.getReference(schoolCollectionNewSchoolToAttach.getClass(), schoolCollectionNewSchoolToAttach.getId());
+                attachedSchoolCollectionNew.add(schoolCollectionNewSchoolToAttach);
+            }
+            schoolCollectionNew = attachedSchoolCollectionNew;
+            university.setSchoolCollection(schoolCollectionNew);
             university = em.merge(university);
+            for (School schoolCollectionNewSchool : schoolCollectionNew) {
+                if (!schoolCollectionOld.contains(schoolCollectionNewSchool)) {
+                    University oldUniversityNameOfSchoolCollectionNewSchool = schoolCollectionNewSchool.getUniversityName();
+                    schoolCollectionNewSchool.setUniversityName(university);
+                    schoolCollectionNewSchool = em.merge(schoolCollectionNewSchool);
+                    if (oldUniversityNameOfSchoolCollectionNewSchool != null && !oldUniversityNameOfSchoolCollectionNewSchool.equals(university)) {
+                        oldUniversityNameOfSchoolCollectionNewSchool.getSchoolCollection().remove(schoolCollectionNewSchool);
+                        oldUniversityNameOfSchoolCollectionNewSchool = em.merge(oldUniversityNameOfSchoolCollectionNewSchool);
+                    }
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -73,7 +127,7 @@ public class UniversityJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws NonexistentEntityException {
+    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -84,6 +138,17 @@ public class UniversityJpaController implements Serializable {
                 university.getName();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The university with id " + id + " no longer exists.", enfe);
+            }
+            List<String> illegalOrphanMessages = null;
+            Collection<School> schoolCollectionOrphanCheck = university.getSchoolCollection();
+            for (School schoolCollectionOrphanCheckSchool : schoolCollectionOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This University (" + university + ") cannot be destroyed since the School " + schoolCollectionOrphanCheckSchool + " in its schoolCollection field has a non-nullable universityName field.");
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(university);
             em.getTransaction().commit();

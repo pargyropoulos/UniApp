@@ -1,4 +1,10 @@
 package model;
+
+import java.util.List;
+import model.SettingsModel.Country;
+import repository.CountryDAO;
+
+
 /**
  *
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
@@ -8,6 +14,11 @@ public class SearchModel {
     private String universityName="";
     private String country="";
 
+    public List<Country> getListOfCountries(){
+        CountryDAO dao=new CountryDAO(repository.Emf.getEntityManagerFactory());
+        return dao.findAllOrdered();
+    }
+        
     public String getUniversityName() {
         return universityName;
     }

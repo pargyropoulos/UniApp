@@ -1,4 +1,3 @@
-
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,10 +7,6 @@ import java.util.List;
 import model.SearchModel;
 import HTTP.WebDataFetcher;
 import HTTP.WebData;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import repository.CountryJpaController;
-import repository.Emf;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 import view.SearchDialogView;
@@ -33,29 +28,12 @@ public class SearchController implements ActionListener, FocusListener{
     public SearchController(SearchDialogView view,SearchModel model) {
         this.model = model;
         this.view = view;
-        readDb();
+        view.populateComboBox(model.getListOfCountries());
         view.addSearchBtnActionListener(e->actionPerformed(e));
         view.addCancelBtnActionListener(e-> view.dispose());
         view.addUniversityNameTextBoxActionListener(e->actionPerformed(e));
         view.addCountryComboBoxFocusListener(this);
-//        public final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
-        
-        
-
-    }
-
-    private void readDb(){
-        CountryJpaController jpaCtrl = new CountryJpaController(repository.Emf.getEntityManagerFactory());
-        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
-        try {
-            Query query = em.createQuery("SELECT c FROM Country c ORDER BY c.name ASC");
-            view.populateComboBox( query.getResultList());
-            }
-        finally {
-            if (em != null){
-            em.close();
-            }
-        }
+////        public final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
     }
     
     public void run(){

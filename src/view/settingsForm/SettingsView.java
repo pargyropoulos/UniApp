@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import model.settingsModel.Country;
+import model.SettingsModel.Country;
 import static view.Utils.customizeButtonsInsidePanel;
 
 /**
@@ -20,6 +20,8 @@ public class SettingsView extends javax.swing.JPanel implements ISettingsView{
     public SettingsView() {
         initComponents();
         customizeButtonsInsidePanel(mainPanel);
+        grid.setSelectionBackground(ColorConstants.gridLineSelectionBackgroundColor);
+        grid.setSelectionForeground(ColorConstants.gridLineSelectionForegroundColor);
     }
 
     /**
