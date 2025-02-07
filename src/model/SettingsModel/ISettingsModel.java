@@ -1,4 +1,3 @@
-
 package model.SettingsModel;
 
 import java.util.List;

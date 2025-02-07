@@ -6,6 +6,7 @@ import java.util.List;
 /**
  *
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
+ * @param <T>
  */
 
 public class CustomEventSource <T> {

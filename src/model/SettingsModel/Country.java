@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "COUNTRY")
 @NamedQueries({
     @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
-    @NamedQuery(name = "Country.findAllOrdered", query = "SELECT c FROM Country c order by c.name ASC"),
+//    @NamedQuery(name = "Country.findAllOrdered", query = "SELECT c FROM Country c order by c.name ASC"),
     @NamedQuery(name = "Country.findByName", query = "SELECT c FROM Country c WHERE c.name = :name")})
 public class Country implements Serializable {
 
