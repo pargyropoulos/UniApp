@@ -33,7 +33,7 @@ public class SearchController implements ActionListener, FocusListener{
         view.addCancelBtnActionListener(e-> view.dispose());
         view.addUniversityNameTextBoxActionListener(e->actionPerformed(e));
         view.addCountryComboBoxFocusListener(this);
-//        public final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
+////        public final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
     }
     
     public void run(){

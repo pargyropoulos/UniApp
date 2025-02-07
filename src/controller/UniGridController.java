@@ -62,7 +62,9 @@ public class UniGridController{
     }
     
     private void loadSearchForm(ActionEvent e){
-        SearchController ctrl=new SearchController(new SearchDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new SearchModel());
+        SearchDialogView sView =new SearchDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true);
+        SearchModel sModel=new SearchModel();
+        SearchController ctrl=new SearchController(sView, sModel);
 //        ctrl.dataFetchedEventSource.addEventListener(event -> model.setData(event.getEventMessage()));
         ctrl.addDataFetchedEventListener(event -> model.setData(event.getEventMessage())) ;
         ctrl.run();
