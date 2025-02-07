@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import model.UniRecDialogModel;
@@ -47,7 +46,6 @@ public class UniGridController{
         this.view.setVisible(true);
     }
     
-
     private void loadViewEditForm(){
         int index=this.view.getSelecedRowIndex();
         System.out.println("view edit btn pressed...");
