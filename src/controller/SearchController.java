@@ -1,4 +1,3 @@
-
 package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +7,6 @@ import java.util.List;
 import model.SearchModel;
 import HTTP.WebDataFetcher;
 import HTTP.WebData;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import repository.Emf;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 import view.SearchDialogView;
