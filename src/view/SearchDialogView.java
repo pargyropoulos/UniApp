@@ -3,7 +3,7 @@ package view;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.util.List;
-import model.__SettingsModel.Country;
+import model.SettingsModel.Country;
 import static view.Utils.customizeButtonsInsidePanel;
 
 /**

@@ -5,7 +5,7 @@
     <class>repository.School</class>
     <class>repository.University</class>
     <class>repository.Department</class>
-    <class>model.__SettingsModel.Country</class>
+    <class>model.SettingsModel.Country</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby:UniDB;create=true;"/>
       <property name="javax.persistence.jdbc.user" value="APP"/>
