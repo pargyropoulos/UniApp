@@ -1,7 +1,7 @@
 package controller;
 
 import view.settingsForm.SettingsView;
-import model._SettingsModel.SettingsModel;
+import model.__SettingsModel.SettingsModel;
 import javax.swing.JPanel;
 import model.*;
 import view.*;

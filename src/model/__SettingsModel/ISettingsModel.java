@@ -1,4 +1,4 @@
-package model._SettingsModel;
+package model.__SettingsModel;
 
 import java.util.List;
 import utils.ICustomEventListener;

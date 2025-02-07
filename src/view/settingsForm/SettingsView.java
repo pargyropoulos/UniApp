@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import model._SettingsModel.Country;
+import model.__SettingsModel.Country;
 import static view.Utils.customizeButtonsInsidePanel;
 
 /**

@@ -1,4 +1,4 @@
-package model._SettingsModel;
+package model.__SettingsModel;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

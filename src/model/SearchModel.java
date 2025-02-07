@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model._SettingsModel.Country;
+import model.__SettingsModel.Country;
 import repository.Emf;
 
 /**

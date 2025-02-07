@@ -5,7 +5,7 @@
 
 package repository;
 
-import model._SettingsModel.Country;
+import model.__SettingsModel.Country;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
