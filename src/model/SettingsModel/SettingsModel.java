@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import repository.CountryJpaController;
-import repository.Emf;
+import repository.CountryDAO;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 
@@ -19,30 +16,20 @@ import utils.ICustomEventListener;
 public class SettingsModel implements ISettingsModel {
     private Country countryModel;
     private List<Country> countries=null;
-    private final CountryJpaController dao;
+    private final CountryDAO dao;
     private final List<Country> deletedRows = new ArrayList<>();
     private final Set<Country> insertedRows = new HashSet<>();
     private final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
     
     public SettingsModel() {
         this.countryModel = null;
-        this.dao = new CountryJpaController(repository.Emf.getEntityManagerFactory());
+        this.dao=new CountryDAO(repository.Emf.getEntityManagerFactory());
     }
     
     @Override
     public void populateCountryList(){
-//        this.countries=dao.findCountryEntities();
-        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
-        try {
-            Query query = em.createNamedQuery("Country.findAllOrdered");
-            countries = query.getResultList();
-            dataUpdatedEventSource.notifyEventListeners(countries);
-            }
-        finally {
-            if (em != null){
-            em.close();
-            }
-        }
+        countries=dao.findAllOrdered();
+        dataUpdatedEventSource.notifyEventListeners(countries);
     }
     
     @Override

@@ -1,10 +1,9 @@
 package model;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import model.SettingsModel.Country;
-import repository.Emf;
+import repository.CountryDAO;
+
 
 /**
  *
@@ -16,16 +15,8 @@ public class SearchModel {
     private String country="";
 
     public List<Country> getListOfCountries(){
-        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
-        try {
-            Query query = em.createNamedQuery("Country.findAllOrdered");
-            return query.getResultList();
-            }
-        finally{
-            if (em != null){
-            em.close();
-            }
-        }
+        CountryDAO dao=new CountryDAO(repository.Emf.getEntityManagerFactory());
+        return dao.findAllOrdered();
     }
         
     public String getUniversityName() {

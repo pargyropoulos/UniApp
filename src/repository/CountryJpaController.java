@@ -127,18 +127,4 @@ public class CountryJpaController implements Serializable {
             em.close();
         }
     }
-
-    public int getCountryCount() {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Country> rt = cq.from(Country.class);
-            cq.select(em.getCriteriaBuilder().count(rt));
-            Query q = em.createQuery(cq);
-            return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-
 }
