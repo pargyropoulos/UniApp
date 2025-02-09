@@ -5,8 +5,20 @@
 package view;
 
 import constants.ColorConstants;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
-
+import constants.ColorConstants;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import HTTP.WebData;
+import java.awt.Color;
+import repository.University;
+import javax.swing.*;
 /**
  *
  * @author tasos
@@ -30,6 +42,64 @@ public class UniRecDialogView extends javax.swing.JDialog {
         }        
         
     }
+    
+    public void addExitButtonListener(ActionListener listener) {
+            exitBtn.addActionListener(listener);
+    }
+    
+    public void setUniversityData(WebData universityData) {
+         if (universityData != null) {
+            universityName.setText(universityData.getName());
+            universityName.setEditable(false);
+            // ισως να του αλλάξω χρώμα
+            //universityName.setBackground(Color.LIGHT_GRAY);
+            universityName.setBorder(null);
+            
+            universityName2.setText(universityData.getCountry());
+            universityName1.setText(universityData.getAlpha_two_code());
+            //universityName3.setText(universityData.getDescription());  // Αν υπάρχει πεδίο περιγραφής
+        }
+    }
+    
+    
+    // Για να γεμίσει το Grid -> gridDomains
+    public void populateDomainsGrid(List<String> domains) {
+    // Ελέγχω αν η λίστα είναι κενή - ίσως να μην χρειαζεται, η τροποποιηση 
+    // για εμφάνιση μήνυμα λάθους
+        if (domains == null || domains.isEmpty()) {
+            System.out.println("No domains to display.");
+            return;
+        }
+    // Παίρνουμε το μοντέλο του πίνακα
+        DefaultTableModel model = (DefaultTableModel) gridDomains.getModel();
+    // Καθαρίζουμε τα προηγούμενα δεδομένα του πίνακα
+        model.setRowCount(0);
+    // Προσθέτουμε κάθε domain ως νέα γραμμή στον πίνακα
+        for (String domain : domains) {
+            model.addRow(new Object[]{domain});
+        }
+    }  
+    // Όμοια για grid -> gridWebPages
+    public void populateWebPagesGrid(List<String> webPages) { 
+        if(webPages == null || webPages.isEmpty()){
+            System.out.println("No Web Pages  to display.");
+            return;
+        }
+        
+        // Παίρνουμε το μοντέλο του πίνακα
+        DefaultTableModel model = (DefaultTableModel) gridWebPages.getModel();
+    // Καθαρίζουμε τα προηγούμενα δεδομένα του πίνακα
+        model.setRowCount(0);
+    // Προσθέτουμε κάθε domain ως νέα γραμμή στον πίνακα
+        for (String webPage : webPages) {
+            model.addRow(new Object[]{webPage});
+        }
+    
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,9 +120,9 @@ public class UniRecDialogView extends javax.swing.JDialog {
         exitBtn = new javax.swing.JButton();
         universityName = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        grid = new javax.swing.JTable();
+        gridWebPages = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
-        grid1 = new javax.swing.JTable();
+        gridDomains = new javax.swing.JTable();
         universityName1 = new javax.swing.JTextField();
         universityName2 = new javax.swing.JTextField();
         universityName3 = new javax.swing.JTextField();
@@ -140,8 +210,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
             }
         });
 
-        grid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        grid.setModel(new javax.swing.table.DefaultTableModel(
+        gridWebPages.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        gridWebPages.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null}
@@ -158,23 +228,24 @@ public class UniRecDialogView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        grid.setAlignmentX(0.0F);
-        grid.setAlignmentY(0.0F);
-        grid.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        grid.setFocusable(false);
-        grid.setMinimumSize(new java.awt.Dimension(400, 600));
-        grid.setRowHeight(32);
-        grid.setSelectionBackground(new java.awt.Color(0, 120, 215));
-        grid.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        grid.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        grid.setShowGrid(false);
-        grid.getTableHeader().setResizingAllowed(false);
-        grid.getTableHeader().setReorderingAllowed(false);
-        jScrollPane6.setViewportView(grid);
+        gridWebPages.setAlignmentX(0.0F);
+        gridWebPages.setAlignmentY(0.0F);
+        gridWebPages.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        gridWebPages.setFocusable(false);
+        gridWebPages.setMinimumSize(new java.awt.Dimension(400, 600));
+        gridWebPages.setRowHeight(32);
+        gridWebPages.setSelectionBackground(new java.awt.Color(0, 120, 215));
+        gridWebPages.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        gridWebPages.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        gridWebPages.setShowGrid(false);
+        gridWebPages.getTableHeader().setResizingAllowed(false);
+        gridWebPages.getTableHeader().setReorderingAllowed(false);
+        jScrollPane6.setViewportView(gridWebPages);
 
-        grid1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        grid1.setModel(new javax.swing.table.DefaultTableModel(
+        gridDomains.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        gridDomains.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null},
                 {null}
             },
             new String [] {
@@ -189,19 +260,22 @@ public class UniRecDialogView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        grid1.setAlignmentX(0.0F);
-        grid1.setAlignmentY(0.0F);
-        grid1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        grid1.setFocusable(false);
-        grid1.setMinimumSize(new java.awt.Dimension(400, 600));
-        grid1.setRowHeight(32);
-        grid1.setSelectionBackground(new java.awt.Color(0, 120, 215));
-        grid1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        grid1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        grid1.setShowGrid(false);
-        grid1.getTableHeader().setResizingAllowed(false);
-        grid1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane7.setViewportView(grid1);
+        gridDomains.setAlignmentX(0.0F);
+        gridDomains.setAlignmentY(0.0F);
+        gridDomains.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        gridDomains.setFocusable(false);
+        gridDomains.setMinimumSize(new java.awt.Dimension(400, 600));
+        gridDomains.setRowHeight(32);
+        gridDomains.setSelectionBackground(new java.awt.Color(0, 120, 215));
+        gridDomains.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        gridDomains.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        gridDomains.setShowGrid(false);
+        gridDomains.getTableHeader().setResizingAllowed(false);
+        gridDomains.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(gridDomains);
+        if (gridDomains.getColumnModel().getColumnCount() > 0) {
+            gridDomains.getColumnModel().getColumn(0).setHeaderValue("Domains");
+        }
 
         universityName1.setToolTipText(null);
         universityName1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -664,10 +738,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
     private javax.swing.JButton exitBtn4;
     private javax.swing.JButton exitBtn8;
     private javax.swing.JButton exitBtn9;
-    private javax.swing.JTable grid;
-    private javax.swing.JTable grid1;
     private javax.swing.JTable grid3;
     private javax.swing.JTable grid4;
+    private javax.swing.JTable gridDomains;
+    private javax.swing.JTable gridWebPages;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
