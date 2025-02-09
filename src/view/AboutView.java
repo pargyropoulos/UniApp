@@ -5,7 +5,9 @@
 package view;
 
 import constants.ColorConstants;
+import java.awt.Desktop;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import javax.swing.JButton;
 import utils.CustomEventSource;
 import static view.Utils.customizeButton;
@@ -45,11 +47,15 @@ public class AboutView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        panagiotisLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        panagiotisLabel1 = new javax.swing.JLabel();
+        constantinaLabel = new javax.swing.JLabel();
+        tasosLabel = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -79,8 +85,14 @@ public class AboutView extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Al Fadel Konstantina");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Argyropoulos Panagiotis");
+        panagiotisLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panagiotisLabel.setText("<html>(<a href='mailto:pargyropoulos@gmail.com' style='color: blue; text-decoration: underline;'>pargyropoulos@gmail.com</a>)</html> ");
+        panagiotisLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panagiotisLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panagiotisLabelMouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Botsialas Athanasios");
@@ -92,7 +104,37 @@ public class AboutView extends javax.swing.JPanel {
         jLabel8.setText("Scrum Team:");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setText("HOU - 2024-25");
+        jLabel9.setText("HOU - Computer Science - 2024-25");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setText("Argyropoulos Panagiotis");
+
+        panagiotisLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panagiotisLabel1.setText("<html>(<a href='mailto:pargyropoulos@gmail.com' style='color: blue; text-decoration: underline;'>pargyropoulos@gmail.com</a>)</html> ");
+        panagiotisLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panagiotisLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panagiotisLabel1MouseClicked(evt);
+            }
+        });
+
+        constantinaLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        constantinaLabel.setText("<html>(<a href='mailto:k.al.fantel@gmail.com' style='color: blue; text-decoration: underline;'>k.al.fantel@gmail.com</a>)</html> ");
+        constantinaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        constantinaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                constantinaLabelMouseClicked(evt);
+            }
+        });
+
+        tasosLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tasosLabel.setText("<html>(<a href='mailto:botsialas.a@gmail.com' style='color: blue; text-decoration: underline;'>botsialas.a@gmail.com</a>)</html> ");
+        tasosLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tasosLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tasosLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -103,19 +145,31 @@ public class AboutView extends javax.swing.JPanel {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel8)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
                         .addComponent(closelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panagiotisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panagiotisLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(constantinaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tasosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -131,35 +185,78 @@ public class AboutView extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(constantinaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(panagiotisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tasosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(panagiotisLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(closelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+        panagiotisLabel.getAccessibleContext().setAccessibleName("<html><a href='' style='color: blue; text-decoration: underline;'>Click here to visit Google</a></html> ");
+        panagiotisLabel.getAccessibleContext().setAccessibleDescription("<html><a href='' style='color: blue; text-decoration: underline;'>Click here to visit Google</a></html> ");
+
         add(mainPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void panagiotisLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panagiotisLabelMouseClicked
+        try {
+            Desktop.getDesktop().mail(new URI("mailto:pargyropoulos@gmail.com"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_panagiotisLabelMouseClicked
+
+    private void panagiotisLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panagiotisLabel1MouseClicked
+        panagiotisLabelMouseClicked(evt);
+    }//GEN-LAST:event_panagiotisLabel1MouseClicked
+
+    private void constantinaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_constantinaLabelMouseClicked
+        try {
+            Desktop.getDesktop().mail(new URI("mailto:k.al.fantel@gmail.com"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_constantinaLabelMouseClicked
+
+    private void tasosLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tasosLabelMouseClicked
+        try {
+            Desktop.getDesktop().mail(new URI("mailto:botsialas.a@gmail.com"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_tasosLabelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closelBtn;
+    private javax.swing.JLabel constantinaLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel panagiotisLabel;
+    private javax.swing.JLabel panagiotisLabel1;
+    private javax.swing.JLabel tasosLabel;
     // End of variables declaration//GEN-END:variables
 }

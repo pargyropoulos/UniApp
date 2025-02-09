@@ -15,7 +15,7 @@ import utils.ICustomEventListener;
  */
 public class SettingsModel implements ISettingsModel {
     private Country countryModel;
-    private List<Country> countries=null;
+    private List<Country> countries;
     private final CountryDAO dao;
     private final List<Country> deletedRows = new ArrayList<>();
     private final Set<Country> insertedRows = new HashSet<>();
@@ -28,7 +28,7 @@ public class SettingsModel implements ISettingsModel {
     
     @Override
     public void populateCountryList(){
-        countries=dao.findAllOrdered();
+        this.countries=dao.findAllOrdered();
         dataUpdatedEventSource.notifyEventListeners(countries);
     }
     
