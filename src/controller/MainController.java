@@ -27,6 +27,7 @@ public final class MainController{
     }
     
     public void run(){
+        view.setLocationRelativeTo(null);
         this.view.setVisible(true);
     }
     
