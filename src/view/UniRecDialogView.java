@@ -200,6 +200,18 @@ public class UniRecDialogView extends javax.swing.JDialog {
         exitBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         exitBtn.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        universityName.setToolTipText(null);
+        universityName.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName.setEnabled(false);
+        universityName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                universityNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                universityNameFocusLost(evt);
+            }
+        });
+
         gridWebPages.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         gridWebPages.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

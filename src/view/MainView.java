@@ -16,7 +16,6 @@ public class MainView extends javax.swing.JFrame {
      */
     public MainView() {
         initComponents();
-        customizeButtonsInsidePanel(this.sidePanel);
         for (var component : this.sidePanel.getComponents()) {
             if (component instanceof JButton) {
                 JButton button = (JButton) component;
