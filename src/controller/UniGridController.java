@@ -50,8 +50,7 @@ public class UniGridController{
         int index=this.view.getSelecedRowIndex();
         System.out.println("view edit btn pressed...");
         if (index==-1) return;
-        WebData selectedUniModel = new WebData();
-        selectedUniModel=this.model.getData().get(index);
+        WebData selectedUniModel = this.model.getData().get(index);
         System.out.println(selectedUniModel);
         
         UniRecDialogController ctrl=new UniRecDialogController(new UniRecDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new UniRecDialogModel(selectedUniModel));

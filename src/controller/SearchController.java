@@ -7,6 +7,8 @@ import java.util.List;
 import model.SearchModel;
 import HTTP.WebDataFetcher;
 import HTTP.WebData;
+import java.io.IOException;
+import java.util.ArrayList;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 import view.SearchDialogView;
@@ -47,20 +49,23 @@ public class SearchController implements ActionListener, FocusListener{
 //        view.getInfoLabel().setVisible(true);
         WebDataFetcher webDataFetcher = new WebDataFetcher();
         System.out.println(model.getSearchString());
-        List<WebData> uniList = webDataFetcher.fetchUniversities(model.getSearchString());
-                
-        view.setInfoLabelVisible(false);
-        System.out.println(model.getUniversityName());
-        System.out.println(model.getCountry());
-        System.out.println(uniList);
-        if (!uniList.isEmpty()) {
-            dataFetchedEventSource.notifyEventListeners(uniList);
-//            view.setInfoLabelText(String.format("Info Message: %,d entries found!",uniList.size()));
-//            view.setInfoLabelVisible(true);
-            view.dispose();
+        List<WebData> uniList = new ArrayList<>();
+        
+        try {
+            uniList = webDataFetcher.fetchUniversities(model.getSearchString());
+            if (!uniList.isEmpty()) {
+                dataFetchedEventSource.notifyEventListeners(uniList);
+                view.dispose();
         }else {
             view.setInfoLabelText("Info Message: No entry found!");
             view.setInfoLabelVisible(true);
+        }
+            
+        }
+        catch (IOException e) {
+            view.setInfoLabelVisible(true);
+            view.setInfoLabelText("Info Message:"+e.getMessage());   
+            return;
         }
     }
 

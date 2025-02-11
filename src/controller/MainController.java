@@ -5,6 +5,7 @@ import model.SettingsModel.SettingsModel;
 import javax.swing.JPanel;
 import model.*;
 import view.*;
+import repository.*;
 
 /**
  * 
@@ -23,7 +24,10 @@ public final class MainController{
         view.addUniBtnListener(e->loadUniGridForm());
         view.addAboutBtnListener(e->loadAboutForm());
         view.addSettingsBtnListener(e->loadSettingsForm());
-        view.addExitBtnListener(e->System.exit(0));
+        view.addExitBtnListener(e->{
+            Emf.closeEntityManagerFactory();
+            System.exit(0);
+        });
     }
     
     public void run(){

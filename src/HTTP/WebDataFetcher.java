@@ -18,33 +18,28 @@ import okhttp3.Response;
 
 public class WebDataFetcher implements Serializable  {
     private static final String URL = "http://universities.hipolabs.com/search";
-    private List<WebData> list=new ArrayList<>();
-
-    public List<WebData> getList() {
-        return list;
-    }
     
-    public List<WebData> fetchUniversities(String searchString){
+    public List<WebData> fetchUniversities(String searchString) throws IOException{
         String url=this.URL;
         url+=searchString;
+        System.out.println(url);
         OkHttpClient client=new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
+        List<WebData> list=new ArrayList<>();
         
-
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
                 String jsonResponseString=response.body().string();
-                
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<WebData>>() {}.getType();
-                this.list = gson.fromJson(jsonResponseString, listType);                
-                return this.list;
+                list=gson.fromJson(jsonResponseString, listType);          
+                return list;
+            }else {
+                return list;
             }
+        } catch (IOException e){
+            System.out.println("errror");
+            throw new IOException(" HTTP error. Failed to fetch data.");
         }
-        catch (IOException e){
-            e.printStackTrace();
-            return null;
-        } 
-        return null;
     }   
 }
