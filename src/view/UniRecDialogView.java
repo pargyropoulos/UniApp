@@ -50,10 +50,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
     public void setUniversityData(WebData universityData) {
          if (universityData != null) {
             universityName.setText(universityData.getName());
-            universityName.setEditable(false);
+//            universityName.setEditable(false);
             // ισως να του αλλάξω χρώμα
             //universityName.setBackground(Color.LIGHT_GRAY);
-            universityName.setBorder(null);
+//            universityName.setBorder(null);
             
             universityName2.setText(universityData.getCountry());
             universityName1.setText(universityData.getAlpha_two_code());
@@ -118,7 +118,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
         editBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
-        universityName = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         gridWebPages = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -140,12 +139,13 @@ public class UniRecDialogView extends javax.swing.JDialog {
         universityName8 = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
         grid4 = new javax.swing.JTable();
+        universityName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("University");
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel1.setText("Name");
+        jLabel1.setText("Name:");
 
         jLabel2.setText("Country:");
 
@@ -155,8 +155,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         editBtn.setBackground(new java.awt.Color(45, 45, 48));
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
-        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit.png"))); // NOI18N
-        editBtn.setText("Edit");
+        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
+        editBtn.setText("Cancel");
         editBtn.setAlignmentY(0.0F);
         editBtn.setFocusPainted(false);
         editBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -188,7 +188,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         exitBtn.setBackground(new java.awt.Color(45, 45, 48));
         exitBtn.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/logout.png"))); // NOI18N
         exitBtn.setText("Exit");
         exitBtn.setAlignmentY(0.0F);
         exitBtn.setFocusPainted(false);
@@ -199,16 +199,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
         exitBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         exitBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         exitBtn.setPreferredSize(new java.awt.Dimension(200, 50));
-
-        universityName.setToolTipText(null);
-        universityName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                universityNameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                universityNameFocusLost(evt);
-            }
-        });
 
         gridWebPages.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         gridWebPages.setModel(new javax.swing.table.DefaultTableModel(
@@ -277,7 +267,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
             gridDomains.getColumnModel().getColumn(0).setHeaderValue("Domains");
         }
 
+        universityName1.setBackground(new java.awt.Color(60, 63, 65));
         universityName1.setToolTipText(null);
+        universityName1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName1.setEnabled(false);
         universityName1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 universityName1FocusGained(evt);
@@ -287,7 +280,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
             }
         });
 
+        universityName2.setBackground(new java.awt.Color(60, 63, 65));
         universityName2.setToolTipText(null);
+        universityName2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName2.setEnabled(false);
         universityName2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 universityName2FocusGained(evt);
@@ -491,6 +487,19 @@ public class UniRecDialogView extends javax.swing.JDialog {
         grid4.getTableHeader().setReorderingAllowed(false);
         jScrollPane10.setViewportView(grid4);
 
+        universityName.setBackground(new java.awt.Color(60, 63, 65));
+        universityName.setToolTipText(null);
+        universityName.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName.setEnabled(false);
+        universityName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                universityNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                universityNameFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -539,13 +548,13 @@ public class UniRecDialogView extends javax.swing.JDialog {
                                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(universityName)
                                     .addGroup(mainPanelLayout.createSequentialGroup()
                                         .addComponent(universityName2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
-                                        .addComponent(universityName1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(universityName1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(universityName)))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
@@ -560,10 +569,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGap(12, 12, 12)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(universityName1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -612,7 +621,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
                     .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(mainPanel);
@@ -652,14 +661,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_universityName1FocusGained
 
-    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityNameFocusLost
-
-    private void universityNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityNameFocusGained
-
     private void universityName6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName6FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_universityName6FocusGained
@@ -679,6 +680,14 @@ public class UniRecDialogView extends javax.swing.JDialog {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void universityNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityNameFocusGained
+
+    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityNameFocusLost
 
     /**
      * @param args the command line arguments
