@@ -64,7 +64,9 @@ public class UniGridController{
         SearchModel sModel=new SearchModel();
         SearchController ctrl=new SearchController(sView, sModel);
 //        ctrl.dataFetchedEventSource.addEventListener(event -> model.setData(event.getEventMessage()));
-        ctrl.addDataFetchedEventListener(event -> model.setData(event.getEventMessage())) ;
+        ctrl.addDataFetchedEventListener(event -> model.setData(event.getEventMessage()));
+        ctrl.addDataFetchedEventListener(event -> view.setEntriesCount(event.getEventMessage().size()));
+        
         ctrl.run();
     }
 

@@ -55,10 +55,9 @@ public class SearchController implements ActionListener, FocusListener{
         System.out.println(uniList);
         if (!uniList.isEmpty()) {
             dataFetchedEventSource.notifyEventListeners(uniList);
-            view.setInfoLabelText(String.format("Info Message: %,d entries found!",uniList.size()));
-            view.setInfoLabelVisible(true);
-            
-//            view.dispose();
+//            view.setInfoLabelText(String.format("Info Message: %,d entries found!",uniList.size()));
+//            view.setInfoLabelVisible(true);
+            view.dispose();
         }else {
             view.setInfoLabelText("Info Message: No entry found!");
             view.setInfoLabelVisible(true);

@@ -50,10 +50,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
     public void setUniversityData(WebData universityData) {
          if (universityData != null) {
             universityName.setText(universityData.getName());
-            universityName.setEditable(false);
+//            universityName.setEditable(false);
             // ισως να του αλλάξω χρώμα
             //universityName.setBackground(Color.LIGHT_GRAY);
-            universityName.setBorder(null);
+//            universityName.setBorder(null);
             
             universityName2.setText(universityData.getCountry());
             universityName1.setText(universityData.getAlpha_two_code());
@@ -201,6 +201,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
         exitBtn.setPreferredSize(new java.awt.Dimension(200, 50));
 
         universityName.setToolTipText(null);
+        universityName.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName.setEnabled(false);
         universityName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 universityNameFocusGained(evt);
@@ -278,6 +280,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
         }
 
         universityName1.setToolTipText(null);
+        universityName1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName1.setEnabled(false);
         universityName1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 universityName1FocusGained(evt);
@@ -288,6 +292,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
         });
 
         universityName2.setToolTipText(null);
+        universityName2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName2.setEnabled(false);
         universityName2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 universityName2FocusGained(evt);
