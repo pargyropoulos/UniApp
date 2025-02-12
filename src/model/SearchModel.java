@@ -15,7 +15,8 @@ public class SearchModel {
     private String country="";
 
     public List<Country> getListOfCountries(){
-        CountryDAO dao=new CountryDAO(repository.Emf.getEntityManagerFactory());
+        CountryDAO dao =new CountryDAO(null);
+//        CountryDAO dao=new CountryDAO(repository.Emf.getEntityManagerFactory());
         return dao.findAllOrdered();
     }
         

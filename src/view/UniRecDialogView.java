@@ -27,6 +27,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
     /**
      * Creates new form uniRec
+     *
      * @param parent
      * @param modal
      */
@@ -36,70 +37,142 @@ public class UniRecDialogView extends javax.swing.JDialog {
         for (var component : mainPanel.getComponents()) {
             if (component instanceof JButton) {
                 JButton button = (JButton) component;
-                view.Utils.customizeButton(button, ColorConstants.buttonBackgroundColor,ColorConstants.buttonHoverColor);
-                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));        
+                view.Utils.customizeButton(button, ColorConstants.buttonBackgroundColor, ColorConstants.buttonHoverColor);
+                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));
             }
-        }        
-        
+        }
+
     }
-    
+
     public void addExitButtonListener(ActionListener listener) {
-            exitBtn.addActionListener(listener);
+        exitBtn.addActionListener(listener);
     }
-    
+
     public void setUniversityData(WebData universityData) {
-         if (universityData != null) {
+        if (universityData != null) {
             universityName.setText(universityData.getName());
 //            universityName.setEditable(false);
             // ισως να του αλλάξω χρώμα
             //universityName.setBackground(Color.LIGHT_GRAY);
 //            universityName.setBorder(null);
-            
+
+
             universityName2.setText(universityData.getCountry());
+//            universityName2.setEditable(false);
+//            universityName2.setBorder(null);
+
             universityName1.setText(universityData.getAlpha_two_code());
+//            universityName1.setEditable(false);
+//            universityName1.setBorder(null);
             //universityName3.setText(universityData.getDescription());  // Αν υπάρχει πεδίο περιγραφής
         }
     }
-    
+
     
     // Για να γεμίσει το Grid -> gridDomains
     public void populateDomainsGrid(List<String> domains) {
-    // Ελέγχω αν η λίστα είναι κενή - ίσως να μην χρειαζεται, η τροποποιηση 
-    // για εμφάνιση μήνυμα λάθους
+        // Ελέγχω αν η λίστα είναι κενή - ίσως να μην χρειαζεται, η τροποποιηση 
+        // για εμφάνιση μήνυμα λάθους
         if (domains == null || domains.isEmpty()) {
             System.out.println("No domains to display.");
             return;
         }
-    // Παίρνουμε το μοντέλο του πίνακα
+        // Παίρνουμε το μοντέλο του πίνακα
         DefaultTableModel model = (DefaultTableModel) gridDomains.getModel();
-    // Καθαρίζουμε τα προηγούμενα δεδομένα του πίνακα
+        // Καθαρίζουμε τα προηγούμενα δεδομένα του πίνακα
         model.setRowCount(0);
-    // Προσθέτουμε κάθε domain ως νέα γραμμή στον πίνακα
+        // Προσθέτουμε κάθε domain ως νέα γραμμή στον πίνακα
         for (String domain : domains) {
             model.addRow(new Object[]{domain});
         }
-    }  
+
+    }
+
     // Όμοια για grid -> gridWebPages
-    public void populateWebPagesGrid(List<String> webPages) { 
-        if(webPages == null || webPages.isEmpty()){
+    public void populateWebPagesGrid(List<String> webPages) {
+        if (webPages == null || webPages.isEmpty()) {
             System.out.println("No Web Pages  to display.");
             return;
         }
-        
+
         // Παίρνουμε το μοντέλο του πίνακα
         DefaultTableModel model = (DefaultTableModel) gridWebPages.getModel();
-    // Καθαρίζουμε τα προηγούμενα δεδομένα του πίνακα
+        // Καθαρίζουμε τα προηγούμενα δεδομένα του πίνακα
         model.setRowCount(0);
-    // Προσθέτουμε κάθε domain ως νέα γραμμή στον πίνακα
+        // Προσθέτουμε κάθε domain ως νέα γραμμή στον πίνακα
         for (String webPage : webPages) {
             model.addRow(new Object[]{webPage});
         }
-    
+
     }
-    
-    
-    
-    
+
+    public void setDescriptionField(String description) {
+        if (description != null) {
+            uniDescrTextField.setText(description);
+        } else {
+            uniDescrTextField.setText("No description available");
+        }
+
+    }
+
+    public void setInfoField(String info) {
+        if (info != null) {
+            uniInfoTextField.setText(info);
+        } else {
+            uniInfoTextField.setText("No info available");
+        }
+
+    }
+
+    public void populateSchoolsGrid(List<String> schools) {
+        if (schools == null || schools.isEmpty()) {
+            System.out.println("No schools to display.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) grid3.getModel();
+        model.setRowCount(0); // Καθαρίζουμε τον πίνακα
+
+        for (String school : schools) {
+            model.addRow(new Object[]{school});
+        }
+    }
+
+    public String getSelectedSchool() {
+        int selectedRow = grid3.getSelectedRow();
+        if (selectedRow != -1) {
+            return grid3.getValueAt(selectedRow, 0).toString();
+        }
+        return null; // Αν δεν έχει επιλεγεί γραμμή, επιστρέφουμε null
+    }
+
+    public void addDeleteSchoolButtonListener(ActionListener listener) {
+        delBtnSchools.addActionListener(listener);
+    }
+
+    public String getDescriptionText() {
+        return uniDescrTextField.getText();
+    }
+
+    public String getInfoText() {
+        return uniInfoTextField.getText();
+    }
+
+    public void addSaveButtonListener(ActionListener listener) {
+        saveBtn.addActionListener(listener);
+    }
+
+    public String getSchoolText() {
+        return schoolsTextField.getText().trim();
+    }
+
+    public void clearSchoolTextField() {
+        schoolsTextField.setText("");
+    }
+
+    public void addAddSchoolButtonListener(ActionListener listener) {
+        addBtnSchools.addActionListener(listener);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,20 +197,18 @@ public class UniRecDialogView extends javax.swing.JDialog {
         gridDomains = new javax.swing.JTable();
         universityName1 = new javax.swing.JTextField();
         universityName2 = new javax.swing.JTextField();
-        universityName3 = new javax.swing.JTextField();
-        jScrollPane9 = new javax.swing.JScrollPane();
+        uniDescrTextField = new javax.swing.JTextField();
+        schoolsScrol = new javax.swing.JScrollPane();
         grid3 = new javax.swing.JTable();
-        universityName4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        exitBtn1 = new javax.swing.JButton();
-        exitBtn2 = new javax.swing.JButton();
-        exitBtn4 = new javax.swing.JButton();
-        universityName6 = new javax.swing.JTextField();
-        exitBtn3 = new javax.swing.JButton();
-        exitBtn8 = new javax.swing.JButton();
-        exitBtn9 = new javax.swing.JButton();
-        universityName8 = new javax.swing.JTextField();
-        jScrollPane10 = new javax.swing.JScrollPane();
+        uniInfoTextField = new javax.swing.JTextField();
+        infoLabel = new javax.swing.JLabel();
+        addBtnSchools = new javax.swing.JButton();
+        delBtnSchools = new javax.swing.JButton();
+        schoolsTextField = new javax.swing.JTextField();
+        addBtnDepart = new javax.swing.JButton();
+        delBtnDepart = new javax.swing.JButton();
+        departTextField = new javax.swing.JTextField();
+        departScrol = new javax.swing.JScrollPane();
         grid4 = new javax.swing.JTable();
         universityName = new javax.swing.JTextField();
 
@@ -155,8 +226,9 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         editBtn.setBackground(new java.awt.Color(45, 45, 48));
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
-        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
-        editBtn.setText("Cancel");
+
+        editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit_cancel.png"))); // NOI18N
+        editBtn.setText("Edit");
         editBtn.setAlignmentY(0.0F);
         editBtn.setFocusPainted(false);
         editBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -305,13 +377,13 @@ public class UniRecDialogView extends javax.swing.JDialog {
             }
         });
 
-        universityName3.setToolTipText(null);
-        universityName3.addFocusListener(new java.awt.event.FocusAdapter() {
+        uniDescrTextField.setToolTipText(null);
+        uniDescrTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                universityName3FocusGained(evt);
+                uniDescrTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                universityName3FocusLost(evt);
+                uniDescrTextFieldFocusLost(evt);
             }
         });
 
@@ -346,115 +418,96 @@ public class UniRecDialogView extends javax.swing.JDialog {
         grid3.setShowGrid(false);
         grid3.getTableHeader().setResizingAllowed(false);
         grid3.getTableHeader().setReorderingAllowed(false);
-        jScrollPane9.setViewportView(grid3);
+        schoolsScrol.setViewportView(grid3);
 
-        universityName4.setToolTipText(null);
-        universityName4.addFocusListener(new java.awt.event.FocusAdapter() {
+        uniInfoTextField.setToolTipText(null);
+        uniInfoTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                universityName4FocusGained(evt);
+                uniInfoTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                universityName4FocusLost(evt);
+                uniInfoTextFieldFocusLost(evt);
             }
         });
 
-        jLabel5.setText("Info:");
+        infoLabel.setText("Info:");
 
-        exitBtn1.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit.png"))); // NOI18N
-        exitBtn1.setAlignmentY(0.0F);
-        exitBtn1.setFocusPainted(false);
-        exitBtn1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn1.setIconTextGap(0);
-        exitBtn1.setInheritsPopupMenu(true);
-        exitBtn1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn1.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn1.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn1.setPreferredSize(new java.awt.Dimension(50, 50));
+        addBtnSchools.setBackground(new java.awt.Color(45, 45, 48));
+        addBtnSchools.setForeground(new java.awt.Color(255, 255, 255));
+        addBtnSchools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/add.png"))); // NOI18N
+        addBtnSchools.setAlignmentY(0.0F);
+        addBtnSchools.setFocusPainted(false);
+        addBtnSchools.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addBtnSchools.setIconTextGap(0);
+        addBtnSchools.setInheritsPopupMenu(true);
+        addBtnSchools.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        addBtnSchools.setMaximumSize(new java.awt.Dimension(50, 50));
+        addBtnSchools.setMinimumSize(new java.awt.Dimension(50, 50));
+        addBtnSchools.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        exitBtn2.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn2.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/add.png"))); // NOI18N
-        exitBtn2.setAlignmentY(0.0F);
-        exitBtn2.setFocusPainted(false);
-        exitBtn2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn2.setIconTextGap(0);
-        exitBtn2.setInheritsPopupMenu(true);
-        exitBtn2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn2.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn2.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn2.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        exitBtn4.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn4.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/delete.png"))); // NOI18N
-        exitBtn4.setAlignmentY(0.0F);
-        exitBtn4.setFocusPainted(false);
-        exitBtn4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn4.setIconTextGap(0);
-        exitBtn4.setInheritsPopupMenu(true);
-        exitBtn4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn4.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn4.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn4.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        universityName6.setToolTipText(null);
-        universityName6.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                universityName6FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                universityName6FocusLost(evt);
+        delBtnSchools.setBackground(new java.awt.Color(45, 45, 48));
+        delBtnSchools.setForeground(new java.awt.Color(255, 255, 255));
+        delBtnSchools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/delete.png"))); // NOI18N
+        delBtnSchools.setAlignmentY(0.0F);
+        delBtnSchools.setFocusPainted(false);
+        delBtnSchools.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        delBtnSchools.setIconTextGap(0);
+        delBtnSchools.setInheritsPopupMenu(true);
+        delBtnSchools.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        delBtnSchools.setMaximumSize(new java.awt.Dimension(50, 50));
+        delBtnSchools.setMinimumSize(new java.awt.Dimension(50, 50));
+        delBtnSchools.setPreferredSize(new java.awt.Dimension(50, 50));
+        delBtnSchools.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnSchoolsActionPerformed(evt);
             }
         });
 
-        exitBtn3.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit.png"))); // NOI18N
-        exitBtn3.setAlignmentY(0.0F);
-        exitBtn3.setFocusPainted(false);
-        exitBtn3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn3.setIconTextGap(0);
-        exitBtn3.setInheritsPopupMenu(true);
-        exitBtn3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn3.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn3.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn3.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        exitBtn8.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn8.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/add.png"))); // NOI18N
-        exitBtn8.setAlignmentY(0.0F);
-        exitBtn8.setFocusPainted(false);
-        exitBtn8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn8.setIconTextGap(0);
-        exitBtn8.setInheritsPopupMenu(true);
-        exitBtn8.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn8.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn8.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn8.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        exitBtn9.setBackground(new java.awt.Color(45, 45, 48));
-        exitBtn9.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/delete.png"))); // NOI18N
-        exitBtn9.setAlignmentY(0.0F);
-        exitBtn9.setFocusPainted(false);
-        exitBtn9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitBtn9.setIconTextGap(0);
-        exitBtn9.setInheritsPopupMenu(true);
-        exitBtn9.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        exitBtn9.setMaximumSize(new java.awt.Dimension(50, 50));
-        exitBtn9.setMinimumSize(new java.awt.Dimension(50, 50));
-        exitBtn9.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        universityName8.setToolTipText(null);
-        universityName8.addFocusListener(new java.awt.event.FocusAdapter() {
+        schoolsTextField.setToolTipText(null);
+        schoolsTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                universityName8FocusGained(evt);
+                schoolsTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                universityName8FocusLost(evt);
+                schoolsTextFieldFocusLost(evt);
+            }
+        });
+
+        addBtnDepart.setBackground(new java.awt.Color(45, 45, 48));
+        addBtnDepart.setForeground(new java.awt.Color(255, 255, 255));
+        addBtnDepart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/add.png"))); // NOI18N
+        addBtnDepart.setAlignmentY(0.0F);
+        addBtnDepart.setEnabled(false);
+        addBtnDepart.setFocusPainted(false);
+        addBtnDepart.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        addBtnDepart.setIconTextGap(0);
+        addBtnDepart.setInheritsPopupMenu(true);
+        addBtnDepart.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        addBtnDepart.setMaximumSize(new java.awt.Dimension(50, 50));
+        addBtnDepart.setMinimumSize(new java.awt.Dimension(50, 50));
+        addBtnDepart.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        delBtnDepart.setBackground(new java.awt.Color(45, 45, 48));
+        delBtnDepart.setForeground(new java.awt.Color(255, 255, 255));
+        delBtnDepart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/delete.png"))); // NOI18N
+        delBtnDepart.setAlignmentY(0.0F);
+        delBtnDepart.setEnabled(false);
+        delBtnDepart.setFocusPainted(false);
+        delBtnDepart.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        delBtnDepart.setIconTextGap(0);
+        delBtnDepart.setInheritsPopupMenu(true);
+        delBtnDepart.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        delBtnDepart.setMaximumSize(new java.awt.Dimension(50, 50));
+        delBtnDepart.setMinimumSize(new java.awt.Dimension(50, 50));
+        delBtnDepart.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        departTextField.setToolTipText(null);
+        departTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                departTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                departTextFieldFocusLost(evt);
             }
         });
 
@@ -497,7 +550,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         grid4.setShowGrid(false);
         grid4.getTableHeader().setResizingAllowed(false);
         grid4.getTableHeader().setReorderingAllowed(false);
-        jScrollPane10.setViewportView(grid4);
+        departScrol.setViewportView(grid4);
 
         universityName.setBackground(new java.awt.Color(60, 63, 65));
         universityName.setToolTipText(null);
@@ -517,31 +570,28 @@ public class UniRecDialogView extends javax.swing.JDialog {
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(exitBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exitBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exitBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(addBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(delBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(mainPanelLayout.createSequentialGroup()
-                                        .addComponent(universityName6, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(schoolsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(universityName8))
+                                        .addComponent(departTextField))
                                     .addGroup(mainPanelLayout.createSequentialGroup()
-                                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(schoolsScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(departScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(exitBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exitBtn8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(exitBtn9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(addBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(delBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(58, 58, 58)
@@ -549,6 +599,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
                                 .addGap(56, 56, 56)
                                 .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -569,13 +620,12 @@ public class UniRecDialogView extends javax.swing.JDialog {
                                     .addComponent(universityName)))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
+                                    .addComponent(infoLabel)
                                     .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(universityName3)
-                                    .addComponent(universityName4, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(58, 58, 58)))
+                                    .addComponent(uniDescrTextField)
+                                    .addComponent(uniInfoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -597,38 +647,35 @@ public class UniRecDialogView extends javax.swing.JDialog {
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(universityName3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uniDescrTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(universityName4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(32, 32, 32)
+                    .addComponent(uniInfoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(infoLabel))
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(exitBtn9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(exitBtn8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(exitBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
+                        .addGap(33, 33, 33)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(schoolsScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(departScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(13, 13, 13)
                                     .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(universityName8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(universityName6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(departTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(schoolsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(exitBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(delBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6)
-                                .addComponent(exitBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(exitBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(50, 50, 50)
+                                .addComponent(addBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(delBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(addBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)))
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -641,21 +688,21 @@ public class UniRecDialogView extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void universityName4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName4FocusLost
+    private void uniInfoTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uniInfoTextFieldFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityName4FocusLost
+    }//GEN-LAST:event_uniInfoTextFieldFocusLost
 
-    private void universityName4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName4FocusGained
+    private void uniInfoTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uniInfoTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityName4FocusGained
+    }//GEN-LAST:event_uniInfoTextFieldFocusGained
 
-    private void universityName3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName3FocusLost
+    private void uniDescrTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uniDescrTextFieldFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityName3FocusLost
+    }//GEN-LAST:event_uniDescrTextFieldFocusLost
 
-    private void universityName3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName3FocusGained
+    private void uniDescrTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uniDescrTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityName3FocusGained
+    }//GEN-LAST:event_uniDescrTextFieldFocusGained
 
     private void universityName2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName2FocusLost
         // TODO add your handling code here:
@@ -673,33 +720,41 @@ public class UniRecDialogView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_universityName1FocusGained
 
-    private void universityName6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName6FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName6FocusGained
 
-    private void universityName6FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName6FocusLost
+    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityName6FocusLost
-
-    private void universityName8FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName8FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName8FocusGained
-
-    private void universityName8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityName8FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityName8FocusLost
-
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveBtnActionPerformed
+    }//GEN-LAST:event_universityNameFocusLost
 
     private void universityNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_universityNameFocusGained
 
-    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
+    private void schoolsTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_schoolsTextFieldFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_universityNameFocusLost
+    }//GEN-LAST:event_schoolsTextFieldFocusGained
+
+    private void schoolsTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_schoolsTextFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schoolsTextFieldFocusLost
+
+    private void departTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departTextFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departTextFieldFocusGained
+
+    private void departTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departTextFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departTextFieldFocusLost
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+
+    private void delBtnSchoolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnSchoolsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delBtnSchoolsActionPerformed
+
+
 
     /**
      * @param args the command line arguments
@@ -751,35 +806,33 @@ public class UniRecDialogView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtnDepart;
+    private javax.swing.JButton addBtnSchools;
+    private javax.swing.JButton delBtnDepart;
+    private javax.swing.JButton delBtnSchools;
+    private javax.swing.JScrollPane departScrol;
+    private javax.swing.JTextField departTextField;
     private javax.swing.JButton editBtn;
     private javax.swing.JButton exitBtn;
-    private javax.swing.JButton exitBtn1;
-    private javax.swing.JButton exitBtn2;
-    private javax.swing.JButton exitBtn3;
-    private javax.swing.JButton exitBtn4;
-    private javax.swing.JButton exitBtn8;
-    private javax.swing.JButton exitBtn9;
     private javax.swing.JTable grid3;
     private javax.swing.JTable grid4;
     private javax.swing.JTable gridDomains;
     private javax.swing.JTable gridWebPages;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JScrollPane schoolsScrol;
+    private javax.swing.JTextField schoolsTextField;
+    private javax.swing.JTextField uniDescrTextField;
+    private javax.swing.JTextField uniInfoTextField;
     private javax.swing.JTextField universityName;
     private javax.swing.JTextField universityName1;
     private javax.swing.JTextField universityName2;
-    private javax.swing.JTextField universityName3;
-    private javax.swing.JTextField universityName4;
-    private javax.swing.JTextField universityName6;
-    private javax.swing.JTextField universityName8;
     // End of variables declaration//GEN-END:variables
 }
