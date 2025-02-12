@@ -1,13 +1,13 @@
-package repository;
+package model.uniRecModel;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
-import repository.Department;
+import model.uniRecModel.Department;
 import repository.University;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2025-02-09T02:02:53", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2025-02-12T03:48:07", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(School.class)
 public class School_ { 
 

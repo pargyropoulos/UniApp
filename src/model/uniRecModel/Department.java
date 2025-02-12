@@ -3,12 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package repository;
+package model.uniRecModel;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,12 +23,12 @@ import javax.persistence.Table;
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
  */
 @Entity
-@Table(name = "SCHOOL")
+@Table(name = "DEPARTMENT")
 @NamedQueries({
-    @NamedQuery(name = "School.findAll", query = "SELECT s FROM School s"),
-    @NamedQuery(name = "School.findById", query = "SELECT s FROM School s WHERE s.id = :id"),
-    @NamedQuery(name = "School.findByName", query = "SELECT s FROM School s WHERE s.name = :name")})
-public class School implements Serializable {
+    @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
+    @NamedQuery(name = "Department.findById", query = "SELECT d FROM Department d WHERE d.id = :id"),
+    @NamedQuery(name = "Department.findByName", query = "SELECT d FROM Department d WHERE d.name = :name")})
+public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,25 +36,17 @@ public class School implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
     @Column(name = "NAME")
     private String name;
-    @JoinColumn(name = "UNIVERSITY_NAME", referencedColumnName = "NAME")
+    @JoinColumn(name = "SCHOOL_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private University universityName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "schoolId")
-    private Collection<Department> departmentCollection;
+    private School schoolId;
 
-    public School() {
+    public Department() {
     }
 
-    public School(Integer id) {
+    public Department(Integer id) {
         this.id = id;
-    }
-
-    public School(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -76,20 +65,12 @@ public class School implements Serializable {
         this.name = name;
     }
 
-    public University getUniversityName() {
-        return universityName;
+    public School getSchoolId() {
+        return schoolId;
     }
 
-    public void setUniversityName(University universityName) {
-        this.universityName = universityName;
-    }
-
-    public Collection<Department> getDepartmentCollection() {
-        return departmentCollection;
-    }
-
-    public void setDepartmentCollection(Collection<Department> departmentCollection) {
-        this.departmentCollection = departmentCollection;
+    public void setSchoolId(School schoolId) {
+        this.schoolId = schoolId;
     }
 
     @Override
@@ -102,10 +83,10 @@ public class School implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof School)) {
+        if (!(object instanceof Department)) {
             return false;
         }
-        School other = (School) object;
+        Department other = (Department) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +95,7 @@ public class School implements Serializable {
 
     @Override
     public String toString() {
-        return "repository.School[ id=" + id + " ]";
+        return "repository.Department[ id=" + id + " ]";
     }
 
 }

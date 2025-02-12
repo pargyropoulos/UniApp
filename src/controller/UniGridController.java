@@ -2,7 +2,7 @@ package controller;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import model.UniRecDialogModel;
+import model.uniRecModel.UniRecDialogModel;
 import model.SearchModel;
 import model.UniGridModel;
 import HTTP.WebData;
@@ -11,6 +11,8 @@ import utils.ICustomEventListener;
 import view.UniRecDialogView;
 import view.SearchDialogView;
 import view.UniGridView;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -21,6 +23,7 @@ public class UniGridController{
     private final UniGridView view;
     private final UniGridModel model;
     private final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
+  //
 
     public void addCloseFormEventListener(ICustomEventListener listener){
         closeFormEventSource.addEventListener(listener);
@@ -53,6 +56,10 @@ public class UniGridController{
         WebData selectedUniModel = new WebData();
         selectedUniModel=this.model.getData().get(index);
         System.out.println(selectedUniModel);
+        
+      
+        
+        
         
         UniRecDialogController ctrl=new UniRecDialogController(new UniRecDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new UniRecDialogModel(selectedUniModel));
         ctrl.run();

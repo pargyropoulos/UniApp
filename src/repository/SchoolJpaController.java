@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package repository;
 
+import model.uniRecModel.School;
+import model.uniRecModel.Department;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -15,12 +16,14 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import repository.exceptions.IllegalOrphanException;
 import repository.exceptions.NonexistentEntityException;
 
 /**
  *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
+ * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
+ * std154845@ac.eap.gr
  */
 public class SchoolJpaController implements Serializable {
 
@@ -222,6 +225,42 @@ public class SchoolJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+
+    // δικο μου, για τα school
+    public List<School> findSchoolsByUniversity(String universityName) {
+        EntityManager em = getEntityManager();
+        try {
+
+            UniversityJpaController universityController = new UniversityJpaController(Emf.getEntityManagerFactory());
+            University university = universityController.findUniversity(universityName);
+
+            if (university == null) {
+                System.out.println("No university found with name: " + universityName);
+                return List.of(); // 
+            }
+
+            TypedQuery<School> query = em.createNamedQuery("School.findByUniversity", School.class);
+            query.setParameter("universityName", university);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    //δικο μου 
+    public School findSchoolByNameAndUniversity(String schoolName, String universityName) {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<School> query = em.createNamedQuery("School.findByNameAndUniversity", School.class);
+            query.setParameter("schoolName", schoolName);
+            query.setParameter("universityName", universityName);
+
+            List<School> results = query.getResultList();
+            return results.isEmpty() ? null : results.get(0); // Επιστρέφει το πρώτο αποτέλεσμα ή null αν δεν βρέθηκε
         } finally {
             em.close();
         }
