@@ -55,11 +55,6 @@ public class UniGridController{
         if (index==-1) return;
         WebData selectedUniModel = this.model.getData().get(index);
         System.out.println(selectedUniModel);
-        
-      
-        
-        
-        
         UniRecDialogController ctrl=new UniRecDialogController(new UniRecDialogView((JFrame)SwingUtilities.getWindowAncestor(view),true), new UniRecDialogModel(selectedUniModel));
         ctrl.run();
         

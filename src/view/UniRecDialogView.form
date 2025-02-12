@@ -211,11 +211,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-<<<<<<< HEAD
-              <Image iconType="3" name="/view/img/cancel.png"/>
-=======
               <Image iconType="3" name="/view/img/edit_cancel.png"/>
->>>>>>> 478e1070fcc3eb129ff0623ec1c5c81652aab29f
             </Property>
             <Property name="text" type="java.lang.String" value="Cancel"/>
             <Property name="alignmentY" type="float" value="0.0"/>
@@ -739,7 +735,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="universityName">
+        <Component class="javax.swing.JTextField" name="universityName3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="41" green="3f" red="3c" type="rgb"/>

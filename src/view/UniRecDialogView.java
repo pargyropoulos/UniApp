@@ -4,21 +4,13 @@
  */
 package view;
 
-import constants.ColorConstants;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import constants.ColorConstants;
-import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import HTTP.WebData;
-import java.awt.Color;
-import repository.University;
-import javax.swing.*;
+import static view.Utils.customizeButtonsInsidePanel;
 /**
  *
  * @author tasos
@@ -34,13 +26,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
     public UniRecDialogView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        for (var component : mainPanel.getComponents()) {
-            if (component instanceof JButton) {
-                JButton button = (JButton) component;
-                view.Utils.customizeButton(button, ColorConstants.buttonBackgroundColor, ColorConstants.buttonHoverColor);
-                button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));
-            }
-        }
+        customizeButtonsInsidePanel(this.mainPanel);
 
     }
 

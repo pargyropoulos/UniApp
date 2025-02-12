@@ -1,34 +1,19 @@
 package controller;
 
-import model.uniRecModel.UniRecDialogModel;
-import view.UniRecDialogView;
 import view.Utils;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import model.uniRecModel.UniRecDialogModel;
-import model.SearchModel;
-import model.UniGridModel;
 import HTTP.WebData;
-import utils.CustomEventSource;
-import utils.ICustomEventListener;
 import view.UniRecDialogView;
 import repository.University;
-import view.SearchDialogView;
-import view.UniGridView;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.util.List;
-import javax.swing.*;
 
 /**
  *
  * @author tasos
  */
 public class UniRecDialogController {
-
-    private UniRecDialogModel model;
-    private UniRecDialogView view;
-    private javax.swing.JButton saveBtn;
+    private final UniRecDialogModel model;
+    private final UniRecDialogView view;
 
     public UniRecDialogController(UniRecDialogView view, UniRecDialogModel model) {
         this.model = model;
@@ -70,7 +55,7 @@ public class UniRecDialogController {
 
 
         // Δημιουργούω το μοντέλο και αποθηκεύουω το πανεπιστήμιο αν χρειάζεται
-        this.model = new UniRecDialogModel(universityWeb);
+        //this.model = new UniRecDialogModel(universityWeb);
 
 //        if (university != null) {
 //          

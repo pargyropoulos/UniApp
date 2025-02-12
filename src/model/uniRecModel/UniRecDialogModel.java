@@ -2,15 +2,16 @@ package model.uniRecModel;
 
 
 import HTTP.WebData;
+import java.util.ArrayList;
+import java.util.HashSet;
 import repository.UniversityJpaController;
 import repository.CountryJpaController;
 import repository.Emf;
 import repository.University;
 import model.SettingsModel.Country;
-import java.util.List;
 import repository.SchoolJpaController;
-import model.uniRecModel.School;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -22,12 +23,16 @@ import javax.persistence.EntityTransaction;
 public class UniRecDialogModel {
 
     private WebData universityData;
-
-    // 2
     private University university;
     private UniversityJpaController universityController;
-    //-2
 
+    private final List<School> schools = new ArrayList<>();;
+    private final List<School> deletedSchools = new ArrayList<>();
+    private final Set<School> insertedSchools = new HashSet<>();
+    private final List<School> departments = new ArrayList<>();;
+    private final List<School> deletedDepartments = new ArrayList<>();
+    private final Set<School> insertedDepartments = new HashSet<>();
+    
     public UniRecDialogModel(WebData universityData) {  // Constructor με WebData
         this.universityData = universityData;
 
@@ -51,8 +56,8 @@ public class UniRecDialogModel {
             //είναι σε άλλο πίνακα
             //this.university.setCountry(universityData.getCountry());
             //this.university.setCounter(1); // Πρώτη φορά που εμφανίζεται
-            this.university.setDescription("No additional info");
-            this.university.setInfo("No additional info");
+//            this.university.setDescription("No additional info");
+//            this.university.setInfo("No additional info");
 
             try {
                 universityController.create(this.university);
