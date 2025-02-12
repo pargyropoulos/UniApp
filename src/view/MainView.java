@@ -22,6 +22,7 @@ public class MainView extends javax.swing.JFrame {
                 button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 24, 1, 24));   
             }
         }
+        customizeButtonsInsidePanel(this.sidePanel);
     }
     
     public void addPanel(JPanel panel){

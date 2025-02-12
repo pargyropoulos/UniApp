@@ -21,7 +21,7 @@ public class UniRecDialogController {
 
         WebData universityWeb = model.getUniversityData();
         // Παίρνουμε το πανεπιστήμιο από το μοντέλο
-        University university = model.getUniversity();
+        University university = model.getUniversityModel();
 
         // Αν υπάρχει πανεπιστήμιο, περνάω τα δεδομένα στη View
         if (universityWeb != null) {

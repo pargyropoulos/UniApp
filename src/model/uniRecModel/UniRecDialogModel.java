@@ -23,15 +23,17 @@ import javax.persistence.EntityTransaction;
 public class UniRecDialogModel {
 
     private WebData universityData;
-    private University university;
+    private University universityModel;
+    private Department departmentModel;
+    private School schoolModel;
     private UniversityJpaController universityController;
 
-    private final List<School> schools = new ArrayList<>();;
+    private final List<School> schoolsList = new ArrayList<>();;
     private final List<School> deletedSchools = new ArrayList<>();
     private final Set<School> insertedSchools = new HashSet<>();
-    private final List<School> departments = new ArrayList<>();;
-    private final List<School> deletedDepartments = new ArrayList<>();
-    private final Set<School> insertedDepartments = new HashSet<>();
+    private final List<Department> departmentsList = new ArrayList<>();;
+    private final List<Department> deletedDepartments = new ArrayList<>();
+    private final Set<Department> insertedDepartments = new HashSet<>();
     
     public UniRecDialogModel(WebData universityData) {  // Constructor με WebData
         this.universityData = universityData;
@@ -41,27 +43,27 @@ public class UniRecDialogModel {
         CountryJpaController countryController = new CountryJpaController(Emf.getEntityManagerFactory());
 
         // Αναζητούμε αν υπάρχει ήδη στη βάση
-        this.university = universityController.findUniversity(universityData.getName());
+        this.universityModel = universityController.findUniversity(universityData.getName());
 
         // Αναζητούμε τη χώρα στη βάση
         Country country = countryController.findCountry(universityData.getCountry());
 
-        if (this.university == null) {
+        if (this.universityModel == null) {
             System.out.println("University not found in database. Creating new entry.");
 
             // Δημιουργούμε νέο University από το WebData
-            this.university = new University();
-            this.university.setName(universityData.getName());
+            this.universityModel = new University();
+            this.universityModel.setName(universityData.getName());
 
             //είναι σε άλλο πίνακα
-            //this.university.setCountry(universityData.getCountry());
-            //this.university.setCounter(1); // Πρώτη φορά που εμφανίζεται
-//            this.university.setDescription("No additional info");
-//            this.university.setInfo("No additional info");
+            //this.universityModel.setCountry(universityData.getCountry());
+            //this.universityModel.setCounter(1); // Πρώτη φορά που εμφανίζεται
+//            this.universityModel.setDescription("No additional info");
+//            this.universityModel.setInfo("No additional info");
 
             try {
-                universityController.create(this.university);
-                System.out.println("University saved to database: " + this.university.getName());
+                universityController.create(this.universityModel);
+                System.out.println("University saved to database: " + this.universityModel.getName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -69,20 +71,20 @@ public class UniRecDialogModel {
             System.out.println("University already exists. Increasing counter.");
 
             // Αν το πανεπιστήμιο υπάρχει, αυξάνv το counter
-            int currentCounter = this.university.getCounter() != null ? this.university.getCounter() : 0;
-            this.university.setCounter(currentCounter + 1);
+            int currentCounter = this.universityModel.getCounter() != null ? this.universityModel.getCounter() : 0;
+            this.universityModel.setCounter(currentCounter + 1);
 
             try {
-                universityController.edit(this.university); // Αποθήκευση αλλαγής
-                System.out.println("Counter updated for: " + this.university.getName() + " -> " + this.university.getCounter());
+                universityController.edit(this.universityModel); // Αποθήκευση αλλαγής
+                System.out.println("Counter updated for: " + this.universityModel.getName() + " -> " + this.universityModel.getCounter());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public University getUniversity() {
-        return university;
+    public University getUniversityModel() {
+        return universityModel;
     }
 
     public WebData getUniversityData() {  // Getter για να το χρησιμοποιήσω η View
@@ -108,8 +110,8 @@ public class UniRecDialogModel {
     //Για να εμφανίσω τα στοιχεία στο description
     //απο την βάδη δεδομενων
     public String getDescription() {
-        if (university != null) {
-            return university.getDescription();
+        if (universityModel != null) {
+            return universityModel.getDescription();
         }
         return "No description available";
     }
@@ -117,16 +119,16 @@ public class UniRecDialogModel {
     //Για να εμφανίσω τα στοιχεία στο info
     //απο την βάδη δεδομενων
     public String getInfo() {
-        if (university != null) {
-            return university.getInfo();
+        if (universityModel != null) {
+            return universityModel.getInfo();
         }
         return "No description available";
     }
 
     public List<String> getSchools() {
-        if (university != null) {
+        if (universityModel != null) {
             SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-            List<School> schoolList = schoolController.findSchoolsByUniversity(university.getName());
+            List<School> schoolList = schoolController.findSchoolsByUniversity(universityModel.getName());
 
             //debugging
             System.out.println("Loaded schools: " + schoolList.size());
@@ -140,13 +142,13 @@ public class UniRecDialogModel {
     }
 
     public void updateUniversityInfo(String newDescription, String newInfo) {
-        if (university != null) {
-            university.setDescription(newDescription);
-            university.setInfo(newInfo);
+        if (universityModel != null) {
+            universityModel.setDescription(newDescription);
+            universityModel.setInfo(newInfo);
 
             try {
-                universityController.edit(university);
-                System.out.println("University info updated: " + university.getName());
+                universityController.edit(universityModel);
+                System.out.println("University info updated: " + universityModel.getName());
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Failed to update university info.");
@@ -157,7 +159,7 @@ public class UniRecDialogModel {
     }
 
     public boolean addSchoolToDatabase(String schoolName) {
-        if (university == null) {
+        if (universityModel == null) {
             System.out.println("Error: No university selected.");
             return false;
         }
@@ -170,7 +172,7 @@ public class UniRecDialogModel {
 
             // ✅ Ελέγχουμε αν υπάρχει ήδη η σχολή
             SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-            List<School> existingSchools = schoolController.findSchoolsByUniversity(university.getName());
+            List<School> existingSchools = schoolController.findSchoolsByUniversity(universityModel.getName());
 
             for (School s : existingSchools) {
                 if (s.getName().equalsIgnoreCase(schoolName)) {
@@ -182,7 +184,7 @@ public class UniRecDialogModel {
             // ✅ Δημιουργούμε και αποθηκεύουμε τη νέα σχολή
             School newSchool = new School();
             newSchool.setName(schoolName);
-            newSchool.setUniversityName(university); // Σύνδεση με το πανεπιστήμιο
+            newSchool.setUniversityName(universityModel); // Σύνδεση με το πανεπιστήμιο
 
             em.persist(newSchool);
             transaction.commit();
@@ -198,7 +200,7 @@ public class UniRecDialogModel {
     }
     
     public boolean deleteSchoolFromDatabase(String schoolName) {
-    if (university == null) {
+    if (universityModel == null) {
         System.out.println("Error: No university selected.");
         return false;
     }
@@ -211,7 +213,7 @@ public class UniRecDialogModel {
 
        
         SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-        School school = schoolController.findSchoolByNameAndUniversity(schoolName, university.getName());
+        School school = schoolController.findSchoolByNameAndUniversity(schoolName, universityModel.getName());
 
         if (school == null) {
             System.out.println("No school found with name: " + schoolName);
