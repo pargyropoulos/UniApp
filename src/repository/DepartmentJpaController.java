@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package repository;
 
 import model.uniRecModel.School;
@@ -16,10 +15,14 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import repository.exceptions.NonexistentEntityException;
+import javax.persistence.TypedQuery;
+import repository.SchoolJpaController;
+import model.uniRecModel.School;
 
 /**
  *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
+ * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
+ * std154845@ac.eap.gr
  */
 public class DepartmentJpaController implements Serializable {
 
@@ -160,6 +163,42 @@ public class DepartmentJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+
+    // Δικός μου κώδικας για να βρούμε το Department με βάση το School
+    public List<Department> findDepartmentsBySchool(String schoolName) {
+        EntityManager em = getEntityManager();
+        try {
+            // Βρίσκω το  School από τη βάση
+            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
+            School school = schoolController.findSchoolByName(schoolName);
+
+            if (school == null) {
+                System.out.println("No school found with name: " + schoolName);
+                return List.of();
+            }
+
+            // Το NamedQuery, που πρόσθεσα για να βρώ τα Departments της School
+            TypedQuery<Department> query = em.createNamedQuery("Department.findBySchool", Department.class);
+            query.setParameter("schoolId", school.getId());
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public Department findDepartmentByNameAndSchool(String departmentName, int schoolId) {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Department> query = em.createNamedQuery("Department.findByNameAndSchool", Department.class);
+            query.setParameter("departmentName", departmentName);
+            query.setParameter("schoolId", schoolId);
+
+            List<Department> results = query.getResultList();
+            return results.isEmpty() ? null : results.get(0);
         } finally {
             em.close();
         }

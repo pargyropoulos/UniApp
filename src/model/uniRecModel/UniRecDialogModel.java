@@ -9,10 +9,13 @@ import model.SettingsModel.Country;
 import java.util.List;
 import repository.SchoolJpaController;
 import model.uniRecModel.School;
+import model.uniRecModel.Department;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import repository.DepartmentJpaController;
+
 
 /**
  *
@@ -162,7 +165,7 @@ public class UniRecDialogModel {
         try {
             transaction.begin();
 
-            // ✅ Ελέγχουμε αν υπάρχει ήδη η σχολή
+            // Ελέγχω αν υπάρχει ήδη η σχολή
             SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
             List<School> existingSchools = schoolController.findSchoolsByUniversity(university.getName());
 
@@ -173,7 +176,7 @@ public class UniRecDialogModel {
                 }
             }
 
-            // ✅ Δημιουργούμε και αποθηκεύουμε τη νέα σχολή
+            // Δημιουργώ και αποθηκεύουμε τη νέα σχολή
             School newSchool = new School();
             newSchool.setName(schoolName);
             newSchool.setUniversityName(university); // Σύνδεση με το πανεπιστήμιο
@@ -190,8 +193,95 @@ public class UniRecDialogModel {
             em.close();
         }
     }
-    
+
     public boolean deleteSchoolFromDatabase(String schoolName) {
+        if (university == null) {
+            System.out.println("Error: No university selected.");
+            return false;
+        }
+
+        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+
+            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
+            School school = schoolController.findSchoolByNameAndUniversity(schoolName, university.getName());
+
+            if (school == null) {
+                System.out.println("No school found with name: " + schoolName);
+                return false;
+            }
+
+            em.remove(em.contains(school) ? school : em.merge(school));
+            transaction.commit();
+            return true;
+
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+
+    //Getter
+    //Καλώ την findDepartmnetBySchool() , για Departments απο DB
+    public List<String> getDepartments(String schoolName) {
+        if (university != null) {
+            DepartmentJpaController departmentController = new DepartmentJpaController(Emf.getEntityManagerFactory());
+            List<Department> departmentList = departmentController.findDepartmentsBySchool(schoolName);
+
+            // Μετατρέπω λίστα σε Strings με τα ονόματα των Departments
+            return departmentList.stream()
+                    .map(Department::getName)
+                    .collect(Collectors.toList());
+        }
+        return List.of(); // Αν δεν υπάρχουν departments, επιστρέφουμε κενή λίστα
+    }
+
+    public boolean addDepartmentToDatabase(String departmentName, String schoolName) {
+        if (university == null) {
+            System.out.println("Error: No university selected.");
+            return false;
+        }
+
+        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+
+            //  Βρίσκουμε τη σχολή στη βάση
+            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
+            School school = schoolController.findSchoolByName(schoolName);
+
+            if (school == null) {
+                System.out.println("No school found with name: " + schoolName);
+                return false;
+            }
+
+            //  Δημιουργούμε και αποθηκεύουμε το νέο Department
+            Department newDepartment = new Department();
+            newDepartment.setName(departmentName);
+            newDepartment.setSchoolId(school); // Σύνδεση με τη σχολή
+
+            em.persist(newDepartment);
+            transaction.commit();
+            return true;
+
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public boolean deleteDepartmentFromDatabase(String departmentName, String schoolName) {
     if (university == null) {
         System.out.println("Error: No university selected.");
         return false;
@@ -203,16 +293,26 @@ public class UniRecDialogModel {
     try {
         transaction.begin();
 
-       
+        // Βρίσκουμε τη σχολή στη βάση
         SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-        School school = schoolController.findSchoolByNameAndUniversity(schoolName, university.getName());
+        School school = schoolController.findSchoolByName(schoolName);
 
         if (school == null) {
             System.out.println("No school found with name: " + schoolName);
             return false;
         }
 
-        em.remove(em.contains(school) ? school : em.merge(school));
+        //  Βρίσκουμε το τμήμα στη βάση
+        DepartmentJpaController departmentController = new DepartmentJpaController(Emf.getEntityManagerFactory());
+        Department department = departmentController.findDepartmentByNameAndSchool(departmentName, school.getId());
+
+        if (department == null) {
+            System.out.println("No department found with name: " + departmentName);
+            return false;
+        }
+
+        // Διαγραφή του department
+        em.remove(em.contains(department) ? department : em.merge(department));
         transaction.commit();
         return true;
 

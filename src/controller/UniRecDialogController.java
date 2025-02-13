@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -64,10 +65,21 @@ public class UniRecDialogController {
 
         // Προσθέτω τον listener για το κουμπί Exit
         view.addExitButtonListener(e -> closeDialog());
-        view.addSaveButtonListener(e -> saveUniversityInfo());
+        view.addSaveButtonListener(e -> {
+            saveUniversityInfo();
+            System.out.println("Save button pressed!");
+            view.setComponentsEnabled(false);
+        });
+
         view.addAddSchoolButtonListener(e -> addSchool());
         view.addDeleteSchoolButtonListener(e -> deleteSchool());
-
+        view.addSchoolSelectionListener(e -> updateDepartmentsGrid());
+        view.addAddDepartmentButtonListener(e -> addDepartment());
+        view.addDeleteDepartmentButtonListener(e -> deleteDepartment());
+        view.addEditButtonListener(e -> {
+            System.out.println("Edit button pressed!");
+            view.setComponentsEnabled(true);
+        });
 
         // Δημιουργούω το μοντέλο και αποθηκεύουω το πανεπιστήμιο αν χρειάζεται
         this.model = new UniRecDialogModel(universityWeb);
@@ -87,6 +99,8 @@ public class UniRecDialogController {
 
         model.updateUniversityInfo(newDescription, newInfo);
         System.out.println("Saved new description and info.");
+
+        view.setComponentsEnabled(false);
     }
 
     private void addSchool() {
@@ -97,7 +111,6 @@ public class UniRecDialogController {
             return;
         }
 
-        
         boolean success = model.addSchoolToDatabase(schoolName);
 
         if (success) {
@@ -111,34 +124,111 @@ public class UniRecDialogController {
             System.out.println("Failed to add school to database.");
         }
     }
-    
-    
+
     private void deleteSchool() {
-    String selectedSchool = view.getSelectedSchool(); // Παίρνουμε την επιλεγμένη σχολή από το JTable
+        String selectedSchool = view.getSelectedSchool(); // Παίρνουμε την επιλεγμένη σχολή από το JTable
 
-    if (selectedSchool == null || selectedSchool.isEmpty()) {
-        System.out.println("Error: No school selected.");
-        return;
+        if (selectedSchool == null || selectedSchool.isEmpty()) {
+            System.out.println("Error: No school selected.");
+            return;
+        }
+
+        boolean success = model.deleteSchoolFromDatabase(selectedSchool);
+
+        if (success) {
+            System.out.println("School deleted: " + selectedSchool);
+
+            List<String> schools = model.getSchools();
+            view.populateSchoolsGrid(schools);
+        } else {
+            System.out.println("Failed to delete school from database.");
+        }
     }
 
-  
-    boolean success = model.deleteSchoolFromDatabase(selectedSchool);
+    private void updateDepartmentsGrid() {
+        String selectedSchool = view.getSelectedSchool();
 
-    if (success) {
-        System.out.println("School deleted: " + selectedSchool);
+        if (selectedSchool == null || selectedSchool.isEmpty()) {
+            System.out.println("No school selected.");
+            view.populateDepartmentsGrid(List.of());
+            return;
+        }
 
-     
-        List<String> schools = model.getSchools();
-        view.populateSchoolsGrid(schools);
-    } else {
-        System.out.println("Failed to delete school from database.");
+        List<String> departments = model.getDepartments(selectedSchool);
+
+        if (departments == null || departments.isEmpty()) {
+            System.out.println("No departments found for school: " + selectedSchool);
+            view.populateDepartmentsGrid(List.of()); //  Αν δεν υπάρχουν τμήματα, καθαρίζω
+        } else {
+            view.populateDepartmentsGrid(departments);
+        }
     }
-}
 
+    private void addDepartment() {
+        String departmentName = view.getDepartmentText(); // Παίρνουμε το όνομα του τμήματος
+        String selectedSchool = view.getSelectedSchool(); // Παίρνουμε την επιλεγμένη σχολή από το grid3
+
+        if (departmentName.isEmpty()) {
+            System.out.println("Error: Department name cannot be empty.");
+            return;
+        }
+
+        if (selectedSchool == null || selectedSchool.isEmpty()) {
+            System.out.println("Error: No school selected.");
+            return;
+        }
+
+        // Αποθήκευση στη βάση δεδομένων
+        boolean success = model.addDepartmentToDatabase(departmentName, selectedSchool);
+
+        if (success) {
+            System.out.println("Department added: " + departmentName);
+
+            //  Ενημέρωση του JTable με τα νέα departments
+            List<String> departments = model.getDepartments(selectedSchool);
+            view.populateDepartmentsGrid(departments);
+
+            //  Καθαρίζουμε το TextField μετά την προσθήκη
+            view.clearDepartmentTextField();
+        } else {
+            System.out.println("Failed to add department to database.");
+        }
+    }
+
+    private void deleteDepartment() {
+        String selectedDepartment = view.getSelectedDepartment(); // Παίρνουμε το επιλεγμένο τμήμα από το grid4
+        String selectedSchool = view.getSelectedSchool(); // Παίρνουμε την επιλεγμένη σχολή από το grid3
+
+        if (selectedDepartment == null || selectedDepartment.isEmpty()) {
+            System.out.println("Error: No department selected.");
+            return;
+        }
+
+        if (selectedSchool == null || selectedSchool.isEmpty()) {
+            System.out.println("Error: No school selected.");
+            return;
+        }
+
+        // Διαγραφή από τη βάση δεδομένων
+        boolean success = model.deleteDepartmentFromDatabase(selectedDepartment, selectedSchool);
+
+        if (success) {
+            System.out.println("Department deleted: " + selectedDepartment);
+
+            //  Ενημέρωση του JTable με τα νέα departments
+            List<String> departments = model.getDepartments(selectedSchool);
+            view.populateDepartmentsGrid(departments);
+        } else {
+            System.out.println("Failed to delete department from database.");
+        }
+    }
 
     public void run() {
         this.view.setLocation(Utils.getParentCenterLocation(this.view.getParent(), this.view));
         view.setVisible(true);
+        view.setComponentsEnabled(false);
+        //view.selectFirstSchool();
+        //updateDepartmentsGrid();
     }
 
     public void closeDialog() {

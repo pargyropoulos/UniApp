@@ -265,5 +265,18 @@ public class SchoolJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public School findSchoolByName(String schoolName) {
+    EntityManager em = getEntityManager();
+    try {
+        TypedQuery<School> query = em.createNamedQuery("School.findByName", School.class);
+        query.setParameter("name", schoolName);
+
+        List<School> results = query.getResultList();
+        return results.isEmpty() ? null : results.get(0); // ✅ Επιστρέφει το πρώτο αποτέλεσμα ή null αν δεν βρέθηκε
+    } finally {
+        em.close();
+    }
+}
 
 }

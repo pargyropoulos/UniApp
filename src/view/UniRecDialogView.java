@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ListSelectionListener;
+
 import HTTP.WebData;
 import java.awt.Color;
 import repository.University;
@@ -145,16 +147,59 @@ public class UniRecDialogView extends javax.swing.JDialog {
         return null; // Αν δεν έχει επιλεγεί γραμμή, επιστρέφουμε null
     }
 
+    //Για Department
+    public void addSchoolSelectionListener(ListSelectionListener listener) {
+        grid3.getSelectionModel().addListSelectionListener(listener);
+    }
+
+    public void populateDepartmentsGrid(List<String> departments) {
+        DefaultTableModel model = (DefaultTableModel) grid4.getModel();
+        model.setRowCount(0);
+
+        if (departments == null || departments.isEmpty()) {
+            System.out.println("No departments to display.");
+            return;
+        }
+
+        for (String department : departments) {
+            model.addRow(new Object[]{department});
+        }
+    }
+
+    public String getSelectedDepartment() {
+        int selectedRow = grid4.getSelectedRow();
+        if (selectedRow != -1) {
+            return grid4.getValueAt(selectedRow, 0).toString();
+        }
+        return null; // Αν δεν έχει επιλεγεί γραμμή, επιστρέφουμε null
+    }
+
+    public void addDeleteDepartmentButtonListener(ActionListener listener) {
+        delBtnDepart.addActionListener(listener);
+    }
+
+    public String getDepartmentText() {
+        return departTextField.getText().trim();
+    }
+
+    public void clearDepartmentTextField() {
+        departTextField.setText("");
+    }
+
+    public void addAddDepartmentButtonListener(ActionListener listener) {
+        addBtnDepart.addActionListener(listener);
+    }
+
     public void addDeleteSchoolButtonListener(ActionListener listener) {
         delBtnSchools.addActionListener(listener);
     }
 
     public String getDescriptionText() {
-        return uniDescrTextField.getText();
+        return uniDescrTextField.getText().trim();
     }
 
     public String getInfoText() {
-        return uniInfoTextField.getText();
+        return uniInfoTextField.getText().trim();
     }
 
     public void addSaveButtonListener(ActionListener listener) {
@@ -171,6 +216,28 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
     public void addAddSchoolButtonListener(ActionListener listener) {
         addBtnSchools.addActionListener(listener);
+    }
+
+    public void addEditButtonListener(ActionListener listener) {
+        editBtn.addActionListener(listener);
+    }
+
+    //Για τα πλήκτρα
+    public void setComponentsEnabled(boolean enabled) {
+        //
+        saveBtn.setEnabled(enabled);
+        addBtnSchools.setEnabled(enabled);
+        delBtnSchools.setEnabled(enabled);
+        addBtnDepart.setEnabled(enabled);
+        delBtnDepart.setEnabled(enabled);
+
+        // 
+        uniDescrTextField.setEditable(enabled);
+        uniInfoTextField.setEditable(enabled);
+
+        // 
+        editBtn.setEnabled(!enabled);
+        exitBtn.setEnabled(true);
     }
 
     /**
@@ -242,6 +309,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/okIcon.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.setAlignmentY(0.0F);
+        saveBtn.setEnabled(false);
         saveBtn.setFocusPainted(false);
         saveBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         saveBtn.setIconTextGap(32);
@@ -432,6 +500,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         addBtnSchools.setForeground(new java.awt.Color(255, 255, 255));
         addBtnSchools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/add.png"))); // NOI18N
         addBtnSchools.setAlignmentY(0.0F);
+        addBtnSchools.setEnabled(false);
         addBtnSchools.setFocusPainted(false);
         addBtnSchools.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         addBtnSchools.setIconTextGap(0);
@@ -445,6 +514,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         delBtnSchools.setForeground(new java.awt.Color(255, 255, 255));
         delBtnSchools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/delete.png"))); // NOI18N
         delBtnSchools.setAlignmentY(0.0F);
+        delBtnSchools.setEnabled(false);
         delBtnSchools.setFocusPainted(false);
         delBtnSchools.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         delBtnSchools.setIconTextGap(0);
@@ -460,6 +530,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         });
 
         schoolsTextField.setToolTipText(null);
+        schoolsTextField.setEnabled(false);
         schoolsTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 schoolsTextFieldFocusGained(evt);
@@ -498,6 +569,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         delBtnDepart.setPreferredSize(new java.awt.Dimension(50, 50));
 
         departTextField.setToolTipText(null);
+        departTextField.setEnabled(false);
         departTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 departTextFieldFocusGained(evt);
@@ -510,14 +582,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
         grid4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         grid4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
                 {null},
                 {null},
                 {null}
