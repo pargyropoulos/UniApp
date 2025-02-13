@@ -1,8 +1,8 @@
 package model;
 
 import java.util.List;
-import model.SettingsModel.Country;
-import repository.CountryDAO;
+import repository.Country;
+import model.SettingsModel.SettingsDAO;
 
 
 /**
@@ -15,8 +15,8 @@ public class SearchModel {
     private String country="";
 
     public List<Country> getListOfCountries(){
-        CountryDAO dao =new CountryDAO(null);
-//        CountryDAO dao=new CountryDAO(repository.Emf.getEntityManagerFactory());
+        SettingsDAO dao =new SettingsDAO(null);
+//        SettingsDAO dao=new SettingsDAO(repository.Emf.getEntityManagerFactory());
         return dao.findAllOrdered();
     }
         

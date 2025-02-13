@@ -196,7 +196,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("University");
+        setResizable(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        mainPanel.setAlignmentX(0.0F);
 
         jLabel1.setText("Name:");
 
@@ -385,8 +388,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        grid3.setAlignmentX(0.0F);
-        grid3.setAlignmentY(0.0F);
         grid3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         grid3.setFocusable(false);
         grid3.setMinimumSize(new java.awt.Dimension(400, 600));
@@ -549,34 +550,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(delBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(mainPanelLayout.createSequentialGroup()
-                                        .addComponent(schoolsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(departTextField))
-                                    .addGroup(mainPanelLayout.createSequentialGroup()
-                                        .addComponent(schoolsScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(departScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(delBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
-                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -604,8 +578,34 @@ public class UniRecDialogView extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(uniDescrTextField)
-                                    .addComponent(uniInfoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                                    .addComponent(uniInfoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(schoolsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(departTextField))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(schoolsScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(departScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delBtnDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -636,14 +636,14 @@ public class UniRecDialogView extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(schoolsScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(departScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(13, 13, 13)
-                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(departTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(schoolsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(schoolsScrol, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(departTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(schoolsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(delBtnSchools, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6)
@@ -666,6 +666,34 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityNameFocusLost
+
+    private void universityNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universityNameFocusGained
+
+    private void departTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departTextFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departTextFieldFocusLost
+
+    private void departTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departTextFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departTextFieldFocusGained
+
+    private void schoolsTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_schoolsTextFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schoolsTextFieldFocusLost
+
+    private void schoolsTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_schoolsTextFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schoolsTextFieldFocusGained
+
+    private void delBtnSchoolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnSchoolsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delBtnSchoolsActionPerformed
 
     private void uniInfoTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_uniInfoTextFieldFocusLost
         // TODO add your handling code here:
@@ -699,39 +727,11 @@ public class UniRecDialogView extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_universityName1FocusGained
 
-
-    private void universityNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityNameFocusLost
-
-    private void universityNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_universityNameFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_universityNameFocusGained
-
-    private void schoolsTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_schoolsTextFieldFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_schoolsTextFieldFocusGained
-
-    private void schoolsTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_schoolsTextFieldFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_schoolsTextFieldFocusLost
-
-    private void departTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departTextFieldFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_departTextFieldFocusGained
-
-    private void departTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_departTextFieldFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_departTextFieldFocusLost
-
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveBtnActionPerformed
 
 
-    private void delBtnSchoolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnSchoolsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_delBtnSchoolsActionPerformed
 
 
 

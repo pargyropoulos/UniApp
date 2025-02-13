@@ -2,7 +2,7 @@ import view.MainView;
 import controller.MainController;
 import java.util.ArrayList;
 import java.util.List;
-import repository.CountryDAO;
+import model.SettingsModel.SettingsDAO;
 
 /**
  *

@@ -4,7 +4,6 @@
  */
 package repository;
 
-import model.uniRecModel.School;
 import model.uniRecModel.Department;
 import java.io.Serializable;
 import javax.persistence.Query;

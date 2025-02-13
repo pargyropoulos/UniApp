@@ -1,6 +1,7 @@
 package model.uniRecModel;
 
 
+import repository.School;
 import HTTP.WebData;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,7 +9,7 @@ import repository.UniversityJpaController;
 import repository.CountryJpaController;
 import repository.Emf;
 import repository.University;
-import model.SettingsModel.Country;
+import repository.Country;
 import repository.SchoolJpaController;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ import javax.persistence.EntityTransaction;
  */
 public class UniRecDialogModel {
 
-    private WebData universityData;
+    private WebData webData;
     private University universityModel;
     private Department departmentModel;
     private School schoolModel;
@@ -35,28 +36,28 @@ public class UniRecDialogModel {
     private final List<Department> deletedDepartments = new ArrayList<>();
     private final Set<Department> insertedDepartments = new HashSet<>();
     
-    public UniRecDialogModel(WebData universityData) {  // Constructor με WebData
-        this.universityData = universityData;
-
+    public UniRecDialogModel(WebData webData) {  // Constructor με WebData
+        this.webData = webData;
+        
         // Δημιουργία instance του Controller
         this.universityController = new UniversityJpaController(Emf.getEntityManagerFactory());
         CountryJpaController countryController = new CountryJpaController(Emf.getEntityManagerFactory());
 
         // Αναζητούμε αν υπάρχει ήδη στη βάση
-        this.universityModel = universityController.findUniversity(universityData.getName());
+        this.universityModel = universityController.findUniversity(webData.getName());
 
         // Αναζητούμε τη χώρα στη βάση
-        Country country = countryController.findCountry(universityData.getCountry());
+        Country country = countryController.findCountry(webData.getCountry());
 
         if (this.universityModel == null) {
             System.out.println("University not found in database. Creating new entry.");
 
             // Δημιουργούμε νέο University από το WebData
             this.universityModel = new University();
-            this.universityModel.setName(universityData.getName());
+            this.universityModel.setName(webData.getName());
 
             //είναι σε άλλο πίνακα
-            //this.universityModel.setCountry(universityData.getCountry());
+            //this.universityModel.setCountry(webData.getCountry());
             //this.universityModel.setCounter(1); // Πρώτη φορά που εμφανίζεται
 //            this.universityModel.setDescription("No additional info");
 //            this.universityModel.setInfo("No additional info");
@@ -87,22 +88,22 @@ public class UniRecDialogModel {
         return universityModel;
     }
 
-    public WebData getUniversityData() {  // Getter για να το χρησιμοποιήσω η View
-        return universityData;
+    public WebData getWebData() {  // Getter για να το χρησιμοποιήσω η View
+        return webData;
     }
 
     //λιστα για domains
     public List<String> getDomains() {
-        if (universityData != null) {
-            return universityData.getDomains();
+        if (webData != null) {
+            return webData.getDomains();
         }
         return null; // Αν δεν υπάρχει πανεπιστήμιο, επιστρέφουμε null
     }
 
     //Λιστα για Web_Pages
     public List<String> getWebPages() {
-        if (universityData != null) {
-            return universityData.getWeb_pages();
+        if (webData != null) {
+            return webData.getWeb_pages();
         }
         return null; // Αν δεν υπάρχει πανεπιστήμιο, επιστρέφουμε null
     }

@@ -5,7 +5,6 @@
 
 package repository;
 
-import model.uniRecModel.School;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;

@@ -3,9 +3,9 @@
   <persistence-unit name="UniAppPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>repository.University</class>
-    <class>model.SettingsModel.Country</class>
+    <class>repository.Country</class>
+    <class>repository.School</class>
     <class>model.uniRecModel.Department</class>
-    <class>model.uniRecModel.School</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby:UniDB;"/>
       <property name="javax.persistence.jdbc.user" value="APP"/>

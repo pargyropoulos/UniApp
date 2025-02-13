@@ -19,7 +19,7 @@ public class UniRecDialogController {
         this.model = model;
         this.view = view;
 
-        WebData universityWeb = model.getUniversityData();
+        WebData universityWeb = model.getWebData();
         // Παίρνουμε το πανεπιστήμιο από το μοντέλο
         University university = model.getUniversityModel();
 
@@ -36,7 +36,7 @@ public class UniRecDialogController {
         view.populateWebPagesGrid(webPages);
 
         //  Στέλνω τα δεδομένα του πανεπιστημίου στη View
-        view.setUniversityData(model.getUniversityData());
+        view.setUniversityData(model.getWebData());
 
         if (university != null) {
             view.setDescriptionField(university.getDescription());
@@ -52,18 +52,6 @@ public class UniRecDialogController {
         view.addSaveButtonListener(e -> saveUniversityInfo());
         view.addAddSchoolButtonListener(e -> addSchool());
         view.addDeleteSchoolButtonListener(e -> deleteSchool());
-
-
-        // Δημιουργούω το μοντέλο και αποθηκεύουω το πανεπιστήμιο αν χρειάζεται
-        //this.model = new UniRecDialogModel(universityWeb);
-
-//        if (university != null) {
-//          
-//            view.setUniversityData(university);
-//            
-//          
-//            model.incrementCounter();
-//        }
     }
 
     private void saveUniversityInfo() {

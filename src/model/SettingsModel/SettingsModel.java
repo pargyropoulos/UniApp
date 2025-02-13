@@ -1,9 +1,9 @@
 package model.SettingsModel;
+import repository.Country;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import repository.CountryDAO;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 
@@ -15,14 +15,14 @@ import utils.ICustomEventListener;
 public class SettingsModel implements ISettingsModel {
     private Country countryModel;
     private List<Country> countries;
-    private final CountryDAO dao;
+    private final SettingsDAO dao;
     private final List<Country> deletedRows = new ArrayList<>();
     private final Set<Country> insertedRows = new HashSet<>();
     private final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
     
     public SettingsModel() {
         this.countryModel = null;
-        this.dao=new CountryDAO(repository.Emf.getEntityManagerFactory());
+        this.dao=new SettingsDAO(repository.Emf.getEntityManagerFactory());
     }
     
     @Override
