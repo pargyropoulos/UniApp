@@ -177,6 +177,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         editBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
+        universityName = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         gridWebPages = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -196,7 +197,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
         departTextField = new javax.swing.JTextField();
         departScrol = new javax.swing.JScrollPane();
         grid4 = new javax.swing.JTable();
-        universityName = new javax.swing.JTextField();
+        universityName3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("University");
@@ -212,9 +213,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         editBtn.setBackground(new java.awt.Color(45, 45, 48));
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
-
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/edit_cancel.png"))); // NOI18N
-        editBtn.setText("Edit");
+        editBtn.setText("Cancel");
         editBtn.setAlignmentY(0.0F);
         editBtn.setFocusPainted(false);
         editBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -337,7 +337,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
             gridDomains.getColumnModel().getColumn(0).setHeaderValue("Domains");
         }
 
-        universityName1.setBackground(new java.awt.Color(60, 63, 65));
         universityName1.setToolTipText(null);
         universityName1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         universityName1.setEnabled(false);
@@ -350,7 +349,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
             }
         });
 
-        universityName2.setBackground(new java.awt.Color(60, 63, 65));
         universityName2.setToolTipText(null);
         universityName2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         universityName2.setEnabled(false);
@@ -538,11 +536,11 @@ public class UniRecDialogView extends javax.swing.JDialog {
         grid4.getTableHeader().setReorderingAllowed(false);
         departScrol.setViewportView(grid4);
 
-        universityName.setBackground(new java.awt.Color(60, 63, 65));
-        universityName.setToolTipText(null);
-        universityName.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        universityName.setEnabled(false);
-        universityName.addFocusListener(new java.awt.event.FocusAdapter() {
+        universityName3.setBackground(new java.awt.Color(60, 63, 65));
+        universityName3.setToolTipText(null);
+        universityName3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        universityName3.setEnabled(false);
+        universityName3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 universityNameFocusGained(evt);
             }
@@ -820,5 +818,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
     private javax.swing.JTextField universityName;
     private javax.swing.JTextField universityName1;
     private javax.swing.JTextField universityName2;
+    private javax.swing.JTextField universityName3;
     // End of variables declaration//GEN-END:variables
 }
