@@ -598,6 +598,9 @@
               <Connection code="null" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="departmentTextFieldMouseClicked"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="departScrol">
           <AuxValues>

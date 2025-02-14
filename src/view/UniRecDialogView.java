@@ -440,6 +440,11 @@ public class UniRecDialogView extends javax.swing.JDialog {
         delDepartmentBtn.setPreferredSize(new java.awt.Dimension(50, 50));
 
         departmentTextField.setToolTipText(null);
+        departmentTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                departmentTextFieldMouseClicked(evt);
+            }
+        });
 
         departmentGrid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         departmentGrid.setModel(new javax.swing.table.DefaultTableModel(
@@ -631,6 +636,12 @@ public class UniRecDialogView extends javax.swing.JDialog {
 //        }
 
     }//GEN-LAST:event_departmentGridMouseClicked
+
+    private void departmentTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentTextFieldMouseClicked
+        if  (schoolGrid.getSelectedRow()<0){
+            schoolGrid.setRowSelectionInterval(0, 0);
+        }
+    }//GEN-LAST:event_departmentTextFieldMouseClicked
 
 
 

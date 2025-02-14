@@ -12,8 +12,6 @@ import repository.DepartmentJpaController;
 import repository.SchoolJpaController;
 import repository.University;
 import repository.UniversityJpaController;
-import repository.exceptions.IllegalOrphanException;
-import repository.exceptions.NonexistentEntityException;
 import repository.exceptions.PreexistingEntityException;
 
 /**
@@ -112,15 +110,5 @@ public class UniRecDAO {
                 System.out.println(ex);
             }
         }
-    }    
-//    public List<Department> findDepartments(String universityName) {
-//        EntityManager em = this.emf.createEntityManager();
-//        try {
-//        TypedQuery<School> query = em.createNamedQuery("School.findByUniversityName", School.class);
-//        query.setParameter("universityName", universityName); // Match the parameter name
-//        return query.getResultList();
-//        } finally {
-//            em.close();
-//        }
-//    }    
+    }     
 }
