@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package model.uniRecModel;
+package repository;
 
 import repository.School;
 import java.io.Serializable;
@@ -27,7 +27,8 @@ import javax.persistence.Table;
 @Table(name = "DEPARTMENT")
 @NamedQueries({
     @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
-    @NamedQuery(name = "Department.findById", query = "SELECT d FROM Department d WHERE d.id = :id"),
+    @NamedQuery(name = "Department.findById", query = "SELECT d FROM Department d WHERE d.id = :id order by d.name asc"),
+    @NamedQuery(name = "Department.findBySchoolId", query = "SELECT d FROM Department d WHERE d.schoolId.id = :schoolId order by d.name asc"),
     @NamedQuery(name = "Department.findByName", query = "SELECT d FROM Department d WHERE d.name = :name")})
 public class Department implements Serializable {
 
@@ -96,7 +97,9 @@ public class Department implements Serializable {
 
     @Override
     public String toString() {
-        return "repository.Department[ id=" + id + " ]";
+        return "Department{" + "id=" + id + ", name=" + name + ", schoolId=" + schoolId + '}';
     }
+
+
 
 }

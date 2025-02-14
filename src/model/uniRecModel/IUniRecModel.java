@@ -1,5 +1,6 @@
 package model.uniRecModel;
 
+import repository.Department;
 import repository.School;
 import java.util.List;
 import repository.Country;

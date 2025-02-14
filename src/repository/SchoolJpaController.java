@@ -4,7 +4,6 @@
  */
 package repository;
 
-import model.uniRecModel.Department;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;

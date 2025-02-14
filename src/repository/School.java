@@ -19,7 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import model.uniRecModel.Department;
 import repository.University;
 
 /**
@@ -33,6 +32,9 @@ import repository.University;
     @NamedQuery(name = "School.findAll", query = "SELECT s FROM School s"),
     @NamedQuery(name = "School.findById", query = "SELECT s FROM School s WHERE s.id = :id"),
     @NamedQuery(name = "School.findByName", query = "SELECT s FROM School s WHERE s.name = :name"),
+    //P.A.
+    @NamedQuery(name = "School.findByUniversityName", query = "SELECT s FROM School s WHERE s.universityName.name = :universityName order by s.universityName asc"),
+
     //δικό μου querie να βρίσκει τις σχολές με βαση το όνομα πανεπιστημιου
     @NamedQuery(name = "School.findByUniversity", query = "SELECT s FROM School s WHERE s.universityName = :universityName"),
     @NamedQuery(name = "School.findByNameAndUniversity",
@@ -121,7 +123,9 @@ public class School implements Serializable {
 
     @Override
     public String toString() {
-        return "repository.School[ id=" + id + " ]";
+        return "School{" + "id=" + id + ", name=" + name + ", universityName=" + universityName + ", departmentCollection=" + departmentCollection + '}';
     }
+
+
 
 }

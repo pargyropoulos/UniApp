@@ -6,6 +6,10 @@ import HTTP.WebData;
 import view.UniRecDialogView;
 import repository.University;
 import java.util.List;
+import repository.Department;
+import repository.School;
+import utils.CustomEventSource;
+import utils.ICustomEventListener;
 
 /**
  *
@@ -14,101 +18,83 @@ import java.util.List;
 public class UniRecDialogController {
     private final UniRecDialogModel model;
     private final UniRecDialogView view;
-
+    
     public UniRecDialogController(UniRecDialogView view, UniRecDialogModel model) {
         this.model = model;
         this.view = view;
-
-        WebData universityWeb = model.getWebData();
-        // Παίρνουμε το πανεπιστήμιο από το μοντέλο
-        University university = model.getUniversityModel();
-
-        // Αν υπάρχει πανεπιστήμιο, περνάω τα δεδομένα στη View
-        if (universityWeb != null) {
-            view.setUniversityData(universityWeb);
-        }
-        // Φέρνω τα domains απο τι αντικείμενο 
-        List<String> domains = universityWeb.getDomains();
-        view.populateDomainsGrid(domains);
-
-        // Το ιδιο για web_pages
-        List<String> webPages = universityWeb.getWeb_pages();
-        view.populateWebPagesGrid(webPages);
-
-        //  Στέλνω τα δεδομένα του πανεπιστημίου στη View
         view.setUniversityData(model.getWebData());
+        view.populateDomainsGrid(model.getWebData().getDomains());
+        view.populateWebPagesGrid(model.getWebPages());
+        view.setDescriptionField(model.getDescription());
+        view.setInfoField(model.getInfo());
+        view.populateSchoolsGrid(model.getSchoolsList());
+        view.populateDepartmentGrid(model.getDepartments());
 
-        if (university != null) {
-            view.setDescriptionField(university.getDescription());
-            view.setInfoField(university.getInfo());
-
-            //για τα school
-            List<String> schools = model.getSchools();
-            view.populateSchoolsGrid(schools);
-        }
-
-        // Προσθέτω τον listener για το κουμπί Exit
+        //Map Listeners
         view.addExitButtonListener(e -> closeDialog());
         view.addSaveButtonListener(e -> saveUniversityInfo());
-        view.addAddSchoolButtonListener(e -> addSchool());
-        view.addDeleteSchoolButtonListener(e -> deleteSchool());
+        view.addInsertSchoolButtonListener(e -> {
+            if (this.view.getSchoolText().isEmpty()) return;
+            addSchool(this.view.getSchoolText());
+        });
+        view.addInsertDepartmentButtonListener(e -> {
+            if (this.view.getDepartmentText().isEmpty()) return;
+            addDepartment(this.view.getDepartmentText());
+        });        
+        view.addDeleteSchoolButtonListener(e ->{
+            System.out.println("Row index" + this.view.getSelectedSchoolRowIndex());
+            if (this.view.getSelectedSchoolRowIndex()<0) return;
+            deleteSchool(this.view.getSelectedSchoolRowIndex());
+        });
+        view.addSchoolSelectedEventListener(e-> model.getDeparmentList(e.getEventMessage()));
+        model.addDepartmentListUpdatedEventListener(e->view.populateDepartmentGrid(model.getDepartments()));
+        model.addSchoolListUpdatedEventListener(e-> {
+            view.setSelectedSchoolRowIndex(model.getSchoolRowIndex());
+            view.populateSchoolsGrid(model.getSchoolsList());
+            });
     }
 
     private void saveUniversityInfo() {
-        String newDescription = view.getDescriptionText();
-        String newInfo = view.getInfoText();
-
-        model.updateUniversityInfo(newDescription, newInfo);
+//        String newDescription = view.getDescriptionText();
+//        String newInfo = view.getInfoText();
+//        model.updateUniversityInfo(newDescription, newInfo);
         System.out.println("Saved new description and info.");
     }
 
-    private void addSchool() {
-        String schoolName = view.getSchoolText(); // Παίρνουμε το όνομα της σχολής από το TextField
+    private void addSchool(String schoolName) {
+        School school=new School();
+        school.setName(schoolName);
+        school.setId(schoolName.hashCode());
+        school.setUniversityName(model.getUniversity());
+        model.addSchool(school);
+        view.setSchoolTextField(null);
+    }
+    
+    
+    private void deleteSchool(Integer rowIndex) {
+        this.model.deleteSchool(rowIndex);
+        this.view.setSelectedSchoolRowIndex(this.model.getSchoolRowIndex());
+        this.view.populateDepartmentGrid(model.getDepartments());
+        System.out.println("ctrl-delete-row index: "+view.getSelectedSchoolRowIndex());
+    }
 
-        if (schoolName.isEmpty()) {
-            System.out.println("Error: School name cannot be empty.");
-            return;
-        }
 
+    private void addDepartment(String departmentName){
+        if (model.getSchoolRowIndex()<0) return;
+        Department department=new Department();
+        department.setName(departmentName);
+        department.setSchoolId(model.getSchoolsList().get(view.getSelectedSchoolRowIndex()));
+        department.setId((departmentName).hashCode());
+        System.out.println("ctrl-add-row index: "+view.getSelectedSchoolRowIndex());
+        model.addDepartment(department);
+        view.setDepartmentTextField(null);
+        view.setSelectedSchoolRowIndex(model.getDepartments().size()-1);
+    }
+
+    private void deleteDepartment(){
         
-        boolean success = model.addSchoolToDatabase(schoolName);
-
-        if (success) {
-            System.out.println("School added: " + schoolName);
-
-            List<String> schools = model.getSchools();
-            view.populateSchoolsGrid(schools);
-
-            view.clearSchoolTextField();
-        } else {
-            System.out.println("Failed to add school to database.");
-        }
     }
     
-    
-    private void deleteSchool() {
-    String selectedSchool = view.getSelectedSchool(); // Παίρνουμε την επιλεγμένη σχολή από το JTable
-
-    if (selectedSchool == null || selectedSchool.isEmpty()) {
-        System.out.println("Error: No school selected.");
-        return;
-    }
-
-  
-    boolean success = model.deleteSchoolFromDatabase(selectedSchool);
-
-    if (success) {
-        System.out.println("School deleted: " + selectedSchool);
-
-     
-        List<String> schools = model.getSchools();
-        view.populateSchoolsGrid(schools);
-    } else {
-        System.out.println("Failed to delete school from database.");
-    }
-}
-
-
     public void run() {
         this.view.setLocation(Utils.getParentCenterLocation(this.view.getParent(), this.view));
         view.setVisible(true);

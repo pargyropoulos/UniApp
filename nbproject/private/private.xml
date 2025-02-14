@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/Utils.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/SettingsModel/ISettingsModel.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/uniRecModel/UniRecDAO.java</file>
             <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/uniRecModel/UniRecDialogModel.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/SettingsModel/SettingsModel.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/UniGridController.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/UniRecDialogController.java</file>
             <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/UniRecDialogView.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/MainView.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/repository/School.java</file>
         </group>
     </open-files>
 </project-private>
