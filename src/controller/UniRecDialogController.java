@@ -2,14 +2,9 @@ package controller;
 
 import view.Utils;
 import model.uniRecModel.UniRecDialogModel;
-import HTTP.WebData;
 import view.UniRecDialogView;
-import repository.University;
-import java.util.List;
 import repository.Department;
 import repository.School;
-import utils.CustomEventSource;
-import utils.ICustomEventListener;
 
 /**
  *
@@ -32,7 +27,7 @@ public class UniRecDialogController {
 
         //Map Listeners
         view.addExitButtonListener(e -> closeDialog());
-        view.addSaveButtonListener(e -> saveUniversityInfo());
+//        view.addSaveButtonListener(e -> saveUniversityInfo());
         view.addInsertSchoolButtonListener(e -> {
             if (this.view.getSchoolText().isEmpty()) return;
             addSchool(this.view.getSchoolText());
@@ -41,25 +36,24 @@ public class UniRecDialogController {
             if (this.view.getDepartmentText().isEmpty()) return;
             addDepartment(this.view.getDepartmentText());
         });        
+        
         view.addDeleteSchoolButtonListener(e ->{
-            System.out.println("Row index" + this.view.getSelectedSchoolRowIndex());
             if (this.view.getSelectedSchoolRowIndex()<0) return;
             deleteSchool(this.view.getSelectedSchoolRowIndex());
         });
+        
+        view.addDeleteDepartmentButtonListener(e->deleteDepartment(this.view.getSelectedDepartmentRowIndex()));
+        
         view.addSchoolSelectedEventListener(e-> model.getDeparmentList(e.getEventMessage()));
+        
         model.addDepartmentListUpdatedEventListener(e->view.populateDepartmentGrid(model.getDepartments()));
+        
         model.addSchoolListUpdatedEventListener(e-> {
-            view.setSelectedSchoolRowIndex(model.getSchoolRowIndex());
             view.populateSchoolsGrid(model.getSchoolsList());
+            view.populateDepartmentGrid(model.getDepartments());
             });
     }
 
-    private void saveUniversityInfo() {
-//        String newDescription = view.getDescriptionText();
-//        String newInfo = view.getInfoText();
-//        model.updateUniversityInfo(newDescription, newInfo);
-        System.out.println("Saved new description and info.");
-    }
 
     private void addSchool(String schoolName) {
         School school=new School();
@@ -71,28 +65,27 @@ public class UniRecDialogController {
     }
     
     
-    private void deleteSchool(Integer rowIndex) {
+    private void deleteSchool(int rowIndex) {
+        if (rowIndex<0) return;
         this.model.deleteSchool(rowIndex);
-        this.view.setSelectedSchoolRowIndex(this.model.getSchoolRowIndex());
         this.view.populateDepartmentGrid(model.getDepartments());
-        System.out.println("ctrl-delete-row index: "+view.getSelectedSchoolRowIndex());
     }
 
 
     private void addDepartment(String departmentName){
-        if (model.getSchoolRowIndex()<0) return;
+        if (model.getSchoolsList().isEmpty()) return;
         Department department=new Department();
         department.setName(departmentName);
         department.setSchoolId(model.getSchoolsList().get(view.getSelectedSchoolRowIndex()));
         department.setId((departmentName).hashCode());
-        System.out.println("ctrl-add-row index: "+view.getSelectedSchoolRowIndex());
         model.addDepartment(department);
         view.setDepartmentTextField(null);
-        view.setSelectedSchoolRowIndex(model.getDepartments().size()-1);
     }
 
-    private void deleteDepartment(){
-        
+    private void deleteDepartment(int rowIndex){
+        if (rowIndex<0) return;
+        this.model.deleteDepartment(rowIndex);
+        this.view.populateDepartmentGrid(model.getDepartments());        
     }
     
     public void run() {

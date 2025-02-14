@@ -5,16 +5,11 @@ import repository.School;
 import HTTP.WebData;
 import java.util.ArrayList;
 import java.util.HashSet;
-import repository.UniversityJpaController;
-import repository.Emf;
 import repository.University;
-import repository.SchoolJpaController;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 
@@ -23,13 +18,13 @@ import utils.ICustomEventListener;
  * @author tasos
  */
 public class UniRecDialogModel {
-    private WebData webData;
+    private final WebData webData;
     private final University university;
     private final UniRecDAO dao;
-    private UniversityJpaController universityController;
-    private Integer schoolRowIndex;
+//    private Integer schoolRowIndex;
 
     private final List<School> schools;
+//    private School currentSchool;
     private final List<School> deletedSchools = new ArrayList<>();
     private final Set<School> insertedSchools = new HashSet<>();
     private List<Department> departments;
@@ -47,12 +42,9 @@ public class UniRecDialogModel {
         this.schools=dao.findSchools(this.university.getName());
         if (this.schools.isEmpty()){
             this.departments=new ArrayList<>();
-            schoolRowIndex=-1;
         }else{
-            schoolRowIndex=0;
             this.schoolDepartmentPairList=findAllDepartments();
             this.departments=schoolDepartmentPairList.get(0).getDepartmentList();
-//            this.departments=dao.findDepartments(this.schools.get(0).getId());
         }
          
         System.out.println(this.university);
@@ -92,19 +84,18 @@ public class UniRecDialogModel {
     
     /**
      * Retrieves from DB the departments for the current school
-     * @param rowIndex
+     * @param schoolRowIndex
      * @return The departments that belong to the current school
      */
-    public List<Department> getDeparmentList(Integer rowIndex){
+    public List<Department> getDeparmentList(int schoolRowIndex){
         //check if row index is newly added and has no id
-        if (schools.get(rowIndex).getId()==null) {
+        if (schools.get(schoolRowIndex).getId()==null) {
             departmentsListUpdatedEventSource.notifyEventListeners(null);
             return null;
         }
-            
-//        this.departments=dao.findDepartments(this.schools.get(rowIndex).getId());
-//        departmentsListUpdatedEventSource.notifyEventListeners(this.departments);
-//        return this.departments;
+        this.departments=schoolDepartmentPairList.get(schoolRowIndex).getDepartmentList();
+        departmentsListUpdatedEventSource.notifyEventListeners(this.departments);
+        return this.departments;
     }
     
     private List<SchoolDepartmentPair> findAllDepartments() {
@@ -134,16 +125,15 @@ public class UniRecDialogModel {
         if (schools.contains(school)) return;
         schools.add(school);
         insertedSchools.add(school);
+        schoolDepartmentPairList.add(new SchoolDepartmentPair(school,new ArrayList<>()));
         System.out.println("-".repeat(10));
-        schoolRowIndex=schools.size()-1;
-        System.out.println("Model has schoolrowinde:"+schoolRowIndex);
         for (var item:insertedSchools){
             System.out.println(item);
         }
         schoolsListUpdatedEventSource.notifyEventListeners(this.schools);        
     }
     
-    public void deleteSchool(Integer rowIndex){
+    public void deleteSchool(int rowIndex){
         School school=schools.get(rowIndex);
         if (insertedSchools.contains(school)){
             insertedSchools.remove(school);
@@ -151,19 +141,14 @@ public class UniRecDialogModel {
             deletedSchools.add(schools.get(rowIndex));
         }
         schools.remove(school);
-        if (!schools.isEmpty()){
-            this.schoolRowIndex=rowIndex>0 ? rowIndex-1:0;
-            this.departments=getDeparmentList(schoolRowIndex);
-        }else {
-            this.departments=null;
-            schoolRowIndex=-1;
-        }
+        schoolDepartmentPairList.remove(rowIndex);
+        this.departments=null;
         schoolsListUpdatedEventSource.notifyEventListeners(this.schools);      
     }
 
     public void addDepartment(Department department){
         System.out.println(department);
-        if (departments.contains(department)) return;
+        if( schools.isEmpty() ||departments.contains(department)) return;
         departments.add(department);
         insertedDepartments.add(department);
         System.out.println("-".repeat(10));
@@ -172,6 +157,19 @@ public class UniRecDialogModel {
         }
         departmentsListUpdatedEventSource.notifyEventListeners(this.departments);        
     }
+
+    public void deleteDepartment(int rowIndex){
+        Department department=departments.get(rowIndex);
+        if (insertedDepartments.contains(department)){
+            insertedDepartments.remove(department);
+        }else {
+            deletedDepartments.add(departments.get(rowIndex));
+        }
+        departments.remove(department);
+//        schoolDepartmentPairList.remove(rowIndex);
+//        this.departments=null;
+        departmentsListUpdatedEventSource.notifyEventListeners(this.departments);      
+    }    
     
     public void addDepartmentListUpdatedEventListener(ICustomEventListener<List<Department>> listener) {
         departmentsListUpdatedEventSource.addEventListener(listener);
@@ -181,9 +179,6 @@ public class UniRecDialogModel {
         schoolsListUpdatedEventSource.addEventListener(listener);
     }
 
-    public Integer getSchoolRowIndex(){
-        return this.schoolRowIndex;
-    }
     
     public class SchoolDepartmentPair {
         private School school;
@@ -219,151 +214,140 @@ public class UniRecDialogModel {
     public University getUniversity() {
         return university;
     }
-
     public WebData getWebData() {  // Getter για να το χρησιμοποιήσω η View
         return webData;
     }
-
+//
     //λιστα για domains
     public List<String> getDomains() {
-//        if (webData != null) {
-            return webData.getDomains();
-//        }
-//        return null; // Αν δεν υπάρχει πανεπιστήμιο, επιστρέφουμε null
+        return webData.getDomains();
     }
-
-    //Λιστα για Web_Pages
+//    //Λιστα για Web_Pages
     public List<String> getWebPages() {
-//        if (webData != null) {
-            return webData.getWeb_pages();
-//        }
-//        return null; // Αν δεν υπάρχει πανεπιστήμιο, επιστρέφουμε null
+        return webData.getWeb_pages();
     }
 
-    //Για να εμφανίσω τα στοιχεία στο description
-    //απο την βάδη δεδομενων
+//    //Για να εμφανίσω τα στοιχεία στο description
+//    //απο την βάδη δεδομενων
     public String getDescription() {
-//        if (university != null) {
-            return university.getDescription();
-//        }
-//        return "No description available";
+        return university.getDescription();
     }
 
-    //Για να εμφανίσω τα στοιχεία στο info
-    //απο την βάδη δεδομενων
+//
+//    //Για να εμφανίσω τα στοιχεία στο info
+//    //απο την βάδη δεδομενων
     public String getInfo() {
-//        if (university != null) {
-            return university.getInfo();
-//        }
-//        return "No description available";
+        return university.getInfo();
     }
 
-//    public List<String> getSchools() {
+    ////ok up to here
+//
+////    public List<String> getSchools() {
+////        if (university != null) {
+////            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
+////            List<School> schoolList = schoolController.findSchoolsByUniversity(university.getName());
+////
+////            //debugging
+////            System.out.println("Loaded schools: " + schoolList.size());
+////
+////            // Μετατρέπουμε τη λίστα σε Strings
+////            return schoolList.stream()
+////                    .map(School::getName)
+////                    .collect(Collectors.toList());
+////        }
+////        return List.of(); // Αν δεν υπάρχουν σχολές, επιστρέφουμε κενή λίστα
+////    }
+//
+//    public void updateUniversityInfo(String newDescription, String newInfo) {
 //        if (university != null) {
-//            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-//            List<School> schoolList = schoolController.findSchoolsByUniversity(university.getName());
+//            university.setDescription(newDescription);
+//            university.setInfo(newInfo);
 //
-//            //debugging
-//            System.out.println("Loaded schools: " + schoolList.size());
-//
-//            // Μετατρέπουμε τη λίστα σε Strings
-//            return schoolList.stream()
-//                    .map(School::getName)
-//                    .collect(Collectors.toList());
+//            try {
+//                universityController.edit(university);
+//                System.out.println("University info updated: " + university.getName());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                System.out.println("Failed to update university info.");
+//            }
+//        } else {
+//            System.out.println("No university found to update.");
 //        }
-//        return List.of(); // Αν δεν υπάρχουν σχολές, επιστρέφουμε κενή λίστα
 //    }
-
-    public void updateUniversityInfo(String newDescription, String newInfo) {
-        if (university != null) {
-            university.setDescription(newDescription);
-            university.setInfo(newInfo);
-
-            try {
-                universityController.edit(university);
-                System.out.println("University info updated: " + university.getName());
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Failed to update university info.");
-            }
-        } else {
-            System.out.println("No university found to update.");
-        }
-    }
-
-    public boolean addSchoolToDatabase(String schoolName) {
-        if (university == null) {
-            System.out.println("Error: No university selected.");
-            return false;
-        }
-
-        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
-        EntityTransaction transaction = em.getTransaction();
-
-        try {
-            transaction.begin();
-
-            // ✅ Ελέγχουμε αν υπάρχει ήδη η σχολή
-            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-            List<School> existingSchools = schoolController.findSchoolsByUniversity(university.getName());
-
-            for (School s : existingSchools) {
-                if (s.getName().equalsIgnoreCase(schoolName)) {
-                    System.out.println("School already exists in database: " + schoolName);
-                    return false; // Αν υπάρχει ήδη, δεν προσθέτουμε ξανά
-                }
-            }
-
-            // ✅ Δημιουργούμε και αποθηκεύουμε τη νέα σχολή
-            School newSchool = new School();
-            newSchool.setName(schoolName);
-            newSchool.setUniversityName(university); // Σύνδεση με το πανεπιστήμιο
-
-            em.persist(newSchool);
-            transaction.commit();
-            return true;
-
-        } catch (Exception e) {
-            transaction.rollback();
-            e.printStackTrace();
-            return false;
-        } finally {
-            em.close();
-        }
-    }
-    
-    public boolean deleteSchoolFromDatabase(String schoolName) {
-    if (university == null) {
-        System.out.println("Error: No university selected.");
-        return false;
-    }
-
-    EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
-    EntityTransaction transaction = em.getTransaction();
-
-    try {
-        transaction.begin();
-
-       
-        SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-        School school = schoolController.findSchoolByNameAndUniversity(schoolName, university.getName());
-
-        if (school == null) {
-            System.out.println("No school found with name: " + schoolName);
-            return false;
-        }
-
-        em.remove(em.contains(school) ? school : em.merge(school));
-        transaction.commit();
-        return true;
-
-        } catch (Exception e) {
-            transaction.rollback();
-            e.printStackTrace();
-            return false;
-        } finally {
-            em.close();
-        }
-    }
+//
+//    public boolean addSchoolToDatabase(String schoolName) {
+//        if (university == null) {
+//            System.out.println("Error: No university selected.");
+//            return false;
+//        }
+//
+//        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
+//        EntityTransaction transaction = em.getTransaction();
+//
+//        try {
+//            transaction.begin();
+//
+//            // ✅ Ελέγχουμε αν υπάρχει ήδη η σχολή
+//            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
+//            List<School> existingSchools = schoolController.findSchoolsByUniversity(university.getName());
+//
+//            for (School s : existingSchools) {
+//                if (s.getName().equalsIgnoreCase(schoolName)) {
+//                    System.out.println("School already exists in database: " + schoolName);
+//                    return false; // Αν υπάρχει ήδη, δεν προσθέτουμε ξανά
+//                }
+//            }
+//
+//            // ✅ Δημιουργούμε και αποθηκεύουμε τη νέα σχολή
+//            School newSchool = new School();
+//            newSchool.setName(schoolName);
+//            newSchool.setUniversityName(university); // Σύνδεση με το πανεπιστήμιο
+//
+//            em.persist(newSchool);
+//            transaction.commit();
+//            return true;
+//
+//        } catch (Exception e) {
+//            transaction.rollback();
+//            e.printStackTrace();
+//            return false;
+//        } finally {
+//            em.close();
+//        }
+//    }
+//    
+//    public boolean deleteSchoolFromDatabase(String schoolName) {
+//    if (university == null) {
+//        System.out.println("Error: No university selected.");
+//        return false;
+//    }
+//
+//    EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
+//    EntityTransaction transaction = em.getTransaction();
+//
+//    try {
+//        transaction.begin();
+//
+//       
+//        SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
+//        School school = schoolController.findSchoolByNameAndUniversity(schoolName, university.getName());
+//
+//        if (school == null) {
+//            System.out.println("No school found with name: " + schoolName);
+//            return false;
+//        }
+//
+//        em.remove(em.contains(school) ? school : em.merge(school));
+//        transaction.commit();
+//        return true;
+//
+//        } catch (Exception e) {
+//            transaction.rollback();
+//            e.printStackTrace();
+//            return false;
+//        } finally {
+//            em.close();
+//        }
+//    }
 
 }

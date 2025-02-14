@@ -17,30 +17,20 @@ import static view.Utils.customizeButtonsInsidePanel;
  */
 public class UniRecDialogView extends javax.swing.JDialog {
     private final CustomEventSource<Integer> schoolSelectedEventSource = new CustomEventSource<>();
-    private Integer selectedDepartmentRowIndex=0;
-    private Integer selectedSchoolRowIndex=0;
 
-    public void setSelectedDepartmentRowIndex(Integer selectedDepartmentRowIndex) {
-        this.selectedDepartmentRowIndex = selectedDepartmentRowIndex;
-    }
-
-    public void setSelectedSchoolRowIndex(Integer selectedSchoolRowIndex) {
-        this.selectedSchoolRowIndex = selectedSchoolRowIndex;
-    }
-    
     public void addSchoolSelectedEventListener (ICustomEventListener<Integer> listener){
         schoolSelectedEventSource.addEventListener(listener);
     }
 
-    public Integer getSelectedSchoolRowIndex() {
-        return this.selectedSchoolRowIndex;
+    public int getSelectedSchoolRowIndex() {
+        System.out.println("School Grid Row Index: "+this.schoolGrid.getSelectedRow());
+        return this.schoolGrid.getSelectedRow();     
     }
-
-    public Integer getSelectedDepartmentRowIndex() {
-        return this.selectedDepartmentRowIndex;
+    
+    public int getSelectedDepartmentRowIndex(){
+        return this.departmentGrid.getSelectedRow();     
     }
-
-
+    
     /**
      * Creates new form uniRec
      *
@@ -108,36 +98,23 @@ public class UniRecDialogView extends javax.swing.JDialog {
         if (description != null) {
             uniDescrTextField.setText(description);
         } 
-//        else {
-//            uniDescrTextField.setText("No description available");
-//        }
-
     }
 
     public void setInfoField(String info) {
         if (info != null) {
             uniInfoTextField.setText(info);
         }
-//        else {
-//            uniInfoTextField.setText("No info available");
-//        }
-
     }
 
     public void populateSchoolsGrid(List<School> list) {
         DefaultTableModel model = (DefaultTableModel) schoolGrid.getModel();
         model.setRowCount(0); // Καθαρίζουμε τον πίνακα
         if (list == null || list.isEmpty()){
-            System.out.println("No schools to display.");
             populateDepartmentGrid(new ArrayList<Department>()) ;
-            this.selectedSchoolRowIndex=-1;
         }else {
             for (var item : list) {
                 model.addRow(new Object[]{item.getName()});
             }
-//        if (!list.isEmpty()){
-            System.out.println("Grid has row index:" + this.selectedDepartmentRowIndex);
-            schoolGrid.setRowSelectionInterval(this.selectedSchoolRowIndex,this.selectedSchoolRowIndex);
             populateDepartmentGrid(new ArrayList<Department>()) ;
         }        
     }
@@ -147,14 +124,10 @@ public class UniRecDialogView extends javax.swing.JDialog {
         model.setRowCount(0); // Καθαρίζουμε τον πίνακα
 
         if (list == null || list.isEmpty()) {
-            this.selectedDepartmentRowIndex=-1;
         }else{
             for (var item : list) {
                 model.addRow(new Object[]{item.getName()});
-        }
-    //            if (!list.isEmpty()){
-//            departmentGrid.setRowSelectionInterval(0,0);
-//            }
+            }
         }
     }    
     
@@ -633,11 +606,12 @@ public class UniRecDialogView extends javax.swing.JDialog {
     }//GEN-LAST:event_universityNameTextBoxFocusGained
 
     private void schoolGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schoolGridMouseClicked
-//        this.addDepartmentBtn.setEnabled(true);
-//        this.delDepartmentBtn.setEnabled(true);
-        this.selectedSchoolRowIndex=schoolGrid.getSelectedRow();
-        System.out.println("Selected row index:" + this.selectedSchoolRowIndex);
-        this.schoolSelectedEventSource.notifyEventListeners(this.selectedSchoolRowIndex);
+        if (schoolGrid.getRowCount()>0 && schoolGrid.getSelectedRow()<0 ){
+            this.schoolSelectedEventSource.notifyEventListeners(0);
+        }else if (schoolGrid.getSelectedRow()>=0){
+            this.schoolSelectedEventSource.notifyEventListeners(schoolGrid.getSelectedRow());
+        }
+        
     }//GEN-LAST:event_schoolGridMouseClicked
 
 
