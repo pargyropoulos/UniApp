@@ -16,11 +16,16 @@ import static view.Utils.customizeButtonsInsidePanel;
  * @author tasos
  */
 public class UniRecDialogView extends javax.swing.JDialog {
-    private final CustomEventSource<Integer> schoolSelectedEventSource = new CustomEventSource<>();
-
-    public void addSchoolSelectedEventListener (ICustomEventListener<Integer> listener){
-        schoolSelectedEventSource.addEventListener(listener);
-    }
+        
+    private final CustomEventSource<Integer> currentSchoolEventSource = new CustomEventSource<>();
+    private final CustomEventSource<Integer> currentDepartmentEventSource = new CustomEventSource<>();
+    
+    public void addcurrentSchoolEventSourceEventListener (ICustomEventListener<Integer> listener){
+        currentSchoolEventSource.addEventListener(listener);
+    }    
+    public void addcurrentDepartmentEventSourceEventListener (ICustomEventListener<Integer> listener){
+        currentDepartmentEventSource.addEventListener(listener);
+    }    
 
     public int getSelectedSchoolRowIndex() {
         return this.schoolGrid.getSelectedRow();     
@@ -241,7 +246,7 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         saveBtn.setBackground(new java.awt.Color(45, 45, 48));
         saveBtn.setForeground(new java.awt.Color(255, 255, 255));
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/okIcon.png"))); // NOI18N
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/save.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.setAlignmentY(0.0F);
         saveBtn.setFocusPainted(false);
@@ -255,8 +260,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
         exitBtn.setBackground(new java.awt.Color(45, 45, 48));
         exitBtn.setForeground(new java.awt.Color(255, 255, 255));
-        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/logout.png"))); // NOI18N
-        exitBtn.setText("Exit");
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/cancel.png"))); // NOI18N
+        exitBtn.setText("Close");
         exitBtn.setAlignmentY(0.0F);
         exitBtn.setFocusPainted(false);
         exitBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -380,6 +385,9 @@ public class UniRecDialogView extends javax.swing.JDialog {
         schoolGrid.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 schoolGridMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                schoolGridMousePressed(evt);
             }
         });
         schoolsScrol.setViewportView(schoolGrid);
@@ -619,25 +627,12 @@ public class UniRecDialogView extends javax.swing.JDialog {
     }//GEN-LAST:event_universityNameTextBoxFocusGained
 
     private void schoolGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schoolGridMouseClicked
-        if (schoolGrid.getRowCount()>0 && schoolGrid.getSelectedRow()<0 ){
-            this.schoolSelectedEventSource.notifyEventListeners(0);
-        }else if (schoolGrid.getSelectedRow()>=0){
-            this.schoolSelectedEventSource.notifyEventListeners(schoolGrid.getSelectedRow());
-        }
-        
+        System.out.println("Grind has index: "+ schoolGrid.getSelectedRow());
+        currentSchoolEventSource.notifyEventListeners(schoolGrid.getSelectedRow());
     }//GEN-LAST:event_schoolGridMouseClicked
 
     private void departmentGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentGridMouseClicked
-        if (schoolGrid.getSelectedRow()<0 && schoolGrid.getRowCount()>0) {
-            schoolGrid.setRowSelectionInterval(0, 0);
-            
-        }
-//        if (departmentGrid.getRowCount()>0 && departmentGrid.getSelectedRow()<0 ){
-//            this.departmentGridSelectedEventSource.notifyEventListeners(0);
-//        }else if (departmentGrid.getSelectedRow()>=0){
-//            this.departmentSelectedEventSource.notifyEventListeners(departmentGrid.getSelectedRow());
-//        }
-
+        currentDepartmentEventSource.notifyEventListeners(departmentGrid.getSelectedRow());
     }//GEN-LAST:event_departmentGridMouseClicked
 
     private void departmentTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentTextFieldMouseClicked
@@ -645,6 +640,12 @@ public class UniRecDialogView extends javax.swing.JDialog {
             schoolGrid.setRowSelectionInterval(0, 0);
         }
     }//GEN-LAST:event_departmentTextFieldMouseClicked
+
+    private void schoolGridMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_schoolGridMousePressed
+        if  (schoolGrid.getSelectedRow()<0){    
+            currentSchoolEventSource.notifyEventListeners(schoolGrid.getSelectedRow());
+        }
+    }//GEN-LAST:event_schoolGridMousePressed
 
 
 

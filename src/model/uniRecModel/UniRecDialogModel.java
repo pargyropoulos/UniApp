@@ -15,8 +15,9 @@ import utils.ICustomEventListener;
 
 /**
  *
- * @author tasos
- */
+ * @author  Anastasios Botsialas std150497@ac.eap.gr - botsialas.a@devs-od.com
+ * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
+*/
 public class UniRecDialogModel {
     private final WebData webData;
     private final University university;
@@ -33,6 +34,14 @@ public class UniRecDialogModel {
     private List<SchoolDepartmentPair> schoolDepartmentPairList=new ArrayList<>();
     private final CustomEventSource<List<Department>> departmentsListUpdatedEventSource = new CustomEventSource<>();
     private final CustomEventSource<List<School>> schoolsListUpdatedEventSource= new CustomEventSource<>();
+    private int currentSchoolIndex=0;
+    
+    public void upDateCurrentSchoolIndex(int index){
+        System.out.println("School index is:" +index);
+        this.departments=schoolDepartmentPairList.get(index).getDepartmentList();
+        this.currentSchoolIndex=index;
+    }
+              
     
     public UniRecDialogModel(WebData webData){  // Constructor με WebData
         this.webData=webData;
@@ -42,13 +51,9 @@ public class UniRecDialogModel {
         if (this.schools.isEmpty()){
             this.departments=new ArrayList<>();
         }else{
-            this.schoolDepartmentPairList=findAllDepartments();
+            this.schoolDepartmentPairList=createSchoolDepartmentPairObj();
             this.departments=schoolDepartmentPairList.get(0).getDepartmentList();
         }
-         
-//        System.out.println(this.university);
-//        System.out.println(this.schools);
-//        System.out.println(this.departments);
         updateUniversityCounter(this.university);
     }
     
@@ -82,23 +87,12 @@ public class UniRecDialogModel {
     }
     
  
-    public List<Department> getDeparmentList(int schoolRowIndex){
-        //check if row index is newly added and has no id
-        if (schools.get(schoolRowIndex).getId()==null) {
-            departmentsListUpdatedEventSource.notifyEventListeners(new ArrayList<>());
-            return null;
-        }
-        this.departments=schoolDepartmentPairList.get(schoolRowIndex).getDepartmentList();
-        departmentsListUpdatedEventSource.notifyEventListeners(this.departments);
-        return this.departments;
-    }
- 
     /**
-     * Retrieves from DB the departments for the current school
+     * Creates the Shool-Department pair Object
      * @param schoolRowIndex
      * @return The departments that belong to the current school
      */
-    private List<SchoolDepartmentPair> findAllDepartments() {
+    private List<SchoolDepartmentPair> createSchoolDepartmentPairObj() {
         List<SchoolDepartmentPair> schoolDepartmentPairList = new ArrayList<>();
     
         for (School item : schools) {
@@ -126,10 +120,6 @@ public class UniRecDialogModel {
         this.schools.add(school);
         this.insertedSchools.add(school);
         schoolDepartmentPairList.add(new SchoolDepartmentPair(school,new ArrayList<>()));
-//        System.out.println("-".repeat(10));
-//        for (var item:insertedSchools){
-//            System.out.println(item);
-//        }
         schoolsListUpdatedEventSource.notifyEventListeners(this.schools);        
     }
     
@@ -142,12 +132,6 @@ public class UniRecDialogModel {
         }
         
         schools.remove(school);
-//        for (int i=0 ;i<deletedDepartments.size();i++){
-//            if (deletedDepartments.get(i).getSchoolId().getId().equals(school.getId())){
-//                deletedDepartments.remove(i);
-////                System.out.println("deleted "+item.getName());
-//            }
-//        }
         schoolDepartmentPairList.remove(rowIndex);
         this.departments=new ArrayList<>();
         schoolsListUpdatedEventSource.notifyEventListeners(this.schools);      
@@ -155,15 +139,10 @@ public class UniRecDialogModel {
     }
 
     public void addDepartment(Department department){
-//        System.out.println(department);
         if( schools.isEmpty() ||departments.contains(department)) return;
         departments.add(department);
         insertedDepartments.add(department);
-//        System.out.println("-".repeat(10));
-//        for (var item:insertedDepartments){
-//            System.out.println(item);
-//        }
-        departmentsListUpdatedEventSource.notifyEventListeners(this.departments);        
+        //departmentsListUpdatedEventSource.notifyEventListeners(this.departments);        
     }
 
     public void deleteDepartment(int rowIndex){
@@ -174,8 +153,6 @@ public class UniRecDialogModel {
             deletedDepartments.add(departments.get(rowIndex));
         }
         departments.remove(department);
-//        schoolDepartmentPairList.remove(rowIndex);
-//        this.departments=null;
         departmentsListUpdatedEventSource.notifyEventListeners(this.departments);      
     }    
     
@@ -227,148 +204,9 @@ public class UniRecDialogModel {
     }
     
     
-
     public void saveData(){
-//        for (var item: schoolDepartmentPairList){
-//            System.out.println(item.getSchool());
-//            for (var department:item.getDepartmentList()){
-//                System.out.println("-".repeat(10)+department.getName());    
-//            }
-//        }
-//        
-//        System.out.println("-".repeat(10) + " Deleted Schools "+"-".repeat(10));    
-//        for (var item:deletedSchools){
-//            System.out.println(item.getName());
-//        }
-//        System.out.println("-".repeat(10) + " Inserted Schools "+"-".repeat(10));    
-//        for (var item:insertedSchools){
-//            System.out.println(item.getName());
-//        }
-//        System.out.println("-".repeat(10) + " Deleted Departments "+"-".repeat(10));    
-//        for (var item:deletedDepartments){
-//            System.out.println(item.getName());
-//        }
-//        System.out.println("-".repeat(10) + " Inserted Departments "+"-".repeat(10));    
-//        for (var item:insertedDepartments){
-//            System.out.println(item.getName());
-//        }
         dao.updateInsert(this.university,this.insertedSchools,this.insertedDepartments);
         dao.deleteSchoolsAndDepartments(this.deletedSchools,this.deletedDepartments);
-
-
-
-        
-        
         
     }
-    ////ok up to here
-//
-////    public List<String> getSchools() {
-////        if (university != null) {
-////            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-////            List<School> schoolList = schoolController.findSchoolsByUniversity(university.getName());
-////
-////            //debugging
-////            System.out.println("Loaded schools: " + schoolList.size());
-////
-////            // Μετατρέπουμε τη λίστα σε Strings
-////            return schoolList.stream()
-////                    .map(School::getName)
-////                    .collect(Collectors.toList());
-////        }
-////        return List.of(); // Αν δεν υπάρχουν σχολές, επιστρέφουμε κενή λίστα
-////    }
-//
-//    public void updateUniversityInfo(String newDescription, String newInfo) {
-//        if (university != null) {
-//            university.setDescription(newDescription);
-//            university.setInfo(newInfo);
-//
-//            try {
-//                universityController.edit(university);
-//                System.out.println("University info updated: " + university.getName());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                System.out.println("Failed to update university info.");
-//            }
-//        } else {
-//            System.out.println("No university found to update.");
-//        }
-//    }
-//
-//    public boolean addSchoolToDatabase(String schoolName) {
-//        if (university == null) {
-//            System.out.println("Error: No university selected.");
-//            return false;
-//        }
-//
-//        EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
-//        EntityTransaction transaction = em.getTransaction();
-//
-//        try {
-//            transaction.begin();
-//
-//            // ✅ Ελέγχουμε αν υπάρχει ήδη η σχολή
-//            SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-//            List<School> existingSchools = schoolController.findSchoolsByUniversity(university.getName());
-//
-//            for (School s : existingSchools) {
-//                if (s.getName().equalsIgnoreCase(schoolName)) {
-//                    System.out.println("School already exists in database: " + schoolName);
-//                    return false; // Αν υπάρχει ήδη, δεν προσθέτουμε ξανά
-//                }
-//            }
-//
-//            // ✅ Δημιουργούμε και αποθηκεύουμε τη νέα σχολή
-//            School newSchool = new School();
-//            newSchool.setName(schoolName);
-//            newSchool.setUniversityName(university); // Σύνδεση με το πανεπιστήμιο
-//
-//            em.persist(newSchool);
-//            transaction.commit();
-//            return true;
-//
-//        } catch (Exception e) {
-//            transaction.rollback();
-//            e.printStackTrace();
-//            return false;
-//        } finally {
-//            em.close();
-//        }
-//    }
-//    
-//    public boolean deleteSchoolFromDatabase(String schoolName) {
-//    if (university == null) {
-//        System.out.println("Error: No university selected.");
-//        return false;
-//    }
-//
-//    EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
-//    EntityTransaction transaction = em.getTransaction();
-//
-//    try {
-//        transaction.begin();
-//
-//       
-//        SchoolJpaController schoolController = new SchoolJpaController(Emf.getEntityManagerFactory());
-//        School school = schoolController.findSchoolByNameAndUniversity(schoolName, university.getName());
-//
-//        if (school == null) {
-//            System.out.println("No school found with name: " + schoolName);
-//            return false;
-//        }
-//
-//        em.remove(em.contains(school) ? school : em.merge(school));
-//        transaction.commit();
-//        return true;
-//
-//        } catch (Exception e) {
-//            transaction.rollback();
-//            e.printStackTrace();
-//            return false;
-//        } finally {
-//            em.close();
-//        }
-//    }
-
 }

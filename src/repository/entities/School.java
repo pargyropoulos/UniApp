@@ -33,13 +33,13 @@ import repository.entities.University;
     @NamedQuery(name = "School.findById", query = "SELECT s FROM School s WHERE s.id = :id"),
     @NamedQuery(name = "School.findByName", query = "SELECT s FROM School s WHERE s.name = :name"),
     //P.A.
-    @NamedQuery(name = "School.findByUniversityName", query = "SELECT s FROM School s WHERE s.universityName.name = :universityName"),
+    @NamedQuery(name = "School.findByUniversityName", query = "SELECT s FROM School s WHERE s.universityName.name = :universityName order by s.name")})
 
     //δικό μου querie να βρίσκει τις σχολές με βαση το όνομα πανεπιστημιου
-    @NamedQuery(name = "School.findByUniversity", query = "SELECT s FROM School s WHERE s.universityName = :universityName"),
-    @NamedQuery(name = "School.findByNameAndUniversity",
-            query = "SELECT s FROM School s WHERE s.name = :schoolName AND s.universityName.name = :universityName")
-})
+//    @NamedQuery(name = "School.findByUniversity", query = "SELECT s FROM School s WHERE s.universityName = :universityName"),
+//    @NamedQuery(name = "School.findByNameAndUniversity",
+//            query = "SELECT s FROM School s WHERE s.name = :schoolName AND s.universityName.name = :universityName")
+//})
 public class School implements Serializable {
 
     private static final long serialVersionUID = 1L;

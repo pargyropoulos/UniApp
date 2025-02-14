@@ -14,8 +14,9 @@ import repository.exceptions.PreexistingEntityException;
 
 /**
  *
+ * @author  Anastasios Botsialas std150497@ac.eap.gr - botsialas.a@devs-od.com
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+*/
 public class UniRecDAO {
     private final EntityManagerFactory emf;
     private final UniversityJpaController universityJpaController;
