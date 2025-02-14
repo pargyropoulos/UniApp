@@ -21,17 +21,16 @@ public class UniRecDialogModel {
     private final WebData webData;
     private final University university;
     private final UniRecDAO dao;
-//    private Integer schoolRowIndex;
 
     private final List<School> schools;
-//    private School currentSchool;
     private final List<School> deletedSchools = new ArrayList<>();
     private final Set<School> insertedSchools = new HashSet<>();
+    
     private List<Department> departments;
     private final List<Department> deletedDepartments = new ArrayList<>();
     private final Set<Department> insertedDepartments = new HashSet<>();
-    private List<SchoolDepartmentPair> schoolDepartmentPairList=new ArrayList<>();
     
+    private List<SchoolDepartmentPair> schoolDepartmentPairList=new ArrayList<>();
     private final CustomEventSource<List<Department>> departmentsListUpdatedEventSource = new CustomEventSource<>();
     private final CustomEventSource<List<School>> schoolsListUpdatedEventSource= new CustomEventSource<>();
     
@@ -180,36 +179,6 @@ public class UniRecDialogModel {
     }
 
     
-    public class SchoolDepartmentPair {
-        private School school;
-        private final List<Department> departmentList;
-
-        public SchoolDepartmentPair(School school, List<Department> departmentList) {
-            this.school = school;
-            this.departmentList = departmentList;
-        }
-
-        public School getSchool() {
-            return school;
-        }
-
-        public void setSchool(School school) {
-            this.school = school;
-        }
-
-        public List<Department> getDepartmentList() {
-            return departmentList;
-        }
-
-        public void addDepartment(Department department) {
-            this.departmentList.add(department);
-        }       
-
-        public void deleteDepartment(Department department) {
-            this.departmentList.remove(department);
-        }       
-}
-    
     ///<----P.A.
     public University getUniversity() {
         return university;
@@ -240,6 +209,14 @@ public class UniRecDialogModel {
         return university.getInfo();
     }
 
+    public void saveData(){
+        for (var item: schoolDepartmentPairList){
+            System.out.println(item.getSchool());
+            for (var department:item.getDepartmentList()){
+                System.out.println("-".repeat(10)+department.getName());    
+            }
+        }
+    }
     ////ok up to here
 //
 ////    public List<String> getSchools() {

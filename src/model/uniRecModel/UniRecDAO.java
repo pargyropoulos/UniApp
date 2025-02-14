@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 package model.uniRecModel;
 
@@ -9,10 +5,8 @@ import repository.School;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import repository.Department;
-//import javax.persistence.TypedQuery;
 import repository.SchoolJpaController;
 import repository.University;
 import repository.UniversityJpaController;
@@ -78,6 +72,11 @@ public class UniRecDAO {
         }
     }    
 
+    //List<SchoolDepartmentPair> schoolDepartmentPair
+    public void saveAll(){
+        
+    }
+    
 //    public List<Department> findDepartments(String universityName) {
 //        EntityManager em = this.emf.createEntityManager();
 //        try {

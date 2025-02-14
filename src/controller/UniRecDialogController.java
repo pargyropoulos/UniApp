@@ -8,8 +8,9 @@ import repository.School;
 
 /**
  *
- * @author tasos
- */
+ * @author  Anastasios Botsialas std150497@ac.eap.gr - botsialas.a@devs-od.com
+ * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
+*/
 public class UniRecDialogController {
     private final UniRecDialogModel model;
     private final UniRecDialogView view;
@@ -26,8 +27,9 @@ public class UniRecDialogController {
         view.populateDepartmentGrid(model.getDepartments());
 
         //Map Listeners
-        view.addExitButtonListener(e -> closeDialog());
-//        view.addSaveButtonListener(e -> saveUniversityInfo());
+        view.addExitButtonListener(e -> this.view.dispose());
+        view.addSaveButtonListener(e->this.model.saveData());
+
         view.addInsertSchoolButtonListener(e -> {
             if (this.view.getSchoolText().isEmpty()) return;
             addSchool(this.view.getSchoolText());
@@ -93,9 +95,5 @@ public class UniRecDialogController {
         view.setVisible(true);
     }
 
-    public void closeDialog() {
-        System.out.println("Closing frame...");
-        view.dispose();
-    }
 
 }
