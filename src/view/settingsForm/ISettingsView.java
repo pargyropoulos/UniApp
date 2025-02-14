@@ -3,7 +3,7 @@ package view.settingsForm;
 
 import java.awt.event.ActionListener;
 import java.util.List;
-import repository.Country;
+import repository.entities.Country;
 /**
  *
  * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or

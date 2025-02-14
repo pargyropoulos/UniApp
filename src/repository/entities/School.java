@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository;
+package repository.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -19,7 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import repository.University;
+import repository.entities.University;
 
 /**
  *
@@ -33,7 +33,7 @@ import repository.University;
     @NamedQuery(name = "School.findById", query = "SELECT s FROM School s WHERE s.id = :id"),
     @NamedQuery(name = "School.findByName", query = "SELECT s FROM School s WHERE s.name = :name"),
     //P.A.
-    @NamedQuery(name = "School.findByUniversityName", query = "SELECT s FROM School s WHERE s.universityName.name = :universityName order by s.universityName asc"),
+    @NamedQuery(name = "School.findByUniversityName", query = "SELECT s FROM School s WHERE s.universityName.name = :universityName"),
 
     //δικό μου querie να βρίσκει τις σχολές με βαση το όνομα πανεπιστημιου
     @NamedQuery(name = "School.findByUniversity", query = "SELECT s FROM School s WHERE s.universityName = :universityName"),

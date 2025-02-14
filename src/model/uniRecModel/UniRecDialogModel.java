@@ -1,11 +1,11 @@
 package model.uniRecModel;
 
-import repository.Department;
-import repository.School;
+import repository.entities.Department;
+import repository.entities.School;
 import HTTP.WebData;
 import java.util.ArrayList;
 import java.util.HashSet;
-import repository.University;
+import repository.entities.University;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -46,9 +46,9 @@ public class UniRecDialogModel {
             this.departments=schoolDepartmentPairList.get(0).getDepartmentList();
         }
          
-        System.out.println(this.university);
-        System.out.println(this.schools);
-        System.out.println(this.departments);
+//        System.out.println(this.university);
+//        System.out.println(this.schools);
+//        System.out.println(this.departments);
         updateUniversityCounter(this.university);
     }
     
@@ -85,7 +85,7 @@ public class UniRecDialogModel {
     public List<Department> getDeparmentList(int schoolRowIndex){
         //check if row index is newly added and has no id
         if (schools.get(schoolRowIndex).getId()==null) {
-            departmentsListUpdatedEventSource.notifyEventListeners(null);
+            departmentsListUpdatedEventSource.notifyEventListeners(new ArrayList<>());
             return null;
         }
         this.departments=schoolDepartmentPairList.get(schoolRowIndex).getDepartmentList();
@@ -126,10 +126,10 @@ public class UniRecDialogModel {
         this.schools.add(school);
         this.insertedSchools.add(school);
         schoolDepartmentPairList.add(new SchoolDepartmentPair(school,new ArrayList<>()));
-        System.out.println("-".repeat(10));
-        for (var item:insertedSchools){
-            System.out.println(item);
-        }
+//        System.out.println("-".repeat(10));
+//        for (var item:insertedSchools){
+//            System.out.println(item);
+//        }
         schoolsListUpdatedEventSource.notifyEventListeners(this.schools);        
     }
     
@@ -149,20 +149,20 @@ public class UniRecDialogModel {
 //            }
 //        }
         schoolDepartmentPairList.remove(rowIndex);
-        this.departments=null;
+        this.departments=new ArrayList<>();
         schoolsListUpdatedEventSource.notifyEventListeners(this.schools);      
         
     }
 
     public void addDepartment(Department department){
-        System.out.println(department);
+//        System.out.println(department);
         if( schools.isEmpty() ||departments.contains(department)) return;
         departments.add(department);
         insertedDepartments.add(department);
-        System.out.println("-".repeat(10));
-        for (var item:insertedDepartments){
-            System.out.println(item);
-        }
+//        System.out.println("-".repeat(10));
+//        for (var item:insertedDepartments){
+//            System.out.println(item);
+//        }
         departmentsListUpdatedEventSource.notifyEventListeners(this.departments);        
     }
 
@@ -229,34 +229,35 @@ public class UniRecDialogModel {
     
 
     public void saveData(){
-        for (var item: schoolDepartmentPairList){
-            System.out.println(item.getSchool());
-            for (var department:item.getDepartmentList()){
-                System.out.println("-".repeat(10)+department.getName());    
-            }
-        }
+//        for (var item: schoolDepartmentPairList){
+//            System.out.println(item.getSchool());
+//            for (var department:item.getDepartmentList()){
+//                System.out.println("-".repeat(10)+department.getName());    
+//            }
+//        }
+//        
+//        System.out.println("-".repeat(10) + " Deleted Schools "+"-".repeat(10));    
+//        for (var item:deletedSchools){
+//            System.out.println(item.getName());
+//        }
+//        System.out.println("-".repeat(10) + " Inserted Schools "+"-".repeat(10));    
+//        for (var item:insertedSchools){
+//            System.out.println(item.getName());
+//        }
+//        System.out.println("-".repeat(10) + " Deleted Departments "+"-".repeat(10));    
+//        for (var item:deletedDepartments){
+//            System.out.println(item.getName());
+//        }
+//        System.out.println("-".repeat(10) + " Inserted Departments "+"-".repeat(10));    
+//        for (var item:insertedDepartments){
+//            System.out.println(item.getName());
+//        }
+        dao.updateInsert(this.university,this.insertedSchools,this.insertedDepartments);
+        dao.deleteSchoolsAndDepartments(this.deletedSchools,this.deletedDepartments);
+
+
+
         
-        System.out.println("-".repeat(10) + " Deleted Schools "+"-".repeat(10));    
-        for (var item:deletedSchools){
-            System.out.println(item.getName());
-        }
-        System.out.println("-".repeat(10) + " Inserted Schools "+"-".repeat(10));    
-        for (var item:insertedSchools){
-            System.out.println(item.getName());
-        }
-        System.out.println("-".repeat(10) + " Deleted Departments "+"-".repeat(10));    
-        for (var item:deletedDepartments){
-            System.out.println(item.getName());
-        }
-        System.out.println("-".repeat(10) + " Inserted Departments "+"-".repeat(10));    
-        for (var item:insertedDepartments){
-            System.out.println(item.getName());
-        }
-        dao.deleteDepartments(deletedDepartments);
-        dao.deleteSchools(deletedSchools);
-        dao.createSchools(insertedSchools);
-        dao.createDepartments(insertedDepartments);
-        dao.updateUniversity(university);
         
         
     }

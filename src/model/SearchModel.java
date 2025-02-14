@@ -1,7 +1,7 @@
 package model;
 
 import java.util.List;
-import repository.Country;
+import repository.entities.Country;
 import model.SettingsModel.SettingsDAO;
 
 

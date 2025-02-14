@@ -6,8 +6,8 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import HTTP.WebData;
 import java.util.ArrayList;
-import repository.Department;
-import repository.School;
+import repository.entities.Department;
+import repository.entities.School;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 import static view.Utils.customizeButtonsInsidePanel;
@@ -23,7 +23,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
     }
 
     public int getSelectedSchoolRowIndex() {
-        System.out.println("School Grid Row Index: "+this.schoolGrid.getSelectedRow());
         return this.schoolGrid.getSelectedRow();     
     }
     
@@ -117,6 +116,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
             }
             populateDepartmentGrid(new ArrayList<Department>()) ;
         }        
+        this.revalidate();
+        this.repaint();;
     }
 
     public void populateDepartmentGrid(List<Department> list) {
@@ -129,6 +130,8 @@ public class UniRecDialogView extends javax.swing.JDialog {
                 model.addRow(new Object[]{item.getName()});
             }
         }
+        this.revalidate();
+        this.repaint();;        
     }    
     
     public String getSelectedSchool() {

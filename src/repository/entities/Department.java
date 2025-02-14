@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package repository;
+package repository.entities;
 
-import repository.School;
+import repository.entities.School;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

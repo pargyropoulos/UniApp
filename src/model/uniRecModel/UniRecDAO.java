@@ -1,17 +1,15 @@
 
 package model.uniRecModel;
 
-import repository.School;
+import repository.entities.School;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import repository.Department;
-import repository.DepartmentJpaController;
-import repository.SchoolJpaController;
-import repository.University;
-import repository.UniversityJpaController;
+import repository.entities.Department;
+import repository.entities.University;
+import repository.service.UniversityJpaController;
 import repository.exceptions.PreexistingEntityException;
 
 /**
@@ -20,15 +18,11 @@ import repository.exceptions.PreexistingEntityException;
  */
 public class UniRecDAO {
     private final EntityManagerFactory emf;
-    private final SchoolJpaController schoolJpaController;
-    private final DepartmentJpaController departmentJpaController;
     private final UniversityJpaController universityJpaController;
     
     public UniRecDAO() {
-         this.emf= repository.Emf.getEntityManagerFactory();
-         this.schoolJpaController= new SchoolJpaController(emf);
+         this.emf= repository.service.Emf.getEntityManagerFactory();
          this.universityJpaController=new UniversityJpaController(emf);
-         this.departmentJpaController=new DepartmentJpaController(emf);
     }
 
     public void createUniversity(University university) throws Exception {
@@ -74,41 +68,65 @@ public class UniRecDAO {
         }
     }    
 
-    //List<SchoolDepartmentPair> schoolDepartmentPair
-    public void deleteSchools(List<School> schools){
-        for (var item:schools){
-            try {
-            schoolJpaController.destroy(item.getId());
-            }catch (Exception ex){
-                System.out.println(ex);
+    public void updateInsert(University university,Set<School> schools,Set<Department> departments){
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            University managedUniversity = em.merge(university);
+            
+            for (School school : schools) {
+                school.setUniversityName(managedUniversity); // Set University for each School
+                em.persist(school);
+            }            
+            for (Department department : departments) {
+                School managedSchool = em.find(School.class, department.getSchoolId().getId());
+                if (managedSchool != null) {
+                    department.setSchoolId(managedSchool);
+                    em.persist(department);
+                } else {
+                    throw new RuntimeException("School not found for department: " + department.getName());
+                }
+            }        
+            em.getTransaction().commit();
+            System.out.println("University, Schools, and Departments updated successfully!");
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }   
+    
+    public void deleteSchoolsAndDepartments(List<School> schools, List<Department> departments) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            // Delete Departments first (ensure integrity)
+            for (Department department : departments) {
+                Department managedDepartment = em.merge(department);  // Merge the department to attach it to the persistence context
+                em.remove(managedDepartment);  // Remove the department
             }
+
+            // Delete Schools after deleting related departments
+            for (School school : schools) {
+                School managedSchool = em.merge(school); // Merge the school to attach it to the persistence context
+                em.remove(managedSchool); // Remove the school
+            }
+
+            // Commit the transaction
+            em.getTransaction().commit();
+            System.out.println("Schools and Departments deleted successfully!");
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
         }
     }
-    public void deleteDepartments(List<Department> departments){
-        for (var item:departments){
-            try {
-            departmentJpaController.destroy(item.getId());
-            }catch (Exception ex){
-                System.out.println(ex);
-            }
-        }
-    }
-    public void createDepartments(Set<Department> departments){
-        for (var item:departments){
-            try {
-            departmentJpaController.create(item);
-            }catch (Exception ex){
-                System.out.println(ex);
-            }
-        }
-    }
-    public void createSchools(Set<School> schools){
-        for (var item:schools){
-            try {
-            schoolJpaController.create(item);
-            }catch (Exception ex){
-                System.out.println(ex);
-            }
-        }
-    }     
+    
 }

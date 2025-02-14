@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 import view.Utils;
 import model.uniRecModel.UniRecDialogModel;
 import view.UniRecDialogView;
-import repository.Department;
-import repository.School;
+import repository.entities.Department;
+import repository.entities.School;
 
 /**
  *

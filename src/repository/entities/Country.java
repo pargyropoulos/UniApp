@@ -1,4 +1,4 @@
-package repository;
+package repository.entities;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

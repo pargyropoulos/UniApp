@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package repository;
+package repository.service;
 
+import repository.entities.Country;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

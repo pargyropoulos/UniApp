@@ -1,5 +1,5 @@
 package model.SettingsModel;
-import repository.Country;
+import repository.entities.Country;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +22,7 @@ public class SettingsModel implements ISettingsModel {
     
     public SettingsModel() {
         this.countryModel = null;
-        this.dao=new SettingsDAO(repository.Emf.getEntityManagerFactory());
+        this.dao=new SettingsDAO(repository.service.Emf.getEntityManagerFactory());
     }
     
     @Override

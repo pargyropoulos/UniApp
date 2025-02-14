@@ -1,7 +1,7 @@
 package controller;
 
 import javax.swing.JPanel;
-import repository.Country;
+import repository.entities.Country;
 import model.SettingsModel.ISettingsModel;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;

@@ -1,11 +1,11 @@
 package controller;
 
+import repository.service.Emf;
 import view.settingsForm.SettingsView;
 import model.SettingsModel.SettingsModel;
 import javax.swing.JPanel;
 import model.*;
 import view.*;
-import repository.*;
 
 /**
  * 

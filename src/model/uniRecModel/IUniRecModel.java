@@ -1,9 +1,9 @@
 package model.uniRecModel;
 
-import repository.Department;
-import repository.School;
+import repository.entities.Department;
+import repository.entities.School;
 import java.util.List;
-import repository.Country;
+import repository.entities.Country;
 import utils.ICustomEventListener;
 
 /**

@@ -1,6 +1,6 @@
 package model.SettingsModel;
 
-import repository.Country;
+import repository.entities.Country;
 import java.util.List;
 import utils.ICustomEventListener;
 
