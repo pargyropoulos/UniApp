@@ -470,6 +470,11 @@ public class UniRecDialogView extends javax.swing.JDialog {
         departmentGrid.setShowGrid(false);
         departmentGrid.getTableHeader().setResizingAllowed(false);
         departmentGrid.getTableHeader().setReorderingAllowed(false);
+        departmentGrid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                departmentGridMouseClicked(evt);
+            }
+        });
         departScrol.setViewportView(departmentGrid);
 
         universityName3.setBackground(new java.awt.Color(60, 63, 65));
@@ -613,6 +618,19 @@ public class UniRecDialogView extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_schoolGridMouseClicked
+
+    private void departmentGridMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentGridMouseClicked
+        if (schoolGrid.getSelectedRow()<0 && schoolGrid.getRowCount()>0) {
+            schoolGrid.setRowSelectionInterval(0, 0);
+            
+        }
+//        if (departmentGrid.getRowCount()>0 && departmentGrid.getSelectedRow()<0 ){
+//            this.departmentGridSelectedEventSource.notifyEventListeners(0);
+//        }else if (departmentGrid.getSelectedRow()>=0){
+//            this.departmentSelectedEventSource.notifyEventListeners(departmentGrid.getSelectedRow());
+//        }
+
+    }//GEN-LAST:event_departmentGridMouseClicked
 
 
 

@@ -3,10 +3,12 @@ package model.uniRecModel;
 
 import repository.School;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import repository.Department;
+import repository.DepartmentJpaController;
 import repository.SchoolJpaController;
 import repository.University;
 import repository.UniversityJpaController;
@@ -21,12 +23,14 @@ import repository.exceptions.PreexistingEntityException;
 public class UniRecDAO {
     private final EntityManagerFactory emf;
     private final SchoolJpaController schoolJpaController;
+    private final DepartmentJpaController departmentJpaController;
     private final UniversityJpaController universityJpaController;
     
     public UniRecDAO() {
          this.emf= repository.Emf.getEntityManagerFactory();
          this.schoolJpaController= new SchoolJpaController(emf);
          this.universityJpaController=new UniversityJpaController(emf);
+         this.departmentJpaController=new DepartmentJpaController(emf);
     }
 
     public void createUniversity(University university) throws Exception {
@@ -37,11 +41,11 @@ public class UniRecDAO {
         }
     }
     
-    public void updateUniversity(University university) throws Exception {
+    public void updateUniversity(University university) {
         try {
             universityJpaController.edit(university);
-        } catch (IllegalOrphanException | NonexistentEntityException ex) {
-            throw new Exception("Could not update the university. " + ex.getMessage(), ex);
+        } catch (Exception ex) {
+            System.out.println("Could not update the university. " + ex.getMessage());
         }
     }    
     
@@ -73,10 +77,42 @@ public class UniRecDAO {
     }    
 
     //List<SchoolDepartmentPair> schoolDepartmentPair
-    public void saveAll(){
-        
+    public void deleteSchools(List<School> schools){
+        for (var item:schools){
+            try {
+            schoolJpaController.destroy(item.getId());
+            }catch (Exception ex){
+                System.out.println(ex);
+            }
+        }
     }
-    
+    public void deleteDepartments(List<Department> departments){
+        for (var item:departments){
+            try {
+            departmentJpaController.destroy(item.getId());
+            }catch (Exception ex){
+                System.out.println(ex);
+            }
+        }
+    }
+    public void createDepartments(Set<Department> departments){
+        for (var item:departments){
+            try {
+            departmentJpaController.create(item);
+            }catch (Exception ex){
+                System.out.println(ex);
+            }
+        }
+    }
+    public void createSchools(Set<School> schools){
+        for (var item:schools){
+            try {
+            schoolJpaController.create(item);
+            }catch (Exception ex){
+                System.out.println(ex);
+            }
+        }
+    }    
 //    public List<Department> findDepartments(String universityName) {
 //        EntityManager em = this.emf.createEntityManager();
 //        try {

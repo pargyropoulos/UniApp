@@ -81,11 +81,7 @@ public class UniRecDialogModel {
         System.out.println("university counter="+this.university.getCounter());
     }
     
-    /**
-     * Retrieves from DB the departments for the current school
-     * @param schoolRowIndex
-     * @return The departments that belong to the current school
-     */
+ 
     public List<Department> getDeparmentList(int schoolRowIndex){
         //check if row index is newly added and has no id
         if (schools.get(schoolRowIndex).getId()==null) {
@@ -96,7 +92,12 @@ public class UniRecDialogModel {
         departmentsListUpdatedEventSource.notifyEventListeners(this.departments);
         return this.departments;
     }
-    
+ 
+    /**
+     * Retrieves from DB the departments for the current school
+     * @param schoolRowIndex
+     * @return The departments that belong to the current school
+     */
     private List<SchoolDepartmentPair> findAllDepartments() {
         List<SchoolDepartmentPair> schoolDepartmentPairList = new ArrayList<>();
     
@@ -122,8 +123,8 @@ public class UniRecDialogModel {
     
     public void addSchool(School school){
         if (schools.contains(school)) return;
-        schools.add(school);
-        insertedSchools.add(school);
+        this.schools.add(school);
+        this.insertedSchools.add(school);
         schoolDepartmentPairList.add(new SchoolDepartmentPair(school,new ArrayList<>()));
         System.out.println("-".repeat(10));
         for (var item:insertedSchools){
@@ -137,12 +138,20 @@ public class UniRecDialogModel {
         if (insertedSchools.contains(school)){
             insertedSchools.remove(school);
         }else {
-            deletedSchools.add(schools.get(rowIndex));
+            deletedSchools.add(school);
         }
+        
         schools.remove(school);
+//        for (int i=0 ;i<deletedDepartments.size();i++){
+//            if (deletedDepartments.get(i).getSchoolId().getId().equals(school.getId())){
+//                deletedDepartments.remove(i);
+////                System.out.println("deleted "+item.getName());
+//            }
+//        }
         schoolDepartmentPairList.remove(rowIndex);
         this.departments=null;
         schoolsListUpdatedEventSource.notifyEventListeners(this.schools);      
+        
     }
 
     public void addDepartment(Department department){
@@ -202,12 +211,22 @@ public class UniRecDialogModel {
         return university.getDescription();
     }
 
+    public void setDescription(String description) {
+        this.university.setDescription(description);
+    }
+
 //
 //    //Για να εμφανίσω τα στοιχεία στο info
 //    //απο την βάδη δεδομενων
     public String getInfo() {
         return university.getInfo();
     }
+
+    public void setInfo(String info) {
+        this.university.setInfo(info);
+    }
+    
+    
 
     public void saveData(){
         for (var item: schoolDepartmentPairList){
@@ -216,6 +235,30 @@ public class UniRecDialogModel {
                 System.out.println("-".repeat(10)+department.getName());    
             }
         }
+        
+        System.out.println("-".repeat(10) + " Deleted Schools "+"-".repeat(10));    
+        for (var item:deletedSchools){
+            System.out.println(item.getName());
+        }
+        System.out.println("-".repeat(10) + " Inserted Schools "+"-".repeat(10));    
+        for (var item:insertedSchools){
+            System.out.println(item.getName());
+        }
+        System.out.println("-".repeat(10) + " Deleted Departments "+"-".repeat(10));    
+        for (var item:deletedDepartments){
+            System.out.println(item.getName());
+        }
+        System.out.println("-".repeat(10) + " Inserted Departments "+"-".repeat(10));    
+        for (var item:insertedDepartments){
+            System.out.println(item.getName());
+        }
+        dao.deleteDepartments(deletedDepartments);
+        dao.deleteSchools(deletedSchools);
+        dao.createSchools(insertedSchools);
+        dao.createDepartments(insertedDepartments);
+        dao.updateUniversity(university);
+        
+        
     }
     ////ok up to here
 //

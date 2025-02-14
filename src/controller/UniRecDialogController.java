@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.ActionListener;
 import view.Utils;
 import model.uniRecModel.UniRecDialogModel;
 import view.UniRecDialogView;
@@ -28,7 +29,7 @@ public class UniRecDialogController {
 
         //Map Listeners
         view.addExitButtonListener(e -> this.view.dispose());
-        view.addSaveButtonListener(e->this.model.saveData());
+        view.addSaveButtonListener(e->saveData());
 
         view.addInsertSchoolButtonListener(e -> {
             if (this.view.getSchoolText().isEmpty()) return;
@@ -36,6 +37,7 @@ public class UniRecDialogController {
         });
         view.addInsertDepartmentButtonListener(e -> {
             if (this.view.getDepartmentText().isEmpty()) return;
+            if (this.view.getSelectedSchoolRowIndex()<0) return;
             addDepartment(this.view.getDepartmentText());
         });        
         
@@ -93,6 +95,12 @@ public class UniRecDialogController {
     public void run() {
         this.view.setLocation(Utils.getParentCenterLocation(this.view.getParent(), this.view));
         view.setVisible(true);
+    }
+
+    private void saveData() {
+        model.setDescription(view.getDescriptionText());
+        model.setInfo(view.getInfoText());
+        this.model.saveData();
     }
 
 
