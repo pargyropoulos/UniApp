@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import model.StatisticsModel;
 import utils.ICustomEventListener;
+import utils.PDFExporter;
 
 import static view.Utils.customizeButtonsInsidePanel;
 
@@ -215,7 +216,7 @@ public class StatisticsView extends javax.swing.JPanel {
             }
 
             // Κλήση της μεθόδου εξαγωγής σε PDF
-    //        PDFExporter.exportToPDF(grid, filePath);
+            PDFExporter.exportToPDF(grid, filePath);
             javax.swing.JOptionPane.showMessageDialog(this, "PDF saved successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_exportBtnActionPerformed

@@ -127,7 +127,7 @@ public class Utils {
         JFreeChart chart = ChartFactory.createBarChart(
                 "University Visits", // Chart title
                 "University", // X-axis label
-                "Visits", // Y-axis label
+                "Views", // Y-axis label
                 dataset, // Dataset
                 PlotOrientation.VERTICAL, // Orientation
                 false, // Include legend
@@ -145,10 +145,6 @@ public class Utils {
         renderer.setDrawBarOutline(false);
 
         plot.setBackgroundPaint(Color.white);
-
-        
-                
-        
         return chart;        
     }
 
