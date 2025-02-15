@@ -1,10 +1,14 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import repository.service.Emf;
 import view.settingsForm.SettingsView;
 import model.SettingsModel.SettingsModel;
 import javax.swing.JPanel;
 import model.*;
+import repository.entities.University;
+import repository.service.UniversityService;
 import view.*;
 
 /**
@@ -24,6 +28,7 @@ public final class MainController{
         view.addUniBtnListener(e->loadUniGridForm());
         view.addAboutBtnListener(e->loadAboutForm());
         view.addSettingsBtnListener(e->loadSettingsForm());
+        view.addStatsBtnListener(e->loadStatsForm());
         view.addExitBtnListener(e->{
             Emf.closeEntityManagerFactory();
             System.exit(0);
@@ -43,7 +48,6 @@ public final class MainController{
         removePanel(activePanel);
         UniGridController ctrl=new UniGridController(new UniGridView(), new  UniGridModel());
         ctrl.addCloseFormEventListener(e->this.removePanel(activePanel));
-//        ctrl.closeFormEventSource.addEventListener(e->this.removePanel(activePanel));
         addPanel(ctrl.getView());
         ctrl.run();
     }
@@ -65,7 +69,17 @@ public final class MainController{
         addPanel(ctrl.getView());
         ctrl.run();
     }    
-        
+
+    private void loadStatsForm(){
+        if (activePanel instanceof StatisticsView) return;
+        removePanel(activePanel);
+        StatisticsController ctrl=new StatisticsController(new StatisticsView(),new StatisticsModel());
+        ctrl.addCloseFormEventListener(e->this.removePanel(activePanel));
+        addPanel(ctrl.getView());
+        ctrl.run();
+    }    
+    
+    
     private void addPanel(JPanel view){
         this.view.addPanel(view);
         this.activePanel=view;

@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
-import repository.service.UniversityDTO;
 
 /**
  *
@@ -11,16 +6,18 @@ import repository.service.UniversityDTO;
  */
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
+import repository.entities.University;
+import repository.service.UniversityService;
 
-public class UniversityTableModel extends AbstractTableModel {
+public final class StatisticsModel extends AbstractTableModel {
 
-    private final List<UniversityDTO> universities;
+    private final List<University> universities;
     private final String[] columnNames = {"Universities", "Visits"};
 
-    public UniversityTableModel(List<UniversityDTO> universities) {
-        this.universities = universities;
+    public StatisticsModel() {
+        this.universities=new UniversityService().getTop10UniversitiesOrderByCounterDescNameAsc();
     }
-
+    
     @Override
     public int getRowCount() {
         return universities.size();
@@ -33,7 +30,7 @@ public class UniversityTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        UniversityDTO university = universities.get(rowIndex);
+        University university = universities.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return university.getName(); // University name

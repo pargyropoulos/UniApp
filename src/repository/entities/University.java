@@ -28,6 +28,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "University.findByName", query = "SELECT u FROM University u WHERE u.name = :name"),
     @NamedQuery(name = "University.findByCounter", query = "SELECT u FROM University u WHERE u.counter = :counter"),
     @NamedQuery(name = "University.findByDescription", query = "SELECT u FROM University u WHERE u.description = :description"),
+    @NamedQuery(name = "University.findAllOrderByCounterDesc", query = "SELECT u FROM University u ORDER BY u.counter DESC, u.name ASC"),
     @NamedQuery(name = "University.findByInfo", query = "SELECT u FROM University u WHERE u.info = :info")})
 public class University implements Serializable {
 

@@ -4,7 +4,6 @@ package model;
  *
  * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
  */
-
 import HTTP.WebData;
 import java.util.List;
 import utils.CustomEventSource;

@@ -1,26 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package repository.service;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import repository.entities.University;
 /**
  *
  * @author xe-di
  */
 public class UniversityService {
-
-    private UniversityRankingRepository universityRepository;
-
-    public UniversityService() {
-        universityRepository = new UniversityRankingRepository();
-    }
-
-    public List<UniversityDTO> getUniversitiesWithCounterGreaterThanEqualTen() {
-        return universityRepository.findUniversitiesWithCounterGreaterThanEqualTen();
-    }
-
-//    public List<UniversityDTO> getAllUniversities() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
+    public List<University> getTop10UniversitiesOrderByCounterDescNameAsc() {
+        EntityManagerFactory emf= repository.service.Emf.getEntityManagerFactory();
+        EntityManager em = emf.createEntityManager();
+        List<University> universities = em.createNamedQuery("University.findAllOrderByCounterDesc", University.class)
+                                          .setMaxResults(10) // Limit results to top 10
+                                          .getResultList();
+        em.close();
+        return universities;
+    }    
 }

@@ -1,33 +1,50 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 package controller;
-import view.StatsView;
-import repository.service.UniversityService;
-import repository.service.UniversityDTO;
-import java.util.List;
-import view.Utils;
+
+import model.StatisticsModel;
+import utils.CustomEventSource;
+import utils.ICustomEventListener;
+import view.StatisticsView;
 
 /**
  *
- * @author xe-di
+ * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
  */
-
 public class StatisticsController {
-    private StatsView view;
-    private UniversityService universityService;
+    private StatisticsView view;
+    private StatisticsModel model;
+    private final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
 
-    public StatisticsController() {
-        universityService = new UniversityService();
-        
+    StatisticsController(StatisticsView statisticsView, StatisticsModel statisticsModel) {
+        this.model=statisticsModel;
+        this.view=statisticsView;
+        view.setGridModel(this.model);
+        view.addCloseButtonListener(e-> closeForm());
+    }
+    
+    public void addCloseFormEventListener(ICustomEventListener listener){
+        closeFormEventSource.addEventListener(listener);
+    }
+    
+    public StatisticsView getView(){
+        return this.view;
+    }
+    
+    public void run(){
+        this.view.setVisible(true);
+        this.view.revalidate();
+        this.view.repaint();
     }
 
-    public void loadStatistics() {
-        List<UniversityDTO> popularUniversities = universityService.getUniversitiesWithCounterGreaterThanEqualTen();
-        view = new StatsView(popularUniversities);
-        this.view.setLocation(Utils.getParentCenterLocation(this.view.getParent(), this.view)); 
-        view.setVisible(true);
-    }
+    private void closeForm() {
+        view.setVisible(false);
+        view.revalidate();
+        view.repaint();
+        closeFormEventSource.notifyEventListeners();
+    }    
 
-    public StatsView getView() {
-        return view;
-    }
 }
-
