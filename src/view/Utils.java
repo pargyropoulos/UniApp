@@ -4,13 +4,26 @@ import constants.ColorConstants;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import repository.entities.University;
 
 
 /**
@@ -100,4 +113,61 @@ public class Utils {
         }        
     }   
 
+    public static CategoryDataset createDataset(List<University> universities) {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (University university : universities) {
+            dataset.addValue(university.getCounter(), "Visits", university.getName());
+        }
+
+        return dataset;
+    }
+
+    public static JFreeChart createChart(CategoryDataset dataset) {
+        JFreeChart chart = ChartFactory.createBarChart(
+                "University Visits", // Chart title
+                "University", // X-axis label
+                "Visits", // Y-axis label
+                dataset, // Dataset
+                PlotOrientation.VERTICAL, // Orientation
+                false, // Include legend
+                true, // Tooltips
+                false // URLs
+        );
+
+        // Customizing the renderer to set the bar color to blue
+        CategoryPlot plot = chart.getCategoryPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setSeriesPaint(0, ColorConstants.buttonBackgroundColor);
+
+        // Disable bar outlines to make it flat
+        renderer.setBarPainter(new BarRenderer().getBarPainter());
+        renderer.setDrawBarOutline(false);
+
+        plot.setBackgroundPaint(Color.white);
+
+        
+                
+        
+        return chart;        
+    }
+
+    public static void showChart(List<University> universities) {
+        CategoryDataset dataset = createDataset(universities);
+        JFreeChart chart = createChart(dataset);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+
+        // Create and set up a modal dialog
+        JDialog dialog = new JDialog((Frame) null, "University Visits Chart", true);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setContentPane(chartPanel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+
+        // Display the modal dialog
+        dialog.setVisible(true);
+    }
+    
 }

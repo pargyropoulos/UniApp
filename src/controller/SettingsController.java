@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import repository.entities.Country;
 import model.SettingsModel.ISettingsModel;
@@ -16,7 +18,6 @@ public class SettingsController {
     private final ISettingsModel model;
     private final ISettingsView view;
     private final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
-//    public final CustomEventSource<List<Country>> dataUpdatedEventSource =new CustomEventSource<>();
     
     public void addCloseFormEventListener(ICustomEventListener listener){
         closeFormEventSource.addEventListener(listener);
@@ -27,15 +28,12 @@ public class SettingsController {
         this.view = view;  
         mapListeners();
         model.populateCountryList();
-        
     }
     
     private void mapListeners(){
-//        model.dataUpdatedEventSource.addEventListener(e->view.updateGrid(e.getEventMessage()));
         model.addDataUpdatedEventListener(e->view.updateGrid(e.getEventMessage()));
-        view.addCloseEventListener(e->{System.out.println("form closed!"); closeFormEventSource.notifyEventListeners();});
-        view.addClearDbEventListener(e->System.out.println("clears db!"));
-        view.addSaveEventListener(e->System.out.println("Saves changes"));
+        view.addCloseEventListener(e->closeFormEventSource.notifyEventListeners());
+        view.addClearDbEventListener(e->clearDB());
         view.addSaveEventListener(e-> {
             try {
                 model.saveData();
@@ -52,7 +50,6 @@ public class SettingsController {
         return view.getView();
     }
 
-    
     private void deleteEntry(){
         int index= this.view.getSelectedRowIndex();
         if (index==-1) return;
@@ -67,13 +64,28 @@ public class SettingsController {
         view.setCountryTextBox(null);
     }
     
-    public void populateList(){
+    private Boolean toggle=false;
+    private void clearDB(){
+        if (!toggle){
+            toggle=!toggle;
+            view.setClearDBbtnText("Click if you dare!");
+            return;
+        }
+        
+        toggle=!toggle;
+        view.setClearDBbtnText("Clear DB");
+        
+        try {
+            model.clearDb();
+            } catch (Exception ex) {
+                Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
+
     public void run(){
         this.view.show();
     }
-
 }
 
 

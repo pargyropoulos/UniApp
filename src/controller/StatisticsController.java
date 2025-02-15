@@ -9,6 +9,7 @@ import model.StatisticsModel;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 import view.StatisticsView;
+import view.Utils;
 
 /**
  *
@@ -24,6 +25,7 @@ public class StatisticsController {
         this.view=statisticsView;
         view.setGridModel(this.model);
         view.addCloseButtonListener(e-> closeForm());
+        view.addGraphEventListener(e->Utils.showChart(model.getUniversities()));
     }
     
     public void addCloseFormEventListener(ICustomEventListener listener){

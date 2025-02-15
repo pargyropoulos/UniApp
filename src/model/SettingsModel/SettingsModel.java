@@ -85,7 +85,7 @@ public class SettingsModel implements ISettingsModel {
 
     @Override
     public void clearDb() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        dao.deleteAllEntries();
     }
 
     @Override

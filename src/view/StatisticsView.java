@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import javax.swing.table.TableCellRenderer;
 import model.StatisticsModel;
+import utils.ICustomEventListener;
 
 import static view.Utils.customizeButtonsInsidePanel;
 
@@ -27,6 +28,10 @@ public class StatisticsView extends javax.swing.JPanel {
     public void addCloseButtonListener(ActionListener listener) {
         closeBtn.addActionListener(listener);
     }    
+
+    public void addGraphEventListener(ActionListener listener){
+        chartBtn.addActionListener(listener);   
+    }
     
     public void setGridModel(StatisticsModel model){
         this.grid.setModel(model);
@@ -62,6 +67,7 @@ public class StatisticsView extends javax.swing.JPanel {
         exportBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         grid = new javax.swing.JTable();
+        chartBtn = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -94,6 +100,11 @@ public class StatisticsView extends javax.swing.JPanel {
         exportBtn.setMaximumSize(new java.awt.Dimension(200, 50));
         exportBtn.setMinimumSize(new java.awt.Dimension(200, 50));
         exportBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+        exportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportBtnActionPerformed(evt);
+            }
+        });
 
         grid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         grid.setModel(new javax.swing.table.DefaultTableModel(
@@ -137,6 +148,22 @@ public class StatisticsView extends javax.swing.JPanel {
         grid.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(grid);
 
+        chartBtn.setBackground(new java.awt.Color(45, 45, 48));
+        chartBtn.setForeground(new java.awt.Color(255, 255, 255));
+        chartBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/stats.png"))); // NOI18N
+        chartBtn.setText("Diagram");
+        chartBtn.setToolTipText("");
+        chartBtn.setActionCommand("Export");
+        chartBtn.setAlignmentY(0.0F);
+        chartBtn.setFocusPainted(false);
+        chartBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chartBtn.setIconTextGap(32);
+        chartBtn.setInheritsPopupMenu(true);
+        chartBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        chartBtn.setMaximumSize(new java.awt.Dimension(200, 50));
+        chartBtn.setMinimumSize(new java.awt.Dimension(200, 50));
+        chartBtn.setPreferredSize(new java.awt.Dimension(200, 50));
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -147,6 +174,8 @@ public class StatisticsView extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(chartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(exportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -159,20 +188,50 @@ public class StatisticsView extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         add(mainPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void exportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportBtnActionPerformed
+        // TODO add your handling code here:
+       // Δημιουργία JFileChooser για επιλογή διαδρομής
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        fileChooser.setDialogTitle("Save PDF");
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF Documents", "pdf"));
+
+        int userSelection = fileChooser.showSaveDialog(this);
+
+        if (userSelection == javax.swing.JFileChooser.APPROVE_OPTION) {
+            java.io.File fileToSave = fileChooser.getSelectedFile();
+            String filePath = fileToSave.getAbsolutePath();
+
+            // Αν δεν έχει κατάληξη .pdf, προσθέτουμε
+            if (!filePath.toLowerCase().endsWith(".pdf")) {
+                filePath += ".pdf";
+            }
+
+            // Κλήση της μεθόδου εξαγωγής σε PDF
+    //        PDFExporter.exportToPDF(grid, filePath);
+            javax.swing.JOptionPane.showMessageDialog(this, "PDF saved successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_exportBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton chartBtn;
     private javax.swing.JButton closeBtn;
     private javax.swing.JButton exportBtn;
     private javax.swing.JTable grid;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
+
+    public void showChart(StatisticsModel model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

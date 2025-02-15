@@ -246,6 +246,10 @@ public class SettingsView extends javax.swing.JPanel implements ISettingsView{
     @Override
     public JPanel getView() {return this;}
 
+    public void setClearDBbtnText(String text){
+        clearDbBtn.setText(text);
+    }
+    
     private void populateGrid(List<Country> data) {
         int size=data!=null ? data.size():0;
         Object[][] countries = new Object[size][6];

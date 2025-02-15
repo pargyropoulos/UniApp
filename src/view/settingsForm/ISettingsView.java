@@ -21,4 +21,6 @@ public interface ISettingsView{
     void setCountryTextBox(String countryName);
     void updateGrid(List<Country> data);
     <T> T getView();
+
+    public void setClearDBbtnText(String press_to_delete_permantly);
 }

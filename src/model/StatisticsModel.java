@@ -12,10 +12,14 @@ import repository.service.UniversityService;
 public final class StatisticsModel extends AbstractTableModel {
 
     private final List<University> universities;
-    private final String[] columnNames = {"Universities", "Visits"};
+    private final String[] columnNames = {"University", "Views"};
 
     public StatisticsModel() {
         this.universities=new UniversityService().getTop10UniversitiesOrderByCounterDescNameAsc();
+    }
+    
+    public List<University> getUniversities(){
+        return this.universities;
     }
     
     @Override
