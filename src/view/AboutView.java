@@ -95,7 +95,7 @@ public class AboutView extends javax.swing.JPanel {
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("Botsialas Athanasios");
+        jLabel6.setText("Botsialas Anastasios");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Scrum Master:");

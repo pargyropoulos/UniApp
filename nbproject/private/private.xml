@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/SettingsModel/ISettingsModel.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/SettingsModel/SettingsModel.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/repository/service/CountryJpaController.java</file>
             <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/StatisticsView.java</file>
             <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/Utils.java</file>
             <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/StatisticsModel.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/settingsForm/SettingsView.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/SettingsController.java</file>
             <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/StatisticsController.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/SettingsModel/SettingsDAO.java</file>
             <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/UniGridController.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/utils/PDFExporter.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/settingsForm/ISettingsView.java</file>
         </group>
     </open-files>
 </project-private>

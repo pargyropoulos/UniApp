@@ -199,7 +199,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Botsialas Athanasios"/>
+            <Property name="text" type="java.lang.String" value="Botsialas Anastasios"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
