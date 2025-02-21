@@ -5,18 +5,12 @@ import repository.entities.Country;
 import model.SettingsModel.SettingsDAO;
 
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
-
 public class SearchModel {
     private String universityName="";
     private String country="";
 
     public List<Country> getListOfCountries(){
         SettingsDAO dao =new SettingsDAO(null);
-//        SettingsDAO dao=new SettingsDAO(repository.Emf.getEntityManagerFactory());
         return dao.findAllOrdered();
     }
         
@@ -40,7 +34,11 @@ public class SearchModel {
         return isAlphanumeric(universityName) && isAlphanumeric(country);
     }
     
-    // Helper method to check if a string is alphanumeric using Regex
+    /**
+     * Helper method to check if a string is alphanumeric using Regex
+     * @param text
+     * @return true if the text matches EN alpanumerics
+     */
     private boolean isAlphanumeric(String text) {
         return text.matches("[a-zA-Z 0-9]*");
     }    

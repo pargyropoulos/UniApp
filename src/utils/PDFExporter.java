@@ -1,10 +1,5 @@
 package utils;
 
-/**
- *
- * @author xe-di
- */
-
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import javax.swing.JTable;

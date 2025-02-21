@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package repository.service;
 
 import repository.entities.Country;
@@ -13,7 +8,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import repository.exceptions.NonexistentEntityException;
 import repository.exceptions.PreexistingEntityException;
 

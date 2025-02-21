@@ -8,16 +8,10 @@ import constants.ColorConstants;
 import java.awt.Desktop;
 import java.awt.event.ActionListener;
 import java.net.URI;
-import javax.swing.JButton;
-import utils.CustomEventSource;
-import static view.Utils.customizeButton;
+
 import static view.Utils.customizeButtonsInsidePanel;
 
-/**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
- * std154845@ac.eap.gr
- */
+
 public class AboutView extends javax.swing.JPanel {
     /**
      * Creates new form About

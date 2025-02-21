@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package controller;
 
 import model.StatisticsModel;
@@ -11,10 +6,7 @@ import utils.ICustomEventListener;
 import view.StatisticsView;
 import view.Utils;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public class StatisticsController {
     private StatisticsView view;
     private StatisticsModel model;

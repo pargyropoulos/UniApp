@@ -14,39 +14,48 @@ import utils.ICustomEventListener;
 import view.SearchDialogView;
 import view.Utils;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public class SearchController implements ActionListener, FocusListener{
     private final SearchModel model;
     private final SearchDialogView view;
     private final CustomEventSource<List<WebData>> dataFetchedEventSource = new CustomEventSource<>();
     
+    /**
+     * Adds event listener to data fetched event
+     * @param listener 
+     */
     public void addDataFetchedEventListener (ICustomEventListener<List<WebData>> listener){
         dataFetchedEventSource.addEventListener(listener);
     }
     
+    /**
+     * MVC constructor
+     * Maps all evet listeners to methods
+     * @param view
+     * @param model 
+     */
     public SearchController(SearchDialogView view,SearchModel model) {
         this.model = model;
         this.view = view;
         view.populateComboBox(model.getListOfCountries());
-        view.addSearchBtnActionListener(e->actionPerformed(e));
+        view.addSearchBtnActionListener(this);
         view.addCancelBtnActionListener(e-> view.dispose());
-        view.addUniversityNameTextBoxActionListener(e->actionPerformed(e));
+        view.addUniversityNameTextBoxActionListener(this);
         view.addCountryComboBoxFocusListener(this);
-////        public final CustomEventSource<List<Country>> dataUpdatedEventSource = new CustomEventSource<>();
     }
     
+    /**
+     * Shows the view in the center of the parent window
+     */
     public void run(){
-        //center the new for inside main frame
         this.view.setLocation(Utils.getParentCenterLocation(this.view.getParent(), this.view)); 
         this.view.setVisible(true);
     }
     
+    /**
+     * Initiates an HTTP request
+     */
     private void search(){
-//        view.getInfoLabel().setText("Please wait while fetching data...");
-//        view.getInfoLabel().setVisible(true);
         WebDataFetcher webDataFetcher = new WebDataFetcher();
         System.out.println(model.getSearchString());
         List<WebData> uniList = new ArrayList<>();
@@ -59,8 +68,7 @@ public class SearchController implements ActionListener, FocusListener{
         }else {
             view.setInfoLabelText("Info Message: No entry found!");
             view.setInfoLabelVisible(true);
-        }
-            
+            }
         }
         catch (IOException e) {
             view.setInfoLabelVisible(true);
@@ -69,13 +77,18 @@ public class SearchController implements ActionListener, FocusListener{
         }
     }
 
+    /**
+     * Populates the model with fetched data
+     */
     private void populateModel(){
         model.setUniversityName(view.getUniversityName());
         model.setCountry(view.getCountry());
-        System.out.println(model.getUniversityName());
-        System.out.println(model.getCountry());
     }
 
+    /**
+     * Checks if the name search string is valid
+     * @return 
+     */
     private Boolean isTextValidated(){
 
         Boolean validated=true;
@@ -86,21 +99,33 @@ public class SearchController implements ActionListener, FocusListener{
         } else {
             view.setErrorLabelVisible(false);
         }
-                
         return validated;
     }
     
+    /**
+     * Implementation if the ActionListener interface.
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         populateModel();
         if (isTextValidated()) search();
     }
 
+    /**
+     * Implementation of the FocusListener interface.
+     * @param e 
+     */
+
     @Override
     public void focusLost(FocusEvent e) {
         populateModel();
     }
 
+    /**
+     * Implementation of the FocusListener interface.
+     * @param e 
+     */    
     @Override
     public void focusGained(FocusEvent e){
         populateModel();

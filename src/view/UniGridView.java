@@ -13,11 +13,6 @@ import HTTP.WebData;
 
 import static view.Utils.customizeButtonsInsidePanel;
         
-/**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
- * std154845@ac.eap.gr
- */
 public class UniGridView extends javax.swing.JPanel{ // implements ICustomEventListener<Object>
    
     private final String[] columnNames={"University Name", "Country", "Alpha-two-code", "State-Province","Web Pages","Domains"}; //grid header names

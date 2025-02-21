@@ -4,10 +4,6 @@ import java.util.List;
 import repository.entities.Department;
 import repository.entities.School;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
 public class SchoolDepartmentPair {
         private School school;
         private final List<Department> departmentList;

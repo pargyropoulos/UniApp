@@ -6,18 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableCellRenderer;
-
 import javax.swing.table.TableCellRenderer;
 import model.StatisticsModel;
-import utils.ICustomEventListener;
 import utils.PDFExporter;
 
 import static view.Utils.customizeButtonsInsidePanel;
 
-/**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
 public class StatisticsView extends javax.swing.JPanel {
 
     /** Creates new form StatisticsView */

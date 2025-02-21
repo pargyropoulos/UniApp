@@ -4,7 +4,6 @@ import java.util.EventObject;
 
 /**
  *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
  * Custom Event Class
  * Use it to create custom events
  * @param <T>

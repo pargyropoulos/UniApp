@@ -3,10 +3,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import repository.entities.University;
-/**
- *
- * @author xe-di
- */
+
+
 public class UniversityService {
     public List<University> getTop10UniversitiesOrderByCounterDescNameAsc() {
         EntityManagerFactory emf= repository.service.Emf.getEntityManagerFactory();

@@ -13,11 +13,6 @@ import java.util.logging.Logger;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 
-/**
- *
- * @author  Anastasios Botsialas std150497@ac.eap.gr - botsialas.a@devs-od.com
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
-*/
 public class UniRecDialogModel {
     private final WebData webData;
     private final University university;

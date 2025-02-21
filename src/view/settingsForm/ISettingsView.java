@@ -4,11 +4,7 @@ package view.settingsForm;
 import java.awt.event.ActionListener;
 import java.util.List;
 import repository.entities.Country;
-/**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
- * std154845@ac.eap.gr
- */
+
 public interface ISettingsView{
     void addSaveEventListener(ActionListener listener);
     void addCloseEventListener(ActionListener listener);

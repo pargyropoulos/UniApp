@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -26,10 +25,6 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import repository.entities.University;
 
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
 public class Utils {
 
     /**
@@ -117,7 +112,7 @@ public class Utils {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         for (University university : universities) {
-            dataset.addValue(university.getCounter(), "Visits", university.getName());
+            dataset.addValue(university.getCounter(), "Views", university.getName());
         }
 
         return dataset;
@@ -125,7 +120,7 @@ public class Utils {
 
     public static JFreeChart createChart(CategoryDataset dataset) {
         JFreeChart chart = ChartFactory.createBarChart(
-                "University Visits", // Chart title
+                "University Views", // Chart title
                 "University", // X-axis label
                 "Views", // Y-axis label
                 dataset, // Dataset
@@ -156,7 +151,7 @@ public class Utils {
         chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
         // Create and set up a modal dialog
-        JDialog dialog = new JDialog((Frame) null, "University Visits Chart", true);
+        JDialog dialog = new JDialog((Frame) null, "University Views Chart", true);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setContentPane(chartPanel);
         dialog.pack();

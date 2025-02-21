@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.event.ActionListener;
 import view.Utils;
 import model.uniRecModel.UniRecDialogModel;
 import view.UniRecDialogView;

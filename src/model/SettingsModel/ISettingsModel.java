@@ -4,10 +4,6 @@ import repository.entities.Country;
 import java.util.List;
 import utils.ICustomEventListener;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
 public interface ISettingsModel {
     void addCountry(Country country);
     void deleteCountry(int index);

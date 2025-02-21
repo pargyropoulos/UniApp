@@ -5,11 +5,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import static view.Utils.customizeButtonsInsidePanel;
 
-/**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
- * std154845@ac.eap.gr
- */
 public class MainView extends javax.swing.JFrame {
     /**
      * Creates the main dashboard

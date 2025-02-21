@@ -11,11 +11,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
-
 public class WebDataFetcher implements Serializable  {
     private static final String URL = "http://universities.hipolabs.com/search";
     

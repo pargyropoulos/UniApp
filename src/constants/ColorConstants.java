@@ -2,10 +2,6 @@ package constants;
 
 import java.awt.Color;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
 public class ColorConstants {
     public static Color buttonBackgroundColor = new Color(0, 122, 204 );
     public static Color buttonForegroundColor = new Color(255, 255, 255);

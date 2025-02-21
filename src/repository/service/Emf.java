@@ -3,10 +3,6 @@ package repository.service;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- * Simple singlenton EntityManagerFactory class
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
 public class Emf {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("UniAppPU");
 

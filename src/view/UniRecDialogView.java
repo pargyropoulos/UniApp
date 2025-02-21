@@ -11,10 +11,7 @@ import repository.entities.School;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 import static view.Utils.customizeButtonsInsidePanel;
-/**
- *
- * @author tasos
- */
+
 public class UniRecDialogView extends javax.swing.JDialog {
         
     private final CustomEventSource<Integer> currentSchoolEventSource = new CustomEventSource<>();

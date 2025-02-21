@@ -10,11 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import repository.entities.Country;
 import static view.Utils.customizeButtonsInsidePanel;
 
-/**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
- * std154845@ac.eap.gr
- */
 public class SettingsView extends javax.swing.JPanel implements ISettingsView{
 
     public SettingsView() {

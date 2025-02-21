@@ -1,26 +1,20 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import repository.service.Emf;
 import view.settingsForm.SettingsView;
 import model.SettingsModel.SettingsModel;
 import javax.swing.JPanel;
 import model.*;
-import repository.entities.University;
-import repository.service.UniversityService;
 import view.*;
 
-/**
- * 
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public final class MainController{
     private final MainView view;
     private JPanel activePanel=null;
     
     /**
-     * 
+     * Class constructor. Maps all events listeners to methods
      * @param view 
      */
     public MainController(MainView view) {
@@ -35,13 +29,16 @@ public final class MainController{
         });
     }
     
+    /**
+     * Shows the view in the middle of the screen
+     */
     public void run(){
         view.setLocationRelativeTo(null);
         this.view.setVisible(true);
     }
     
     /**
-     * Creates a new UniGridController
+     * Creates a new MVC instance for UniGrid Form
      */
     private void loadUniGridForm(){
         if (activePanel instanceof UniGridView) return;
@@ -51,7 +48,10 @@ public final class MainController{
         addPanel(ctrl.getView());
         ctrl.run();
     }
-    
+
+    /**
+     * Creates a new MVC instance for About Form
+     */
     private void loadAboutForm(){
         if (activePanel instanceof AboutView) return;
         removePanel(activePanel);
@@ -61,6 +61,9 @@ public final class MainController{
         ctrl.run();
     }    
     
+    /**
+     * Creates a new MVC instance for Settings Form
+     */    
     private void loadSettingsForm(){
         if (activePanel instanceof SettingsView) return;
         removePanel(activePanel);
@@ -70,6 +73,9 @@ public final class MainController{
         ctrl.run();
     }    
 
+    /**
+     * Creates a new MVC instance for Settings Form
+     */
     private void loadStatsForm(){
         if (activePanel instanceof StatisticsView) return;
         removePanel(activePanel);
@@ -79,12 +85,19 @@ public final class MainController{
         ctrl.run();
     }    
     
-    
+    /**
+     * Helper function to add a panel inside the main panel
+     * @param view 
+     */
     private void addPanel(JPanel view){
         this.view.addPanel(view);
         this.activePanel=view;
     }
 
+    /**
+     * Helper function to remove a panel from the main panel
+     * @param view 
+     */
     private void removePanel(JPanel view){
         if (this.activePanel==null) return;
         this.view.removePanel(view);

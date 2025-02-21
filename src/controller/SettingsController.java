@@ -10,19 +10,25 @@ import utils.ICustomEventListener;
 import view.settingsForm.ISettingsView;
 
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public class SettingsController {
     private final ISettingsModel model;
     private final ISettingsView view;
     private final CustomEventSource<?> closeFormEventSource =new CustomEventSource<>();
-    
+
+    /**
+     * Adds event listener to the close form event
+     * @param listener 
+     */    
     public void addCloseFormEventListener(ICustomEventListener listener){
         closeFormEventSource.addEventListener(listener);
     }
     
+    /**
+     * Class Constructor. Maps event listeners and populates country's list
+     * @param view
+     * @param model 
+     */
     public SettingsController(ISettingsView view,ISettingsModel model) {
         this.model = model;
         this.view = view;  
@@ -30,6 +36,9 @@ public class SettingsController {
         model.populateCountryList();
     }
     
+    /**
+     * Event listeners mapping
+     */
     private void mapListeners(){
         model.addDataUpdatedEventListener(e->view.updateGrid(e.getEventMessage()));
         view.addCloseEventListener(e->closeFormEventSource.notifyEventListeners());
@@ -46,10 +55,17 @@ public class SettingsController {
         view.addAddEntryEventListener(e-> addEntry());
     }
     
+    /**
+     * Returns the view's instance
+     * @return 
+     */
     public JPanel getView(){
         return view.getView();
     }
 
+    /**
+     * Deletes an entry from the model and the view
+     */
     private void deleteEntry(){
         int index= this.view.getSelectedRowIndex();
         if (index==-1) return;

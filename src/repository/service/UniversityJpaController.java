@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package repository.service;
 
 import repository.entities.School;
@@ -21,10 +16,7 @@ import repository.exceptions.IllegalOrphanException;
 import repository.exceptions.NonexistentEntityException;
 import repository.exceptions.PreexistingEntityException;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public class UniversityJpaController implements Serializable {
 
     public UniversityJpaController(EntityManagerFactory emf) {

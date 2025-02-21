@@ -9,10 +9,7 @@ import repository.entities.Country;
 import repository.service.CountryJpaController;
 import repository.service.Emf;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public class SettingsDAO extends CountryJpaController{
     private final CountryJpaController countryJpaController;
     
