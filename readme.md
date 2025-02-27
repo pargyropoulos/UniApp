@@ -3,6 +3,8 @@ UniApp Project - HOU - Computer Science - 2024-25
 youtube demo: https://youtu.be/VmBKeNo13hw?si=O9Eo70cj0K7m5mZZ
 
 ![image](https://github.com/user-attachments/assets/b799ca47-36af-4b1b-a003-371a41057ed7)
+![image](https://github.com/user-attachments/assets/fc990a64-cbf9-491f-acad-c551cc4fca23)
+
 
 The code utilizes the mediating-controller MVC architectural pattern...
 ![mediating_mvc](https://github.com/user-attachments/assets/ff190a8f-d873-4f77-9c77-f295b3a79079)
