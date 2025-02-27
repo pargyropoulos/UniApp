@@ -78,7 +78,7 @@ public class UniRecDialogModel {
         } catch (Exception ex) {
             Logger.getLogger(UniRecDialogModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("university counter="+this.university.getCounter());
+//        System.out.println("university counter="+this.university.getCounter());
     }
     
  

@@ -104,7 +104,7 @@ public class UniRecDAO {
                 }
             }        
             em.getTransaction().commit();
-            System.out.println("University, Schools, and Departments updated successfully!");
+//            System.out.println("University, Schools, and Departments updated successfully!");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -139,7 +139,7 @@ public class UniRecDAO {
 
             // Commit the transaction
             em.getTransaction().commit();
-            System.out.println("Schools and Departments deleted successfully!");
+//            System.out.println("Schools and Departments deleted successfully!");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
