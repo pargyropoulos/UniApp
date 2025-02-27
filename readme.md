@@ -13,4 +13,106 @@ The code utilizes the mediating-controller MVC architectural pattern...
 ...and extensively employs the Observer behavioural pattern to enhance decoupling.
 ![image](https://github.com/user-attachments/assets/1c92ad83-ac9c-4eb5-bcaf-0f2d9b7dc471)
 
+Project's Strutcure
+```
+│   Main.java
+│   
+├───constants
+│       ColorConstants.java
+│       
+├───controller
+│       AboutController.java
+│       MainController.java
+│       SearchController.java
+│       SettingsController.java
+│       StatisticsController.java
+│       UniGridController.java
+│       UniRecDialogController.java
+│       
+├───HTTP
+│       WebData.java
+│       WebDataFetcher.java
+│       
+├───META-INF
+│       persistence.xml
+│       
+├───model
+│   │   SearchModel.java
+│   │   StatisticsModel.java
+│   │   UniGridModel.java
+│   │   
+│   ├───SettingsModel
+│   │       ISettingsModel.java
+│   │       SettingsDAO.java
+│   │       SettingsModel.java
+│   │       
+│   └───uniRecModel
+│           SchoolDepartmentPair.java
+│           UniRecDAO.java
+│           UniRecDialogModel.java
+│           
+├───repository
+│   ├───entities
+│   │       Country.java
+│   │       Department.java
+│   │       School.java
+│   │       University.java
+│   │       
+│   ├───exceptions
+│   │       IllegalOrphanException.java
+│   │       NonexistentEntityException.java
+│   │       PreexistingEntityException.java
+│   │       
+│   └───service
+│           CountryJpaController.java
+│           DepartmentJpaController.java
+│           Emf.java
+│           SchoolJpaController.java
+│           UniversityJpaController.java
+│           UniversityService.java
+│           
+├───utils
+│       CustomEvent.java
+│       CustomEventSource.java
+│       ICustomEventListener.java
+│       PDFExporter.java
+│       
+└───view
+    │   AboutView.form
+    │   AboutView.java
+    │   MainView.form
+    │   MainView.java
+    │   SearchDialogView.form
+    │   SearchDialogView.java
+    │   StatisticsView.form
+    │   StatisticsView.java
+    │   UniGridView.form
+    │   UniGridView.java
+    │   UniRecDialogView.form
+    │   UniRecDialogView.java
+    │   Utils.java
+    │   
+    ├───img
+    │       add.png
+    │       cancel.png
+    │       delete.png
+    │       eap.jpg
+    │       edit.png
+    │       error.png
+    │       info.png
+    │       logout.png
+    │       okIcon.png
+    │       pdf.png
+    │       save.png
+    │       search.png
+    │       settings.png
+    │       stats.png
+    │       uni.png
+    │       
+    └───settingsForm
+            ISettingsView.java
+            SettingsView.form
+            SettingsView.java
+            
 
+            
