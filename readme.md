@@ -10,7 +10,7 @@ The code utilizes the mediating-controller MVC architectural pattern...
 ![mediating_mvc](https://github.com/user-attachments/assets/ff190a8f-d873-4f77-9c77-f295b3a79079)
 
 
-...and extensively employs the Observer pattern to enhance decoupling.
+...and extensively employs the Observer behavioural pattern to enhance decoupling.
 ![image](https://github.com/user-attachments/assets/1c92ad83-ac9c-4eb5-bcaf-0f2d9b7dc471)
 
 
