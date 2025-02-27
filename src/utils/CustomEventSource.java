@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Custome event. Takes a generic parameter as the message to be transfered to the listener
  * @param <T>
  */
 

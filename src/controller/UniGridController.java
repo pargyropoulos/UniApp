@@ -12,7 +12,10 @@ import view.UniRecDialogView;
 import view.SearchDialogView;
 import view.UniGridView;
 
-
+/**
+ * 
+ * Controller part of the UniGrid MVC
+ */
 public class UniGridController{
     private final UniGridView view;
     private final UniGridModel model;
@@ -25,7 +28,7 @@ public class UniGridController{
         this.view = view;
         this.model = model;
         
-        //map event listeners to Model and View
+        //map event listeners
         view.addSearchButtonListener(e -> loadSearchForm());
         view.addViewEditButtonListener(e-> loadViewEditForm());
         view.addCloseButtonListener(e-> closeForm());

@@ -60,12 +60,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
     
     // Για να γεμίσει το Grid -> gridDomains
     public void populateDomainsGrid(List<String> domains) {
-        // Ελέγχω αν η λίστα είναι κενή - ίσως να μην χρειαζεται, η τροποποιηση 
-        // για εμφάνιση μήνυμα λάθους
-//        if (domains == null || domains.isEmpty()) {
-//            System.out.println("No domains to display.");
-//            return;
-//        }
         // Παίρνουμε το μοντέλο του πίνακα
         DefaultTableModel model = (DefaultTableModel) gridDomains.getModel();
         // Καθαρίζουμε τα προηγούμενα δεδομένα του πίνακα
@@ -79,10 +73,6 @@ public class UniRecDialogView extends javax.swing.JDialog {
 
     // Όμοια για grid -> gridWebPages
     public void populateWebPagesGrid(List<String> webPages) {
-//        if (webPages == null || webPages.isEmpty()) {
-//            System.out.println("No Web Pages  to display.");
-//            return;
-//        }
 
         // Παίρνουμε το μοντέλο του πίνακα
         DefaultTableModel model = (DefaultTableModel) gridWebPages.getModel();

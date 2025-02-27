@@ -12,6 +12,10 @@ import repository.entities.University;
 import repository.service.UniversityJpaController;
 import repository.exceptions.PreexistingEntityException;
 
+/**
+ * 
+ * DAO class to support the Unirec Model
+ */
 public class UniRecDAO {
     private final EntityManagerFactory emf;
     private final UniversityJpaController universityJpaController;
@@ -41,7 +45,11 @@ public class UniRecDAO {
         return universityJpaController.findUniversity(primaryKey);
     }
 
-    
+    /**
+     * Returns a list of all schools matching the university keyID
+     * @param universityName
+     * @return 
+     */
     public List<School> findSchools(String universityName) {
         EntityManager em = this.emf.createEntityManager();
         try {
@@ -53,6 +61,11 @@ public class UniRecDAO {
         }
     }
 
+    /**
+     * Returns a list with all departments matching the school id
+     * @param schoolId
+     * @return 
+     */
     public List<Department> findDepartments(int schoolId) {
         EntityManager em = this.emf.createEntityManager();
         try {
@@ -64,6 +77,12 @@ public class UniRecDAO {
         }
     }    
 
+    /**
+     * Updates University entity and inserts new shcools and departments
+     * @param university
+     * @param schools
+     * @param departments 
+     */
     public void updateInsert(University university,Set<School> schools,Set<Department> departments){
         EntityManager em = emf.createEntityManager();
 
@@ -95,6 +114,11 @@ public class UniRecDAO {
         }
     }   
     
+    /**
+     * Deletes schools and departments from the DB
+     * @param schools
+     * @param departments 
+     */
     public void deleteSchoolsAndDepartments(List<School> schools, List<Department> departments) {
         EntityManager em = emf.createEntityManager();
 

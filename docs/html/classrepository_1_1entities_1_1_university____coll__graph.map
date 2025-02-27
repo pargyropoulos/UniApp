@@ -1,0 +1,9 @@
+<map id="repository.entities.University_" name="repository.entities.University_">
+<area shape="rect" id="Node000001" title=" " alt="" coords="355,104,548,131"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,207,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,41,277,49,331,61,383,80,426,101,424,106,381,85,330,67,276,54,221,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="9,88,203,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,115,354,115,354,120,218,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="9,171,203,229"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="218,171,392,129,393,134,219,176"/>
+</map>

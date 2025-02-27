@@ -9,7 +9,10 @@ import repository.entities.Country;
 import repository.service.CountryJpaController;
 import repository.service.Emf;
 
-
+/**
+ * 
+ * DAO class to support the Settings Model Class
+ */
 public class SettingsDAO extends CountryJpaController{
     private final CountryJpaController countryJpaController;
     
@@ -19,10 +22,13 @@ public class SettingsDAO extends CountryJpaController{
         
     }
     
+    /**
+     * Returns a list with all the available countries
+     * @return 
+     */
     public List<Country> findAllOrdered() {
     EntityManager em = Emf.getEntityManagerFactory().createEntityManager();    
         try {
-//            Query query = em.createNamedQuery("Country.findAllOrdered");
             Query query = em.createQuery("SELECT c FROM Country c order by c.name ASC");
             return query.getResultList();
         } finally {
@@ -32,6 +38,9 @@ public class SettingsDAO extends CountryJpaController{
         }
     }    
 
+    /**
+     * Clears the database records. Leeaves intact the countries table fro future use
+     */
     public void deleteAllEntries() {
         EntityManager em = Emf.getEntityManagerFactory().createEntityManager();
         EntityTransaction transaction = null;

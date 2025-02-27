@@ -1,0 +1,9 @@
+<map id="repository.entities.School.getUniversityName" name="repository.entities.School.getUniversityName">
+<area shape="rect" id="Node000001" title=" " alt="" coords="221,72,410,115"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a9747522d334cd135a26b855ffce74b42" title=" " alt="" coords="5,5,173,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,70,163,51,165,46,227,65"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a78c844d6b5c529a62cf2d40c59af5215" title=" " alt="" coords="5,72,173,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,96,173,96,173,91,205,91"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a8661590fdb46da758b0b442d7fe9cb45" title=" " alt="" coords="5,139,173,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="227,122,165,141,163,135,225,117"/>
+</map>

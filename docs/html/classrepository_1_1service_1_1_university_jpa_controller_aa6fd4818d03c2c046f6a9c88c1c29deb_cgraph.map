@@ -1,0 +1,9 @@
+<map id="repository.service.UniversityJpaController.destroy" name="repository.service.UniversityJpaController.destroy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,64,192,107"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a91e3b55230a1603481f86f65da4213e1" title=" " alt="" coords="259,5,463,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,62,247,49,248,55,193,67"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1entities_1_1_university.html#ac9a748e607001b3df9b064394a528a08" title=" " alt="" coords="240,72,482,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,83,224,83,224,88,192,88"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1entities_1_1_university.html#abe6f62210a86e4bb0490eb29b50c658b" title=" " alt="" coords="257,123,464,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,104,248,116,247,121,192,109"/>
+</map>

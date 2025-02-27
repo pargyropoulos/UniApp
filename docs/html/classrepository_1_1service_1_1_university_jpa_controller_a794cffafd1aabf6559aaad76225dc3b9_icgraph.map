@@ -1,0 +1,15 @@
+<map id="repository.service.UniversityJpaController.findUniversity" name="repository.service.UniversityJpaController.findUniversity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="531,105,717,148"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a24261771322b1e4176ff2b4903ebe606" title=" " alt="" coords="267,5,454,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="567,100,482,62,448,51,449,46,484,58,570,96"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a77b30cd70ad7c0e82d4f9bad8875f63a" title=" " alt="" coords="267,72,454,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="515,116,454,108,454,102,516,110"/>
+<area shape="rect" id="Node000006" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a7a7f1e975f0b710f6d0169d6490abe4f" title=" " alt="" coords="238,139,483,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="516,143,484,147,483,142,515,138"/>
+<area shape="rect" id="Node000007" href="$classmodel_1_1uni_rec_model_1_1_uni_rec_d_a_o.html#a7a12fddd86a18ce26131a47364b9ebc2" title=" " alt="" coords="268,205,452,248"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="570,158,484,196,449,207,448,202,482,191,567,153"/>
+<area shape="rect" id="Node000003" href="$classmodel_1_1uni_rec_model_1_1_uni_rec_d_a_o.html#af8d9837cc690ae15c00cd54210d54551" title=" " alt="" coords="5,5,190,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,29,190,29,190,24,251,24"/>
+<area shape="rect" id="Node000005" href="$classmodel_1_1uni_rec_model_1_1_uni_rec_d_a_o.html#a6df6b6294a3416f8438adecfb8c0698e" title=" " alt="" coords="5,72,190,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="251,96,190,96,190,91,251,91"/>
+</map>

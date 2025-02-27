@@ -1,0 +1,23 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,208,94,235"/>
+<area shape="rect" id="Node000001" href="$class_h_t_t_p_1_1_web_data_fetcher.html" title=" " alt="" coords="161,5,318,32"/>
+<area shape="poly" id="edge12_Node000000_Node000001" title=" " alt="" coords="55,192,66,157,83,117,108,76,140,42,160,30,162,35,143,46,112,79,88,119,71,159,60,193"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1entities_1_1_country.html" title=" " alt="" coords="153,56,326,83"/>
+<area shape="poly" id="edge13_Node000000_Node000002" title=" " alt="" coords="61,193,92,141,114,115,140,92,162,81,165,86,143,97,118,119,96,144,66,195"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1entities_1_1_department.html" title=" " alt="" coords="142,107,337,133"/>
+<area shape="poly" id="edge14_Node000000_Node000003" title=" " alt="" coords="72,195,103,168,140,143,169,131,171,136,143,148,106,172,76,199"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1entities_1_1_school.html" title=" " alt="" coords="156,157,323,184"/>
+<area shape="poly" id="edge15_Node000000_Node000004" title=" " alt="" coords="108,202,141,193,184,182,185,187,142,199,109,208"/>
+<area shape="rect" id="Node000005" href="$classrepository_1_1entities_1_1_university.html" title=" " alt="" coords="146,208,332,235"/>
+<area shape="poly" id="edge16_Node000000_Node000005" title=" " alt="" coords="109,219,146,219,146,224,109,224"/>
+<area shape="rect" id="Node000006" href="$classrepository_1_1service_1_1_country_jpa_controller.html" title=" " alt="" coords="153,259,326,301"/>
+<area shape="poly" id="edge17_Node000000_Node000006" title=" " alt="" coords="110,237,169,256,167,261,108,242"/>
+<area shape="rect" id="Node000008" href="$classrepository_1_1service_1_1_department_jpa_controller.html" title=" " alt="" coords="142,325,337,368"/>
+<area shape="poly" id="edge19_Node000000_Node000008" title=" " alt="" coords="72,245,104,279,143,311,165,322,162,327,140,316,100,283,68,249"/>
+<area shape="rect" id="Node000009" href="$classrepository_1_1service_1_1_school_jpa_controller.html" title=" " alt="" coords="156,392,323,435"/>
+<area shape="poly" id="edge20_Node000000_Node000009" title=" " alt="" coords="62,248,92,313,115,348,143,378,161,389,158,394,140,382,111,351,87,316,57,250"/>
+<area shape="rect" id="Node000010" href="$classrepository_1_1service_1_1_university_jpa_controller.html" title=" " alt="" coords="146,459,332,501"/>
+<area shape="poly" id="edge21_Node000000_Node000010" title=" " alt="" coords="57,249,66,292,82,345,107,398,124,423,143,445,159,456,155,460,140,449,120,426,103,401,77,347,61,294,52,250"/>
+<area shape="rect" id="Node000007" href="$classmodel_1_1_settings_model_1_1_settings_d_a_o.html" title=" " alt="" coords="385,267,609,293"/>
+<area shape="poly" id="edge18_Node000006_Node000007" title=" " alt="" coords="341,277,385,277,385,283,341,283"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="repository.entities.Department_" name="repository.entities.Department_">
+<area shape="rect" id="Node000001" title=" " alt="" coords="310,104,512,131"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,209,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,64,359,101,358,106,223,69"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,88,209,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,115,309,115,309,120,224,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,171,209,229"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="223,166,358,129,359,134,224,171"/>
+</map>

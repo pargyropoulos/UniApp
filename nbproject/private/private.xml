@@ -3,24 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/UniRecDialogController.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/repository/entities/University.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/uniRecModel/SchoolDepartmentPair.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/SearchModel.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/uniRecModel/UniRecDAO.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/StatisticsView.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/MainController.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/SettingsController.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/HTTP/WebData.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/StatisticsController.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/SearchController.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/UniGridView.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/AboutController.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/SearchDialogView.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/model/uniRecModel/UniRecDialogModel.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/controller/UniGridController.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/HTTP/WebDataFetcher.java</file>
-            <file>file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/src/view/UniRecDialogView.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/EAP/ΠΛΗ24/ΓΕ3/UniApp/UniApp/src/view/UniGridView.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/EAP/ΠΛΗ24/ΓΕ3/UniApp/UniApp/src/view/Utils.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/EAP/ΠΛΗ24/ΓΕ3/UniApp/UniApp/src/model/SearchModel.java</file>
+            <file>file:/C:/Users/Panagiotis/Documents/EAP/ΠΛΗ24/ΓΕ3/UniApp/UniApp/src/view/UniRecDialogView.java</file>
         </group>
     </open-files>
 </project-private>

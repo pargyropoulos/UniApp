@@ -5,6 +5,10 @@ import java.util.List;
 import repository.entities.University;
 import repository.service.UniversityService;
 
+/**
+ * 
+ * Model part of the Statistics MVC
+ */
 public final class StatisticsModel extends AbstractTableModel {
 
     private final List<University> universities;
@@ -14,6 +18,10 @@ public final class StatisticsModel extends AbstractTableModel {
         this.universities=new UniversityService().getTop10UniversitiesOrderByCounterDescNameAsc();
     }
     
+    /**
+     * Returns the list holding the top 10 universities
+     * @return 
+     */
     public List<University> getUniversities(){
         return this.universities;
     }

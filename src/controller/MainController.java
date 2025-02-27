@@ -8,7 +8,10 @@ import javax.swing.JPanel;
 import model.*;
 import view.*;
 
-
+/**
+ * 
+ * Controller. Part of the MainController MVC
+ */
 public final class MainController{
     private final MainView view;
     private JPanel activePanel=null;

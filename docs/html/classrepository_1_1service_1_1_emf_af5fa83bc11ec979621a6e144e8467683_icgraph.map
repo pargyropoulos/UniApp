@@ -1,0 +1,17 @@
+<map id="repository.service.Emf.getEntityManagerFactory" name="repository.service.Emf.getEntityManagerFactory">
+<area shape="rect" id="Node000001" title=" " alt="" coords="785,72,959,115"/>
+<area shape="rect" id="Node000002" href="$classmodel_1_1_settings_model_1_1_settings_d_a_o.html#ab1cd06c053ef8878035a92f3508b5ac3" title=" " alt="" coords="517,5,712,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="772,70,699,51,700,46,773,65"/>
+<area shape="rect" id="Node000004" href="$classmodel_1_1_settings_model_1_1_settings_d_a_o.html#a6d21f8a3ec70c274c6c41e3bbd2faae0" title=" " alt="" coords="517,72,712,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="770,96,713,96,713,91,770,91"/>
+<area shape="rect" id="Node000008" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a7a7f1e975f0b710f6d0169d6490abe4f" title=" " alt="" coords="492,139,737,181"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="773,122,700,141,699,135,772,117"/>
+<area shape="rect" id="Node000003" href="$classmodel_1_1_settings_model_1_1_settings_model.html#a380214bdff5d01bc8bde1fad5c95c1c5" title=" " alt="" coords="249,5,444,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="502,29,444,29,444,24,502,24"/>
+<area shape="rect" id="Node000005" href="$classmodel_1_1_search_model.html#a5744356abb71954778280ef910aa13d6" title=" " alt="" coords="257,72,436,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="502,96,436,96,436,91,502,91"/>
+<area shape="rect" id="Node000006" href="$classmodel_1_1_settings_model_1_1_settings_model.html#aba02c8c4365e672c28078c8a60cbd2a3" title=" " alt="" coords="249,139,444,181"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="512,122,436,141,434,135,511,116"/>
+<area shape="rect" id="Node000007" href="$classmodel_1_1_settings_model_1_1_settings_model.html#a7ccacffaeab42c56003977ddbcb47cf7" title=" " alt="" coords="5,139,201,181"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="233,163,201,163,201,157,233,157"/>
+</map>

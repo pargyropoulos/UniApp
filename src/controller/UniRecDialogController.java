@@ -7,9 +7,7 @@ import repository.entities.Department;
 import repository.entities.School;
 
 /**
- *
- * @author  Anastasios Botsialas std150497@ac.eap.gr - botsialas.a@devs-od.com
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
+ * Controller part of the UniRec MVC
 */
 public class UniRecDialogController {
     private final UniRecDialogModel model;
@@ -26,16 +24,11 @@ public class UniRecDialogController {
         view.populateSchoolsGrid(model.getSchoolsList());
         view.populateDepartmentGrid(model.getDepartments());
 
-        ///new listeners
+        //Map Listeners
         view.addcurrentSchoolEventSourceEventListener(e-> {
             model.upDateCurrentSchoolIndex(e.getEventMessage());
             view.populateDepartmentGrid(model.getDepartments());
         });
-        
-//        view.addcurrentDepartmentEventSourceEventListener(e-> model.upDateCurrentDepartmentIndex(e.getEventMessage()));
-
-        
-        //Map Listeners
         view.addExitButtonListener(e -> this.view.dispose());
         view.addSaveButtonListener(e->saveData());
 
@@ -54,6 +47,10 @@ public class UniRecDialogController {
     }
 
 
+    /**
+     * Adds a school to the grid
+     * @param schoolName 
+     */
     private void addSchool(String schoolName) {
         if (this.view.getSchoolText().isEmpty()) return;
         School school=new School();
@@ -64,7 +61,10 @@ public class UniRecDialogController {
         view.setSchoolTextField(null);
     }
     
-    
+    /**
+     * Deletes a school from the grid
+     * @param rowIndex 
+     */
     private void deleteSchool(int rowIndex) {
         if (this.view.getSelectedSchoolRowIndex()<0) return;
         if (rowIndex<0) return;
@@ -72,7 +72,10 @@ public class UniRecDialogController {
         this.view.populateDepartmentGrid(model.getDepartments());
     }
 
-
+    /**
+     * Adds a department to the grid
+     * @param rowIndex 
+     */
     private void addDepartment(String departmentName){
         if (this.view.getSelectedSchoolRowIndex()<0 || view.getDepartmentText().isEmpty()) return;
         if (model.getSchoolsList().isEmpty()) return;
@@ -85,6 +88,10 @@ public class UniRecDialogController {
         view.populateDepartmentGrid(model.getDepartments());
     }
 
+     /**
+     * Deletes a departmentl from the grid
+     * @param rowIndex 
+     */
     private void deleteDepartment(int rowIndex){
         if (rowIndex<0) return;
         this.model.deleteDepartment(rowIndex);

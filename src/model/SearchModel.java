@@ -4,11 +4,18 @@ import java.util.List;
 import repository.entities.Country;
 import model.SettingsModel.SettingsDAO;
 
-
+/**
+ * 
+ * Model part of the Search MVC
+ */
 public class SearchModel {
     private String universityName="";
     private String country="";
 
+    /**
+     * Returns the list of all available countries.
+     * @return 
+     */
     public List<Country> getListOfCountries(){
         SettingsDAO dao =new SettingsDAO(null);
         return dao.findAllOrdered();
@@ -30,6 +37,12 @@ public class SearchModel {
         this.country = country;
     }
     
+    /**
+     * Validates name and country fields
+     * @param name
+     * @param country
+     * @return 
+     */
     public Boolean validate(String name, String country){
         return isAlphanumeric(universityName) && isAlphanumeric(country);
     }
@@ -43,6 +56,10 @@ public class SearchModel {
         return text.matches("[a-zA-Z 0-9]*");
     }    
     
+    /**
+     * Builds the search string to be sent to the REST API
+     * @return 
+     */
     public String getSearchString(){
         String searchString= !universityName.isEmpty() ? "?name="+universityName : "" ;
         if (searchString.contains("name")) {

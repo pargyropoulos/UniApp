@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,80,85,107"/>
+<area shape="rect" id="Node000001" href="$classrepository_1_1exceptions_1_1_illegal_orphan_exception.html" title=" " alt="" coords="151,5,333,48"/>
+<area shape="poly" id="edge5_Node000000_Node000001" title=" " alt="" coords="94,72,132,57,166,46,168,51,134,63,95,77"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1exceptions_1_1_nonexistent_entity_exception.html" title=" " alt="" coords="133,72,351,115"/>
+<area shape="poly" id="edge6_Node000000_Node000002" title=" " alt="" coords="100,91,132,91,132,96,100,96"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1exceptions_1_1_preexisting_entity_exception.html" title=" " alt="" coords="135,139,348,181"/>
+<area shape="poly" id="edge7_Node000000_Node000003" title=" " alt="" coords="95,110,134,124,168,136,166,141,132,129,94,115"/>
+</map>

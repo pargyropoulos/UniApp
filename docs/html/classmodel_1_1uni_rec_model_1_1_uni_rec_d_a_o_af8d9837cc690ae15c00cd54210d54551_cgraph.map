@@ -1,0 +1,12 @@
+<map id="model.uniRecModel.UniRecDAO.createUniversity" name="model.uniRecModel.UniRecDAO.createUniversity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,64,190,107"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a24261771322b1e4176ff2b4903ebe606" title=" " alt="" coords="238,64,424,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,83,222,83,222,88,190,88"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a794cffafd1aabf6559aaad76225dc3b9" title=" " alt="" coords="482,5,669,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="422,61,468,50,470,55,423,66"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a91e3b55230a1603481f86f65da4213e1" title=" " alt="" coords="727,35,932,77"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="424,77,712,60,712,66,424,83"/>
+<area shape="rect" id="Node000005" href="$classrepository_1_1entities_1_1_university.html#abe6f62210a86e4bb0490eb29b50c658b" title=" " alt="" coords="472,123,679,165"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="423,105,470,116,468,121,422,110"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="670,35,712,40,712,45,669,40"/>
+</map>

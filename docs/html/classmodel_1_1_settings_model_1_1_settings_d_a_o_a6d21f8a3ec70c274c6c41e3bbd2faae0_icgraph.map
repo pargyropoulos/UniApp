@@ -1,0 +1,9 @@
+<map id="model.SettingsModel.SettingsDAO.findAllOrdered" name="model.SettingsModel.SettingsDAO.findAllOrdered">
+<area shape="rect" id="Node000001" title=" " alt="" coords="492,39,687,81"/>
+<area shape="rect" id="Node000002" href="$classmodel_1_1_search_model.html#a5744356abb71954778280ef910aa13d6" title=" " alt="" coords="257,5,436,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="476,47,436,42,437,36,477,42"/>
+<area shape="rect" id="Node000003" href="$classmodel_1_1_settings_model_1_1_settings_model.html#aba02c8c4365e672c28078c8a60cbd2a3" title=" " alt="" coords="249,72,444,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="477,78,445,83,444,77,476,73"/>
+<area shape="rect" id="Node000004" href="$classmodel_1_1_settings_model_1_1_settings_model.html#a7ccacffaeab42c56003977ddbcb47cf7" title=" " alt="" coords="5,72,201,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="233,96,201,96,201,91,233,91"/>
+</map>

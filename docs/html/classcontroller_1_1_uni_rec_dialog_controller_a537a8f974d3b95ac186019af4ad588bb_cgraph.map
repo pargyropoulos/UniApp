@@ -1,0 +1,9 @@
+<map id="controller.UniRecDialogController.UniRecDialogController" name="controller.UniRecDialogController.UniRecDialogController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,225,115"/>
+<area shape="rect" id="Node000002" href="$classview_1_1_uni_rec_dialog_view.html#a8a48e5113cef212158ebd970ba446679" title=" " alt="" coords="273,5,455,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,69,267,50,268,55,198,74"/>
+<area shape="rect" id="Node000003" href="$classview_1_1_uni_rec_dialog_view.html#a26b4f6fcdf4b0b12c7bd162b94688aa4" title=" " alt="" coords="273,72,455,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,91,257,91,257,96,225,96"/>
+<area shape="rect" id="Node000004" href="$classview_1_1_uni_rec_dialog_view.html#a7426b21de1ad23e1ccc6ade1f56b890c" title=" " alt="" coords="273,139,455,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,113,268,132,267,137,197,118"/>
+</map>

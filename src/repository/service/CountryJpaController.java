@@ -11,10 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import repository.exceptions.NonexistentEntityException;
 import repository.exceptions.PreexistingEntityException;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public class CountryJpaController implements Serializable {
 
     public CountryJpaController(EntityManagerFactory emf) {

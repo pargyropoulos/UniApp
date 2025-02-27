@@ -13,10 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import repository.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author  Panagiotis Argyropoulos - pargyropoulos@gmail.com or std154845@ac.eap.gr
- */
+
 public class DepartmentJpaController implements Serializable {
 
     public DepartmentJpaController(EntityManagerFactory emf) {

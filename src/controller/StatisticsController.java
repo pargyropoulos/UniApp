@@ -6,7 +6,10 @@ import utils.ICustomEventListener;
 import view.StatisticsView;
 import view.Utils;
 
-
+/**
+ * 
+ * Controller part of the Statistics MVC
+ */
 public class StatisticsController {
     private StatisticsView view;
     private StatisticsModel model;

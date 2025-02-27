@@ -6,6 +6,10 @@ import repository.entities.University;
 
 
 public class UniversityService {
+    /**
+     * Return the top most viewed universities
+     * @return 
+     */
     public List<University> getTop10UniversitiesOrderByCounterDescNameAsc() {
         EntityManagerFactory emf= repository.service.Emf.getEntityManagerFactory();
         EntityManager em = emf.createEntityManager();

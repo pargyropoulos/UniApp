@@ -18,11 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-/**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
- * std154845@ac.eap.gr
- */
 @Entity
 @Table(name = "SCHOOL")
 @NamedQueries({

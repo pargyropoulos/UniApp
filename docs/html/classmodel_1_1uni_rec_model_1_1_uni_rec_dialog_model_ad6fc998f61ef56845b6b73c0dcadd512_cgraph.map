@@ -1,0 +1,9 @@
+<map id="model.uniRecModel.UniRecDialogModel.saveData" name="model.uniRecModel.UniRecDialogModel.saveData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,190,81"/>
+<area shape="rect" id="Node000002" href="$classmodel_1_1uni_rec_model_1_1_uni_rec_d_a_o.html#af8d02666cd9260de57dbceb340b32d5f" title=" " alt="" coords="238,5,472,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,45,222,41,222,47,190,51"/>
+<area shape="rect" id="Node000003" href="$classmodel_1_1uni_rec_model_1_1_uni_rec_d_a_o.html#a4263caca009bcc40808db506dccc9042" title=" " alt="" coords="263,72,447,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,69,247,77,247,82,190,75"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1entities_1_1_school.html#a5a403a7acf7e15873f77d6519e0fb39a" title=" " alt="" coords="520,80,720,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="448,91,504,91,504,96,448,96"/>
+</map>

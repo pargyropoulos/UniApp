@@ -2,9 +2,7 @@
 package utils;
 
 /**
- *
- * @author Panagiotis Argyropoulos - pargyropoulos@gmail.com or
- * std154845@ac.eap.gr
+ * Interface for custom listener
  * @param <T>
  */
 @FunctionalInterface

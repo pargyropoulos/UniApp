@@ -4,7 +4,10 @@ import HTTP.WebData;
 import java.util.List;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
-
+/**
+ * 
+ * Model part of the UniGrid MVC
+ */
 public class UniGridModel { 
     private List<WebData> data;
     private final CustomEventSource<List<WebData>> dataUpdatedEventSource = new CustomEventSource<>();

@@ -1,0 +1,15 @@
+<map id="repository.entities.School.getDepartmentCollection" name="repository.entities.School.getDepartmentCollection">
+<area shape="rect" id="Node000001" title=" " alt="" coords="249,172,438,215"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1service_1_1_department_jpa_controller.html#a0b0f365bf5776f9e1be0919d2a8c79a6" title=" " alt="" coords="5,5,201,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,162,262,111,232,85,199,62,177,51,180,46,202,58,235,81,266,107,316,158"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a9747522d334cd135a26b855ffce74b42" title=" " alt="" coords="19,72,187,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="284,167,200,129,170,118,171,113,202,124,286,162"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1service_1_1_department_jpa_controller.html#a4e2a882cfa1152b222831193db18a1c6" title=" " alt="" coords="5,139,201,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,181,201,176,201,171,233,175"/>
+<area shape="rect" id="Node000005" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a78c844d6b5c529a62cf2d40c59af5215" title=" " alt="" coords="19,205,187,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="234,211,188,218,187,212,233,206"/>
+<area shape="rect" id="Node000006" href="$classrepository_1_1service_1_1_department_jpa_controller.html#a90c97597613dda40b69cc284b124d238" title=" " alt="" coords="5,272,201,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="286,224,202,262,171,274,170,269,200,258,284,219"/>
+<area shape="rect" id="Node000007" href="$classrepository_1_1service_1_1_school_jpa_controller.html#a8661590fdb46da758b0b442d7fe9cb45" title=" " alt="" coords="19,339,187,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="316,229,266,280,235,306,202,329,180,340,177,336,199,324,232,302,262,276,312,225"/>
+</map>

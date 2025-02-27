@@ -1,0 +1,13 @@
+<map id="repository.service.DepartmentJpaController.create" name="repository.service.DepartmentJpaController.create">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,131,201,173"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1entities_1_1_school.html#a6f16b2ae97eeced2d0d7965abaa41ba1" title=" " alt="" coords="263,5,452,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,128,184,93,247,58,262,51,264,56,250,62,187,97,135,132"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1service_1_1_department_jpa_controller.html#a95c6c3289736843e257b7d074ada8c36" title=" " alt="" coords="255,72,460,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,127,246,116,248,121,199,133"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1entities_1_1_school.html#a5a403a7acf7e15873f77d6519e0fb39a" title=" " alt="" coords="257,139,458,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="201,149,242,149,242,155,201,155"/>
+<area shape="rect" id="Node000005" href="$classrepository_1_1entities_1_1_department.html#aed32961071cf6edbc76146af57f4f80a" title=" " alt="" coords="249,189,466,232"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="199,171,248,183,246,188,198,177"/>
+<area shape="rect" id="Node000006" href="$classrepository_1_1entities_1_1_department.html#a0d9c353e6a4f545239c043aaa22d202d" title=" " alt="" coords="249,256,466,299"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="135,172,187,207,250,242,264,248,262,253,247,246,184,211,132,176"/>
+</map>

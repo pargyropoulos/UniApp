@@ -4,6 +4,10 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import javax.swing.JTable;
 import java.io.FileOutputStream;
+/**
+ * 
+ * Converts a jatable table to PDF document
+ */
 
 public class PDFExporter {
     public static void exportToPDF(JTable table, String filePath) {

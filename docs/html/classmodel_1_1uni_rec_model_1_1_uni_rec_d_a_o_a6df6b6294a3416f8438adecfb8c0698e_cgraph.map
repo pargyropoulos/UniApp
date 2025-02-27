@@ -1,0 +1,16 @@
+<map id="model.uniRecModel.UniRecDAO.updateUniversity" name="model.uniRecModel.UniRecDAO.updateUniversity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,115,190,157"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a77b30cd70ad7c0e82d4f9bad8875f63a" title=" " alt="" coords="238,115,424,157"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,133,222,133,222,139,190,139"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1entities_1_1_university.html#ae9247acc10a52e0e7e274eca8868318e" title=" " alt="" coords="480,5,707,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,112,408,76,471,42,491,34,493,39,473,46,411,80,360,116"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a794cffafd1aabf6559aaad76225dc3b9" title=" " alt="" coords="500,56,686,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="424,113,484,99,486,104,425,118"/>
+<area shape="rect" id="Node000005" href="$classrepository_1_1service_1_1_university_jpa_controller.html#a91e3b55230a1603481f86f65da4213e1" title=" " alt="" coords="762,85,967,128"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="425,128,746,110,747,116,425,134"/>
+<area shape="rect" id="Node000006" href="$classrepository_1_1entities_1_1_university.html#ac9a748e607001b3df9b064394a528a08" title=" " alt="" coords="472,173,714,200"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="425,151,506,167,505,172,424,157"/>
+<area shape="rect" id="Node000007" href="$classrepository_1_1entities_1_1_university.html#abe6f62210a86e4bb0490eb29b50c658b" title=" " alt="" coords="490,224,697,267"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="369,156,417,183,473,210,491,216,489,221,471,214,415,188,366,160"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="687,85,747,91,746,97,687,90"/>
+</map>

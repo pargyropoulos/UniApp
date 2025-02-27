@@ -1,0 +1,24 @@
+<map id="model.SettingsModel.SettingsModel.saveData" name="model.SettingsModel.SettingsModel.saveData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,144,201,187"/>
+<area shape="rect" id="Node000002" href="$classrepository_1_1service_1_1_country_jpa_controller.html#a20e5608537af0d12c216f71aeec4ec28" title=" " alt="" coords="260,64,433,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,141,264,110,265,115,171,146"/>
+<area shape="rect" id="Node000005" href="$classrepository_1_1service_1_1_country_jpa_controller.html#a52076932c359d155b1c0591f95c53503" title=" " alt="" coords="260,144,433,187"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="201,163,244,163,244,168,201,168"/>
+<area shape="rect" id="Node000007" href="$classmodel_1_1_settings_model_1_1_settings_model.html#aba02c8c4365e672c28078c8a60cbd2a3" title=" " alt="" coords="249,224,444,267"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="171,185,265,216,264,221,169,190"/>
+<area shape="rect" id="Node000003" href="$classrepository_1_1service_1_1_country_jpa_controller.html#a08535d4ebb3909f5875516d87fdbb642" title=" " alt="" coords="520,5,693,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="433,63,504,47,505,52,434,68"/>
+<area shape="rect" id="Node000004" href="$classrepository_1_1service_1_1_country_jpa_controller.html#a320b5a003d771cd3d2e58edb59f37483" title=" " alt="" coords="769,64,974,107"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="433,83,754,83,754,88,433,88"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="694,43,758,58,757,63,693,48"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="433,150,754,100,755,106,434,155"/>
+<area shape="rect" id="Node000006" href="$classrepository_1_1entities_1_1_country.html#a56684219c86958be7b1d640ee6b03a0c" title=" " alt="" coords="492,173,721,200"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="434,170,477,173,476,179,433,175"/>
+<area shape="rect" id="Node000008" href="$classmodel_1_1_settings_model_1_1_settings_d_a_o.html#a6d21f8a3ec70c274c6c41e3bbd2faae0" title=" " alt="" coords="509,224,704,267"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="444,243,494,243,494,248,444,248"/>
+<area shape="rect" id="Node000010" href="$classutils_1_1_custom_event_source.html#a995fff67eac07e0a1cbf29fae6718f3e" title=" " alt="" coords="504,315,710,357"/>
+<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="411,265,530,307,528,312,409,270"/>
+<area shape="rect" id="Node000009" href="$classrepository_1_1service_1_1_emf.html#af5fa83bc11ec979621a6e144e8467683" title=" " alt="" coords="785,224,958,267"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="705,243,769,243,769,248,705,248"/>
+<area shape="poly" id="edge12_Node000010_Node000010" title=" " alt="" coords="558,315,556,305,564,296,581,290,607,288,634,290,651,297,649,302,633,296,607,293,582,295,567,300,561,306,563,313"/>
+</map>

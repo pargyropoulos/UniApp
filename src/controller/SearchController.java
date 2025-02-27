@@ -14,7 +14,10 @@ import utils.ICustomEventListener;
 import view.SearchDialogView;
 import view.Utils;
 
-
+/**
+ * 
+ * Search Controller. Part of the Search MVC
+ */
 public class SearchController implements ActionListener, FocusListener{
     private final SearchModel model;
     private final SearchDialogView view;

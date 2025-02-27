@@ -7,7 +7,10 @@ import java.util.Set;
 import utils.CustomEventSource;
 import utils.ICustomEventListener;
 
-
+/**
+ * 
+ * Model class part of the Settings MVC
+ */
 public class SettingsModel implements ISettingsModel {
     private Country countryModel;
     private List<Country> countries;

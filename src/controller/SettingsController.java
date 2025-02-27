@@ -10,7 +10,10 @@ import utils.ICustomEventListener;
 import view.settingsForm.ISettingsView;
 
 
-
+/**
+ * 
+ * Controller part of the Settings MVC
+ */
 public class SettingsController {
     private final ISettingsModel model;
     private final ISettingsView view;
@@ -72,6 +75,9 @@ public class SettingsController {
         this.model.deleteCountry(index);
     }
     
+    /**
+     * Adds an entry from the model and the view
+     */    
     private void addEntry(){
         Country country=new Country();
         country.setName(view.getCountryTextBox());

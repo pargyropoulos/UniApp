@@ -1,0 +1,28 @@
+var classview_1_1_uni_rec_dialog_view =
+[
+    [ "UniRecDialogView", "classview_1_1_uni_rec_dialog_view.html#ac766bd96e870a614fdffc61206675eda", null ],
+    [ "addcurrentDepartmentEventSourceEventListener", "classview_1_1_uni_rec_dialog_view.html#ad28da8eeda28cac8519246f4b0beec2e", null ],
+    [ "addcurrentSchoolEventSourceEventListener", "classview_1_1_uni_rec_dialog_view.html#a64527f27d669eff2fd629ffbd56e0448", null ],
+    [ "addDeleteDepartmentButtonListener", "classview_1_1_uni_rec_dialog_view.html#a5ee12cfb318605f7403446118f33ef26", null ],
+    [ "addDeleteSchoolButtonListener", "classview_1_1_uni_rec_dialog_view.html#ad04c6afb67639d9fff769879fe87a048", null ],
+    [ "addExitButtonListener", "classview_1_1_uni_rec_dialog_view.html#ac7ae194eac30650a07e6f4b39f6b410e", null ],
+    [ "addInsertDepartmentButtonListener", "classview_1_1_uni_rec_dialog_view.html#a585e8d83c37f9a08bb85ce7ab3a81237", null ],
+    [ "addInsertSchoolButtonListener", "classview_1_1_uni_rec_dialog_view.html#af231e90e3fb1606e1269d9af7db5c0e3", null ],
+    [ "addSaveButtonListener", "classview_1_1_uni_rec_dialog_view.html#a6e668f44357161a0522fc6dff6b0f057", null ],
+    [ "getDepartmentText", "classview_1_1_uni_rec_dialog_view.html#a8a48e5113cef212158ebd970ba446679", null ],
+    [ "getDescriptionText", "classview_1_1_uni_rec_dialog_view.html#ae5134ea62dc72a15deef05262a46cbaa", null ],
+    [ "getInfoText", "classview_1_1_uni_rec_dialog_view.html#a33126c8e0275be9b5808eedb9ff87024", null ],
+    [ "getSchoolText", "classview_1_1_uni_rec_dialog_view.html#a26b4f6fcdf4b0b12c7bd162b94688aa4", null ],
+    [ "getSelectedDepartmentRowIndex", "classview_1_1_uni_rec_dialog_view.html#a1a7adae6a9a31b3ffebe2ff6eb4c17f8", null ],
+    [ "getSelectedSchool", "classview_1_1_uni_rec_dialog_view.html#a7657cbc4d8008b1f18d805c444c2627e", null ],
+    [ "getSelectedSchoolRowIndex", "classview_1_1_uni_rec_dialog_view.html#a7426b21de1ad23e1ccc6ade1f56b890c", null ],
+    [ "populateDepartmentGrid", "classview_1_1_uni_rec_dialog_view.html#a9b471f761f9a7553fa25a289460de10e", null ],
+    [ "populateDomainsGrid", "classview_1_1_uni_rec_dialog_view.html#a392accd9fe243b5a3d89e33bb9577047", null ],
+    [ "populateSchoolsGrid", "classview_1_1_uni_rec_dialog_view.html#ae6dd183bd187203babdf630feadead44", null ],
+    [ "populateWebPagesGrid", "classview_1_1_uni_rec_dialog_view.html#a31b23ed3eced848ba08aee368b6f7f6e", null ],
+    [ "setDepartmentTextField", "classview_1_1_uni_rec_dialog_view.html#a105a604e52ff55b28bf76969bc55b8f1", null ],
+    [ "setDescriptionField", "classview_1_1_uni_rec_dialog_view.html#a5b831e2abe4248205dca3625f0b0c627", null ],
+    [ "setInfoField", "classview_1_1_uni_rec_dialog_view.html#a4232e507e7c89ea7fc2f039482eae317", null ],
+    [ "setSchoolTextField", "classview_1_1_uni_rec_dialog_view.html#a9e42f6391908d581a1ff35faabdcc0ad", null ],
+    [ "setUniversityData", "classview_1_1_uni_rec_dialog_view.html#a6ec0f43b1f5317415e1b06aca7941527", null ]
+];
