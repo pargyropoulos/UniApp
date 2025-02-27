@@ -1,4 +1,4 @@
-UniApp Project
+UniApp Project - HOU - Computer Science - 2024-25
 
 youtube demo: https://youtu.be/VmBKeNo13hw?si=O9Eo70cj0K7m5mZZ
 
