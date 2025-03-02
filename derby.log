@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Feb 27 20:17:56 EET 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-0195-48a1-2885-000001d26110 
+on database directory C:\Users\Panagiotis\Documents\Coding\Java\UniApp\UniApp\UniDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+Loaded from file:/C:/Users/Panagiotis/Documents/Coding/Java/UniApp/UniApp/lib/derby/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=19.0.2+7-44
+user.dir=C:\Users\Panagiotis\Documents\Coding\Java\UniApp\UniApp
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
