@@ -1,6 +1,9 @@
 UniApp Project - HOU - Computer Science - 2024-25
 
-youtube demo: https://youtu.be/VmBKeNo13hw?si=O9Eo70cj0K7m5mZZ
+Watch the demo (in greek) on YouTube: [YouTube](https://youtu.be/VmBKeNo13hw?si=O9Eo70cj0K7m5mZZ)
+<br>
+
+View the html documentation: [html docs](https://grecotron.gr/UniApp/docs/html/)
 
 ![image](https://github.com/user-attachments/assets/b799ca47-36af-4b1b-a003-371a41057ed7)
 ![image](https://github.com/user-attachments/assets/fc990a64-cbf9-491f-acad-c551cc4fca23)
