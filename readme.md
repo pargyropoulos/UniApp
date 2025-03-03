@@ -16,7 +16,7 @@ The code utilizes the mediating-controller MVC architectural pattern...
 ...and extensively employs the Observer behavioural pattern to enhance decoupling.
 ![image](https://github.com/user-attachments/assets/1c92ad83-ac9c-4eb5-bcaf-0f2d9b7dc471)
 
-Project's Structure
+Project's Structure:
 ```
 │   Main.java
 │   
