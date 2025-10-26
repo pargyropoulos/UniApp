@@ -116,6 +116,7 @@ Project's Structure:
             ISettingsView.java
             SettingsView.form
             SettingsView.java
-            
-
+```
+![GitHub watchers](https://img.shields.io/github/watchers/pargyropoulos/UniApp?style=social)
+![GitHub stars](https://img.shields.io/github/stars/pargyropoulos/UniApp?style=social)
             
