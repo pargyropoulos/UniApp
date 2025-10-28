@@ -117,6 +117,7 @@ Project's Structure:
             SettingsView.form
             SettingsView.java
 ```
-![GitHub watchers](https://img.shields.io/github/watchers/pargyropoulos/UniApp?style=social)
-![GitHub stars](https://img.shields.io/github/stars/pargyropoulos/UniApp?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/pargyropoulos/UniApp?style=social&cacheBust=1)
+![GitHub stars](https://img.shields.io/github/stars/pargyropoulos/UniApp?style=social&cacheBust=1)
+![GitHub forks](https://img.shields.io/github/forks/pargyropoulos/UniApp?style=social&cacheBust=1)
             
