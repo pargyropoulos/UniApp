@@ -1,4 +1,4 @@
-UniApp Project - HOU - Computer Science - 2024-25
+UniApp Project - HOU - Computer Science
 
 Watch the demo (in greek) on YouTube: [YouTube](https://youtu.be/VmBKeNo13hw?si=O9Eo70cj0K7m5mZZ)
 <br>
